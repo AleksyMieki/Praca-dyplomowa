@@ -472,7 +472,7 @@ captionpos=t
 % Jeśli metadane zawierają przecinki lub średniki, domyślnie metadane te otaczane są apostrofami.
 % Piszą o tym na stronie: https://tex.stackexchange.com/questions/3708/hyperref-enquotes-metadata
 % Aby pozbyć się tych apostrofów użyto pakietu hyperxmp (ładującego kilka innych pakietów)
-\usepackage{hyperxmp}
+
 \usepackage{ifpdf}
 %\newif\ifpdf \ifx\pdfoutput\undefined
 %\pdffalse % we are not running PDFLaTeX
@@ -486,7 +486,7 @@ captionpos=t
  \DeclareGraphicsExtensions{.pdf,.jpg,.mps,.png} % po zadeklarowaniu rozszerzeń można będzie wstawiać pliki z grafiką bez konieczności podawania tych rozszerzeń w ich nazwach
 \pdfcompresslevel=9
 \pdfoutput=1
-
+\usepackage{hyperxmp}
 % Dobrze przygotowany dokument pdf to taki, który zawiera metadane.
 % Poniżej zadeklarowano pola metadanych, jakie będą włączone do dokumentu pdf.
 % Można je zmodyfikować w zależności od potrzeb
@@ -930,8 +930,8 @@ Specjalność: & {\bfseries \@specjalnosc}\\
 % ROZDZIAŁY (kolejne rozdziały dołączane są z kolejnych plików)
 \chapterstyle{default}
 \include{rozdzial01}
-%\include{rozdzial02}
-%\include{rozdzial03}
+\include{rozdzial02}
+\include{rozdzial03}
 %\include{rozdzial04}
 %\include{rozdzial05}
 %\include{rozdzial06}

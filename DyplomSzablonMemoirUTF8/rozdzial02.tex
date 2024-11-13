@@ -1,195 +1,248 @@
-\chapter{Praca z szablonem}
-\section{Środowisko}
-Szablon powinien dać się skompilować w dowolnym środowisku, w którym zainstalowano system \LaTeX. 
-Zalecaną konfiguracją, która działa w systemie Windows, jest: \texttt{MiKTeX} (windowsowa dystrybucja latexa) + \texttt{TeXnicCenter} (środowisko do edycji i kompilacji projektów latexowych) + \texttt{SumatraPDF} (przeglądarka pdfów z nawigacją zwrotną) + \texttt{JabRef} (opcjonalny edytor bazy danych bibliograficznych). Narzędzia te można pobrać ze stron internetowych, których adresy zamieszczono w tabeli~\ref{tab:narzedzia}. 
-\begin{table}[htb] \small
-\centering
-\caption{Wykaz zalecanych narzędzi do pracy z wykorzystaniem szablonu (na dzień 09.02.2021)}
-\label{tab:narzedzia}
-\begin{tabularx}{\linewidth}{|c|c|X|p{5.5cm}|} \hline\
-Narzędzie & Wersja & Opis & Adres \\ \hline\hline
-\texttt{MiKTeX} & 22.12 & Zalecana jest instalacja \texttt{Basic MiKTeX} 32 lub 64 bitowa. Brakujące pakiety będą się doinstalowywać podczas kompilacji projektu &
-\url{http://miktex.org/download} \\ \hline
-\texttt{TeXnicCenter} & 2.02 &  Można pobrać 32 lub 64 bitową wersję & \url{http://www.texniccenter.org/download/} \\ \hline
-\texttt{SumatraPDF} & 3.4.6 & Można pobrać 32 lub 64 bitową wersję & \url{http://www.sumatrapdfreader.org/download-free-pdf-viewer.html} \\ \hline
-\texttt{JabRef} & 5.7	 & Rozwijane w JDK 15, ma własny instalator i wersję przenośną & \url{http://www.fosshub.com/JabRef.html} \\ \hline
-\end{tabularx}
-\end{table}
+\chapter{Wstępne planowanie}
 
-Wspomniana nawigacja między \texttt{TeXnicCenter} a \texttt{SumatraPDF} polega na przełączaniu się pomiędzy tymi narzędziami z zachowaniem kontekstu położenia kursora. Czyli edytując tekst w \texttt{TeXnicCenter} po kliku na ikonce podglądu można przeskoczyć do odpowiedniego miejsca w pdfie wyświetlanym przez \texttt{SumatraPDF}. Podwójne kliknięcie zaś w pdfie widocznym w \texttt{SumatraPDF} ustawi kursor we właściwym akapicie w edytorze tekstu \texttt{TeXnicCenter}. O konfiguracji obu narzędzi do takiej współpracy napisano na stronie \url{http://tex.stackexchange.com/questions/116981/how-to-configure-texniccenter-2-0-with-sumatra-2013-2014-2015-version} (w sieci można znaleźć również inne materiały na ten temat).
+\section{Analiza dostępnych aplikacji}
 
-Szablon można również kompilować za pomocą innych narzędzi i środowisk (np.\ za pomocą multiplatformowego \texttt{TexStudio} oraz różnych dystrybucji systemu \LaTeX). Może to jednak czasem wymagać zmiany sposobu kodowania plików i korekty deklaracji kodowania znaków w dokumencie głównym (co opisano dalej). 
-Można go też zaadoptować do wymogów \LaTeX-owych edytorów i kompilatorów działających w trybie on-line, oferowanych na przykład w usłudze \texttt{Overleaf} (\url{https://www.overleaf.com/}). 
+Poniżej przedstawiono 2 najbardziej popularne serwisy internetowe oferujące materiały oraz narzędzia do gry na gitarze. 
 
-Choć usługa \texttt{Overleaf} ma niewątpliwie wiele zalet (pozwala na edycję kodu przez wielu użytkowników jednocześnie), to podczas pracy nad długimi dokumentami przegrywa ona ze wspomnianymi zintegrowanymi środowiskami \texttt{TeXnicCenter} czy \texttt{TexStudio}. W \texttt{Overleaf} nie można wyświetlić struktury całego projektu (a jedynie listę plików projektowych oraz strukturę bieżąco edytowanego dokumentu), nie można uruchomić wyszukiwania we wszystkich plikach projektowych (nie ma opcji  \texttt{Find in Files ...}, która bardzo się przydaje, gdy nie wiadomo, w~którym pliku jest wyszukiwany tekst). 
+\subsection{Guitar Tuna}
 
-\texttt{Overleaf} wymaga użycia kodowania UTF8. Czyli aby dało się wczytać niniejszy szablon pracy dyplomowej do tego środowiska, pliki szablonu muszą być przekodowane, muszą też być zmienione opcje pakietu \texttt{inputenc} oraz odpowiednio zadeklarowane \texttt{literate} (aby dało się używać polskich znaków na listingach). Aby sprawę uprościć przygotowano dwie wersje szablonu: w kodowaniu ANSI oraz UTF8.
+Jedną z większych i najbardziej spopularyzowanych aplikacji jest Guitar Tuna, przeznaczona ona jest w głównej mierze na urządzenia mobilne, z ograniczoną ilością funkcjonalności na urządzenia desktopowe. Do dostępnych narzędzi zalicza się:
 
-Choć w \texttt{Overleaf} istnieje możliwość skorzystania z wersjonowania (system ten integruje się z repozytorium \texttt{git}), to wersjonowanie to nie działa perfekcyjnie. Dlatego \textbf{zaleca się korzystanie ze środowisk zintegrowanych zainstalowanych lokalnie, czemu towarzyszyć ma wersjonowanie z pomocą wybranego zdalnego repozytorium (\texttt{gitlab}, \texttt{github}, \texttt{bitbucket})}.
+\subsubsection{Stroik}
 
-\section{Struktura projektu}
-Pisząc pracę w systemie \LaTeX zwykle przyjmuje się jakąś konwencję co do nazewnictwa tworzonych plików, ich położenia oraz powiązań. Przygotowując niniejszy szablon założono, że projekt będzie się składał z pliku głównego, plików z kodem kolejnych rozdziałów i dodatków (włączanych do kompilacji w dokumencie głównym), katalogów z plikami grafik (o nazwach wskazujących na rozdziały, w których grafiki te zostaną wstawione), pliku ze skrótami (opcjonalny), pliku z danymi bibliograficznymi (plik \texttt{dokumentacja.bib}). Taki ,,układ'' zapewnia porządek oraz pozwala na selektywną kompilację rozdziałów. 
+Stroik gitarowy, z graficzną reprezentacją tonu oraz "odległości" od domniemanej nuty. Narzędzie umożliwia parametryzację polegającą na wyborze docelowej nuty do jakiej chcemy dostroić instrument. Narzędzie umożliwia też wybór instrumentu, wraz z jego graficzną reprezentacją na ekranie i przypisanymi nazwami nut obok odpowiadających pokręteł. Użytkownik do wyboru ma takie instrumenty jak gitara, ukulele, gitara basowa. Dodatkowym atutem jest możliwość wyboru niestandardowych strojeń instrumentów. 
 
-Przyjętą konwencję da się opisać jak następuje:
+% \begin{figure}[htb]
+% 	\centering
+% 	\includegraphics[width=.7\linewidth]{rysunki/GTSTROIK}
+% 	\caption{Stroik aplikacji Guitar Tuna} \label{fig:pageLayout}
+% \end{figure}
+
+\subsubsection{Akordy}
+
+Sekcja akordów witryny internetowej jest uboższa aniżeli w aplikacji mobilnej. Narzędzie to daje dostęp do licznych piosenek, przy których przedstawione zostały akordy potrzebne do ich zagrania, wraz z tekstem i przejściami akordów w odpowiednich momentach. Zostało to zrobione statycznie, bez informacji na temat tempa utworu, czy dynamiki przejść pomiędzy granymi akordami. Istnieje tu również myląca funkcja "smart scroll" sugerująca możliwość grania wraz z podkładem grającym w tle, po naciśnięciu przycisku pojawia się jedynie odnośnik do pobrania aplikacji mobilnej.
+
+% \begin{figure}[htb]
+% 	\centering
+% 	\includegraphics[width=.7\linewidth]{rysunki/ChordsGT}
+% 	\caption{Sekcja akordów aplikacji Guitar Tuna} \label{fig:pageLayout}
+% \end{figure}
+
+\subsubsection{Podsumowanie aplikacji Guitar Tuna}
+
+Aplikacja sama w sobie jest bardzo przystępna i intuicyjna, największym atutem jest stroik dajacy dowolność jeżeli chodzi o używany instrument. Wersja desktopowa jest jednak znacznie okrojona w porównaniu do aplikacji mobilnej, nie znajdziemy tu listy akordów, diagramów skal czy metronomu. 
+
+\subsection{Truefire}
+
+Aplikacja ta zawiera w większości płatne lekcje i materiały edukacyjne do gry na gitarze takie jak:
+
 \begin{itemize}
-\item Plikiem głównym jest plik \texttt{Dyplom.tex}. To w nim znajdują się deklaracje wszystkich używanych styli, definicje makr oraz ustawień, jak również polecenie \verb+\begin{document}+. W~nim też należy ustawić metadane, które pojawią się na stronie tytułowej (oraz w stopkach).
-\item Teksty redagowane są w osobnych plikach. Pliki te zamieszczone są w katalogu głównym (tym samym, co plik \texttt{Dyplom.tex}).
-\item W pliku \texttt{streszczenie.tex} powinien pojawić się tekst streszczenia ze słowami kluczowymi (tekst ten oraz słowa kluczowe będzie można wykorzystać do wypełnienia formularzy pojawiających się podczas wysyłania pracy do analizy antyplagiatowej w systemie ASAP)
-\item Plik \texttt{skroty.tex} powinien zawierać wykaz użytych skrótów. Można z tego pliku zrezygnować, jeśli liczba stosowanych skrótów jest nieznaczna. 
-\item Tekst kolejnych rozdziałów powinien pojawić się w plikach o nazwach zawierających numery tych rozdziałów. Według przyjętej konwencji \texttt{rozdzial01.tex} to plik pierwszego rozdziału, \texttt{rozdzial02.tex} to plik z treścią drugiego rozdziału itd. 
-\item Teksty dodatków mają być zapisywane w osobnych plikach o nazwach zawierających literę dodatku. Pliki te, podobnie do plików z tekstem rozdziałów, zamieszczane są w katalogu głównym. I~tak \texttt{dodatekA.tex} oraz \texttt{dodatekB.tex} to, odpowiednio, pliki z treścią dodatku A oraz dodatku B.
-\item Każdemu rozdziałowi i dodatkowi towarzyszy katalog przeznaczony do składowania dołączanych grafik. I tak \texttt{rys01} to katalog na pliki z grafikami dołączanymi do rozdziału pierwszego, \texttt{rys02} to katalog na pliki z grafikami dołączanymi do rozdziału drugiego itd.
-Podobnie \texttt{rysA} to katalog na pliki z grafikami dołączanymi w dodatku A itd.
-\item W katalogu głównym zamieszczany jest plik \texttt{dokumentacja.bib} zawierający bazę danych bibliograficznych.
-\item Jeśli praca nad dokumentem odbywa się w \texttt{TeXnicCenter}, to zgodnie z wymogami tego narzędzia powinien istnieć jeszcze dodatkowy plik projektu. Plik ten pełni podobną rolę jak plik solucji wykorzystywany w zintegrowanych środowiskach programowania. Co prawda plik projektu nie jest wymagany do \LaTeX-owej kompilacji (wystarczy kompilować plik główny), niemniej pozwala zapamiętać ustawienia środowiska (w tym ustawienia językowe potrzebne do sprawdzania poprawności wyrazów -- patrz następny podrozdział).  Plik projektu dostarczony w szablonie ma nazwę \texttt{Dyplom.tcp}. 
+    \item podkłady muzyczne do gry,
+    \item kursy nauki gry poszczególnych stylów muzycznych np. blues, funk czy jazz,
+    \item możliwość wykupienia prywatnych lekcji u instruktorów,
+    \item transkrypcje znanych piosenek z instrukcjami gry,
 \end{itemize}
 
-\begin{table}[htb]
-\centering\small
-\caption{Pliki źródłowe szablonu oraz wyniki kompilacji}
-\label{tab:szablon}
-\begin{tabularx}{\linewidth}{|p{.55\linewidth}|X|}\hline
-Źródła & Wyniki kompilacji \\ \hline\hline
-\verb?Dokument.tex? - dokument główny\newline
-\verb?Dokument.tcp? -- plik projektu \verb+TeXnicCenter+\newline
-\verb?streszczenie.tex? -- plik streszczenia\newline
-\verb?skroty.tex? -- plik ze skrótami\newline
-\verb?rozdzial01.tex? -- plik rozdziału \texttt{01}\newline
-\verb?...?\newline
-\verb?dodatekA.tex? -- plik dodatku \texttt{A}\newline
-\verb?...?\newline
-\verb?rys01? -- katalog na rysunki do rozdziału \texttt{01}\newline
-\verb?   |- fig01.png? -- plik grafiki\newline
-\verb?   |- ...?\newline
-\verb?...?\newline
-\verb?rysA? -- katalog na rysunki do dodatku \texttt{A}\newline
-\verb?   |- fig01.png? -- plik grafiki\newline
-\verb?   |- ...?\newline
-\verb?...?\newline
-\verb?dokumentacja.bib? -- plik danych bibliograficznych\newline
-\verb?Dyplom.ist? -- plik ze stylem indeksu\newline
-\verb?by-nc-sa.png? -- plik z ikonami CC\newline
- &
-\verb?Dyplom.bbl?\newline
-\verb?Dyplom.blg?\newline
-\verb?Dyplom.ind?\newline
-\verb?Dyplom.idx?\newline
-\verb?Dyplom.lof?\newline
-\verb?Dyplom.log?\newline
-\verb?Dyplom.lot?\newline
-\verb?Dyplom.out?\newline
-\verb?Dyplom.pdf? -- dokument wynikowy\newline
-\verb?Dyplom.syntex?\newline
-\verb?Dyplom.toc?\newline
-\verb?Dyplom.tps?\newline
-\verb?*.aux?\newline 
-\verb?Dyplom.synctex?\newline\\
-\hline
-\end{tabularx}
-\end{table}
+Poza tym sama witryna zawiera sekcję z narzędziami do nauki, na podstawie której przeprowadzono analizę pod względem użyteczności, łatwości przekazu, sposobu przedstawienia poszczególnych elementów. 
 
-\section{Kodowanie znaków}
-System \LaTeX obsługuje wielojęzyczność. Można tworzyć w nim dokumenty z tekstem zawierającym różne znaki diakrytyczne. 
-Należy jednak zdawać sobie sprawę, w jaki sposób znaki te są obsługiwane. Na kodowanie znaków należy patrzeć z dwóch perspektyw: perspektywy edytowania kodu źródłowego oraz perspektywy kodowania dokumentu wynikowego i użytych czcionek.
+\subsubsection{Stroik}
 
-Kod latexowy może być edytowany w dowolnym edytorze tekstów. Zastosowane kodowanie znaków w tym edytorze musi być znane \LaTeX-owi, inaczej kompilacja tego kodu się nie powiedzie. Informację o tym kodowaniu przekazuje się w opcjach pakietu \texttt{inputenc}. Niniejszy szablon przygotowano w systemie Windows, a \LaTeX-owe źródła umieszczono w plikach ANSI z użyciem strony kodowej cp1250. Dlatego w poleceniu \verb+\usepackage[cp1250]{inputenc}+ jako opcję wpisano \texttt{cp1250}.
+Pierwszym narzędziem jest stroik gitarowy, który został skonstruowany w sposób prosty, rozpoznaje poszczególne dźwięki skali chromatycznej. Zawiera on w sobie "input meter", będący indykatorem poziomu decybeli dostarczanych do mikrofonu. Ma on również slider umożliwiający parametryzację czułości mikrofonu. Samo narzędzie naturalnie umożliwia dostrojenie gitary do poszczególnych dźwięków, może być ono natomiast mało intuicyjne dla początkujących graczy, którzy nie są zapoznani z domyślnym strojeniem strun gitary.
+% \begin{figure}[htb]
+% 	\centering
+% 	\includegraphics[width=.7\linewidth]{rysunki/tuneFireStroik}
+% 	\caption{Stroik aplikacji Truefire} \label{fig:pageLayout}
+% \end{figure}
 
+\subsubsection{Eksplorator akordów}
 
-Szablon można wykorzystać również przy innych kodowaniach i w innych systemach. Jednak wtedy konieczna będzie korekta dokumentu \texttt{Dyplom.tex} odpowiednio do wybranego przypadku. Korekta ta polegać ma na zamianie polecenia \verb+\usepackage[cp1250]{inputenc}+  na polecenie \verb+\usepackage[utf8]{inputenc}+ oraz konwersji znaków i zmiany kodowania istniejących plików ze źródłem latexowego kodu (plików o rozszerzeniu \texttt{*.tex} oraz \texttt{*.bib}).
+Drugim z pięciu dostępnych narzędzi jest eksplorator akordów, który na podstawie zaznaczonych pozycji naciśniętych progów przeszukuje dostępne możliwe akordy, wyświetlając przy tym te będące najbardziej podobne do zaznaczonych pozycji. Samo narzędzie jest z całą pewnością bardzo kreatywne. Jeżeli chodzi o samą naukę narzędzie wydaje się być mało przydatne, z racji braku kontekstu przy wyświetlanych znalezionych akordach, nie podając informacji odnośnie skal, do których sam akord należy. Ze względu na algorytm dopasowujący nawet w przypadku, gdy podamy losową pozycję naciśniętych progów, wyświetlone i tak zostana prawidłowe akordy. Narzędzie może być mylące dla nowych graczy, mogących założyć, że podany przez nich układ wpisuje się pod prawidłowe akordy uznawane przez teorię muzyki.
+% \begin{figure}[htb]
+% 	\centering
+% 	\includegraphics[width=.7\linewidth]{rysunki/ChordFinder}
+% 	\caption{Eksplorator akordów aplikacji TrueFire} \label{fig:pageLayout}
+% \end{figure}
 
-Kodowanie znaków jest istotne również przy edytowaniu bazy danych bibliograficznych (pliku \texttt{dokumentacja.bib}). Aby \texttt{bibtex} poprawnie interpretował polskie znaki plik \texttt{dokumentacja.bib} powinien być zakodowany w ANSI, CR+LF (dla ustawień jak w szablonie). 
-W szczególności, jeśli ominąć chce się problem kodowania, polskie znaki w bazie danych bibliograficznych można zastąpić odpowiednią notacją: \verb|\k{a}| \verb|\'c| \verb|\k{e}| \verb|\l{}| \verb|\'n| \verb|\'o| \verb|\'s| \verb|\'z| \verb|\.z| \verb|\k{A}| \verb|\'C| \verb|\k{E}| \verb|\L{}| \verb|\'N| \verb|\'O| \verb|\'S| \verb|\'Z| \verb|\.Z|. 
+\subsubsection{Metronom}
 
-Samo kodowanie plików może być źródłem paru problemów. Chodzi o to, że użytkownicy pracujący z edytorami tekstów pod linuxem mogą generować pliki zakodowane w UTF8 bez BOM (lub z BOM -- co nie jest zalecane), a pod windowsem -- pliki ANSI ze znakami ze strony kodewej \texttt{cp1250}. Z takimi plikami różne edytory różnie sobie radzą. W szczególności edytor \texttt{TeXnicCenter} podczas otwierania plików może potraktować jego zawartość jako UTF8 lub ANSI -- prawdopodobnie interpretuje z jakim kodowaniem ma do czynienia na podstawie obecności w pliku znaków specjalnych. Bywa, że choć wszystko w \texttt{TeXnicCenter} wygląda na poprawne, to jednak kompilacja \LaTeX-owa ,,nie idzie''. Problemem mogą być właśnie pierwsze bajty, których nie widać w edytorze. 
+Metronom zaimplementowany jest w sposób prosty, dostarczając wszystkie potrzebne funkcjonalności w jasny i przejrzysty sposób. Dla użytkownika dostępne są funkcje zmiany tempa wybijania poszczególnych beatów, możliwość ręcznego ustawienia tempa, oraz dobór metrum z listy 6 dostępnych. Sama realizacja tej funkcjonalności, mogłaby zawierać dodatkowo opcję wyboru całych nut, a nie jedynie pół nut i ósemek przy wyborze metrum, poza tym samo narzędzie wykonuje swoje zadanie, umożliwiając treningu rytmu.
+% \begin{figure}[htb]
+% 	\centering
+% 	\includegraphics[width=.7\linewidth]{rysunki/METRO}
+% 	\caption{Metronom aplikacji TrueFire} \label{fig:pageLayout}
+% \end{figure}
 
-Do konwersji kodowania można użyć edytor \texttt{Notepad++} (jest tam opcja ,,konwertuj'' -- nie mylić z~opcją ,,koduj'', która przekodowuje znaki, jednak nie zmienia sposobu kodowania pliku).
+\subsubsection{Księga akordów}
 
-Jeśli chodzi o drugą perspektywę, tj.\ kodowanie znaków w dokumencie wynikowym, to sprawa jest bardziej skomplikowana. Wiąże się z nią zarządzanie czcionkami, definiowanie mapowania itp. 
-\textbf{Szablon przygotowano tak, by wynikowy dokument zawierał polskie znaki diakrytyczne, które nie są zlepkami literki i ogonka.}
+Funkcjonalność księgi akordów zaprezentowana została w mało przystępny sposób, mianowicie prezentowany nam jest diagram w postacie statycznego obrazka, z mało czytelnym podziałem pomiędzy poszczególnymi akordami. Diagram ten jest wadliwy z powodu jego nieczytelności, może on być niezrozumiały dla graczy początkujących jak i średnio zaawansowanych, z powodu braku kontekstu pod akordami. Same diagramy nie obrazują numeru progu, na którym dany akord ma być grany oraz nie przedstawia nuty odpowiadającej danej strunie.
+% \begin{figure}[htb]
+% 	\centering
+% 	\includegraphics[width=.7\linewidth]{rysunki/ChordChart}
+% 	\caption{Lista akordów aplikacji Tunefire} \label{fig:pageLayout}
+% \end{figure}
 
-\section{Kompilacja szablonu}
-Kompilację szablonu można uruchamiać na kilka różnych sposobów. Wszystko zależy od używanego systemu operacyjnego, zainstalowanej na nim dystrybucji \LaTeX-a oraz dostępnych narzędzi. Zazwyczaj kompilację rozpoczyna się wydając polecenie z linii komend lub uruchamia się ją za pomocą narzędzi zintegrowanych środowisk.
+\subsubsection{Diagramy skal}
 
-Kompilacja z linii komend polega na uruchomieniu w katalogu, w którym rozpakowano źródła szablonu, następującego polecenia:
-\begin{lstlisting}[basicstyle=\ttfamily]
-> pdflatex Dyplom.tex
-\end{lstlisting}
-gdzie \texttt{pdflatex} to nazwa kompilatora, zaś \texttt{Dyplom.tex} to nazwa głównego pliku redagowanej pracy. 
-W przypadku korzystania ze środowiska \texttt{TeXnicCenter} należy otworzyć dostarczony w~szablonie plik projektu \texttt{Dyplom.tcp}, a następnie uruchomić kompilację narzędziami dostępnymi w pasku narzędziowym.
+Ostatnim narzędziem dostępnym dla użytkownika są diagramy skal, przedstawiane jest 6 najpopularniejszych skal muzycznych, brakuje jednak możliwości przeniesienia tych diagramów poprzez gryf, wraz z informacją na temat tego w jakiej skali grany miałby być poszczególny diagram. Jest to rozwiązanie wadliwe, nie dostarczające wystarczająco dużej ilości informacji. 
 
-Aby poprawnie wygenerowały się wszystkie referencje (spis treści, odwołania do tabel, rysunków, pozycji literaturowych, równań itd.) kompilację \texttt{pdflatex} należy wykonać dwukrotnie, a~czasem nawet trzykrotnie. Wynika to z konieczności zapamiętywania pośrednich wyników kompilacji i ich wykorzystywania w kolejnych przebiegach. Tak dzieje się przy generowaniu odwołań do pozycji literaturowych oraz tworzeniu ich wykazu). 
+% \begin{figure}[htb]
+% 	\centering
+% 	\includegraphics[width=.7\linewidth]{rysunki/SKALETF}
+% 	\caption{Kontrola marginesów i odstępów elementów na stronie} \label{fig:pageLayout}
+% \end{figure}
 
-Wygenerowanie danych bibliograficznych zapewnia kompilacja \texttt{bibtex} uruchamiana po kompilacji \texttt{pdfltex}. Można to zrobić z linii komend:
-\begin{lstlisting}[basicstyle=\ttfamily]
-> bibtex Dyplom
-\end{lstlisting}
-lub wybierając odpowiednią pozycję z paska narzędziowego wykorzystywanego środowiska. Po kompilacji za pomocą \texttt{bibtex} na dysku pojawi się plik \texttt{Dyplom.bbl}. Dopiero po kolejnych dwóch kompilacjach \texttt{pdflatex} dane z tego pliku zostaną odpowiednio przetworzone i zrenderowane w wygenerowanym dokumencie. Tak więc po każdym wstawieniu nowego cytowania w kodzie dokumentu uzyskanie poprawnego formatowania dokumentu wynikowego wymaga powtórzenia następującej sekwencji kroków kompilacji:
-\begin{lstlisting}[basicstyle=\ttfamily]
-> pdflatex Document.tex
-> bibtex Document
-> latex Document.tex
-> latex Document.tex
-\end{lstlisting}
-Szczegóły dotyczące przygotowania danych bibliograficznych oraz zastosowania cytowań przedstawiono w podrozdziale \ref{sec:literatura}.
+\subsubsection{Podsumownanie narzędzia Truefire}
 
-W głównym pliku zamieszczono polecenia pozwalające sterować procesem kompilacji poprzez włączanie bądź wyłączanie kodu źródłowego poszczególnych rozdziałów. Włączanie kodu do kompilacji zapewniają instrukcje \verb+\include+ oraz \verb+\includeonly+. Pierwsza z nich pozwala włączyć do kompilacji kod wskazanego pliku (np.\ kodu źródłowego pierwszego rozdziału \verb+\include{rozdzial01.tex}+). Druga, jeśli zostanie zastosowana, pozwala określić, które z~plików zostaną skompilowane w całości (na przykład kod źródłowy pierwszego i drugiego rozdziału \verb+\includeonly{rozdzial01.tex,rozdzial02.tex}+). Brak nazwy pliku na liście w poleceniu \verb+\includeonly+ przy jednoczesnym wystąpieniu jego nazwy w poleceniu \verb+\include+ oznacza, że w kompilacji zostaną uwzględnione referencje wygenerowane dla tego pliku wcześniej, sam zaś kod źródłowy pliku nie będzie kompilowany. 
+Narzędzie w ogólnym ujęciu jest dobre, dostarcza podstawowe funkcjonalności umożliwiające naukę gry na gitarze, trening rytmu oraz możliwość dostrojenia samego instrumentu. Same funkcjonalności natomiast zostawiają dużo miejsca na rozwój, możliwość parametryzacji czy też umieszczenie informacji kontekstowych, oraz objaśnienie pewnych sformułowań związanych z pozycjami akordów na gryfie. Narzędzie wyszukiwania akordów na podstawie podanych numerów progrów jest natomiast samo w sobie bardzo mylące. Najbardziej przydatnym narzędziem z całego zestawienia jest metronom, będący prosty w obsłudze i dający możliwość prostego treningu rytmu grania. 
 
-W szablonie wykorzystano klasę dokumentu \texttt{memoir} oraz wybrane pakiety. Podczas kompilacji szablonu w \texttt{MikTeXu} wszelkie potrzebne pakiety zostaną zainstalowane automatycznie (jeśli \texttt{MikTeX} zainstalowano z opcją dynamicznej instalacji brakujących pakietów). W przypadku innych dystrybucji \LaTeX-a może okazać się, że pakiety te trzeba doinstalować ręcznie (np.\ pod linuxem z \texttt{TeXLive} trzeba doinstalować dodatkową zbiorczą paczkę, a jeśli ma się menadżera pakietów \LaTeX-owych, to pakiety te można instalować indywidualnie).
+\section{Podsumowanie analizy aplikacji}
 
-Jeśli w szablonie będzie wykorzystany indeks rzeczowy, kompilację źródeł trzeba będzie rozszerzyć o kroki potrzebne na wygenerowanie plików pośrednich \texttt{Dokument.idx} oraz \texttt{Dokument.ind} oraz dołączenia ich do finalnego dokumentu (podobnie jak to ma miejsce przy generowaniu wykazu literatury).
-Szczegóły dotyczące generowania indeksu rzeczowego opisano w podrozdziale~\ref{sec:indeks}.
+Biorąc pod uwagę powyżej wymienione aplikacje, wyciągnięto wnioski odnośnie ich najlepszych cech oraz niedoskonałości. Do dobrych cech aplikacji można zaliczyć prostotę ich obsługi, zwłaszcza w funkcjonalności stroika aplikacji Guitar Tuna oraz metronomu Tunefire. Do największych wad należy brak kontekstu przy wizualizacji listy dostępnych akordów, oraz ograniczoną ilość możliwości przy wersji desktopowej aplikacji. Na tej podstawie wyciągnięto aspekty, oraz narzędzia jakie znajdą się w docelowym produkcie, mianowicie:
 
-\section{Sprawdzanie poprawności tekstu}
-Większość środowisk ułatwiających pisanie \LaTeX-owych dokumentów wspiera sprawdzenie poprawności tekstu (ang.~\emph{spell checking}). Wystarczy odpowiednio je skonfigurować. Niestety, proponowana przez narzędzia korekta nie jest genialna. Bazuje ona na prostym porównywaniu wyrazów (z końcówkami). Nie wbudowano w nią żadnej większej inteligencji. Tak więc proszę nie porównywać jej z korektą oferowaną w narzędziach MS Office (tam jest ona dużo bardziej zaawansowana).
-
-\texttt{TeXnicCenter} korzysta ze słowników do pobrania ze strony \texttt{openoffice} (\url{https://extensions.openoffice.org/}).
-Aby sprawę uprościć słowniki dla języka polskiego (pliki \texttt{pl\_PL.aff} oraz \texttt{pl\_PL.dic}) dołączono do szablonu (są w katalogu \texttt{Dictionaries}). Pliki te należy umieścić w katalogu \texttt{C:\textbackslash{}Program Files\textbackslash{}TeXnicCenter\textbackslash{}Dictionaries}, a w konfiguracji projektu (\texttt{Tools/Options/Spelling}) należy wybrać \texttt{Language: pl}, \texttt{Dialect: PL}. Jeśli główny tekst pracy pisany jest w innym języku, to trzeba zmienić słownik.
-
-Zaskakujące może jest to, że \emph{spell checker} w \texttt{TeXnicCenter} działa zarówno przy pracy na plikach UTF8, jak i na plikach ANSI. Jeśli byłyby jakieś problemy ze słownikiem wynikające z~kodowania znaków, wtedy słownik trzeba przekodować. To powinno pomóc.
-
-\section{Wersjonowanie}
-W trakcie edytowania pracy w systemie latex dobrą praktyką jest wersjonowanie tworzonego kodu. Do wersjonowania zaleca się wykorzystać system \texttt{git}. Opis sposobu pracy z tym systemem opisano w licznych tutorialach dostępnych w sieci. Szczególnie godnym polecenia zasobem jest strona domowa projektu \url{https://git-scm.com/}.
-
-Zwykle pracę z systemem wersjonowania rozpoczyna się od utworzenia repozytorium zdalnego i lokalnego. Lokalne służy do bieżącej pracy, zdalne -- do współpracy z innymi użytkownikami (z promotorem). 
-
-Po utworzeniu repozytorium lokalnego i roboczej gałęzi (czy będzie to \texttt{master} czy inna gałąź -- ustalają to sami zainteresowani) należy skopiować do niego wszystkie pliki dostarczone w szablonie, a po ich wstępnym przeredagowaniu należy je zaznaczyć do wersjonowania. Potem należy wysłać zmiany na repozytorium zdalne (możliwa jest też ścieżka odwrotna, można zacząć od zmian na repozytorium zdalnym, które pobrane będą do repozytorium lokalnego).
-
-Podczas kompilowania projektu będą powstawały pliki pomocnicze. Plików tych nie należy wersjonować (zabierają niepotrzebnie miejsce, a przecież zawsze można je odtworzyć uruchamiając kompilację na źródłach). \texttt{git} posiada mechanizm automatycznego odrzucania plików niepodlegających wersjonowaniu. Mechanizm ten bazuje na wykorzystaniu pliku konfiguracyjnego \texttt{.gitignore} zamieszczonego w katalogu głównym repozytorium. O szczegółach \texttt{.gitignore} można poczytać  na stronie \url{https://git-scm.com/docs/gitignore}. 
-
-W sieci można znaleźć liczne propozycje plików konfiguracyjnych \texttt{.gitignore} dopasowanych do potrzeb latexowej kompilacji. Nie trzeba ich jednak szukać. W~szablonie zamieszczono przykładowy taki plik. Zawiera on, między innymi, wpis zabraniający wersjonowania pliku wynikowego \texttt{Dyplom.pdf}. 
-
-
-Plik \texttt{.gitignore} należy umieścić w repozytorium zaraz po jego utworzeniu. Jeśli w repozytorium pojawiły się już jakieś zmiany zanim pojawił się tam \texttt{.gitignore}, to wtedy należy wykonać kroki opisane na stronie: \url{https://stackoverflow.com/questions/38450276/force-git-to-update-gitignore/38451183}
-
-\begin{lstlisting}[basicstyle=\small\ttfamily]
-> > > > You will have to clear the existing git cache first.
-    git rm -r --cached .
-> > > > Once you clear the existing cache, adds/stages all of the files in the current directory and commit
-    git add .
-    git commit -m "Suitable Message"
-> > > > 
-\end{lstlisting}
-
-
-Zalecany schemat współpracy dyplomanta z promotorem polega na wykonywaniu w kolejnych iteracjach następujących kroków:
 \begin{itemize}
-\item dyplomant edytuje wybraną część pracy, a po skończeniu edycji wrzuca zmiany do zdalnego repozytorium,
-\item dyplomant informuje promotora o zakończeniu etapu prac,
-\item dyplomant może zacząć edycję kolejnego fragmentu pracy, a w tym czasie promotor może dokonać oceny/korekty zmian pobranych ze zdalnego repozytorium,
-\item promotor wrzuca dokonane przez siebie zmiany do zdalnego repozytorium, informując o tym dyplomanta.
-\end{itemize}
-Główna zasada tego schematu polega na niedoprowadzaniu do konfliktów (nadpisywania zmian). Jeśli jednak takie konflikty nastąpią, można je niwelować poprzez odpowiednie scalanie zmian (merdżowanie). Swoją drogą, niezłym narzędziem do porównywania zawartości plików i~usuwania niezgodności jest \texttt{WinMerge} (\url{https://winmerge.org/}).
-
-
-Do wzajemnych powiadomień można wykorzystać pocztę elektroniczną. Można też spróbować wdrożyć mechanizm zatwierdzania zmian (ang.~\emph{merge requests}). Można też umówić się na sprawdzanie zawartości repozytorium zgodnie z jakimś przyjętym harmonogramem. Ważne, by wiadomo było obu stronom, na jakim schemacie współpracy mają bazować.
-
-Dobrą praktyką jest też wstawianie w kod komentarzy. Przyjętą powszechnie konwencją jest rozpoczynanie komentarzy od:
-\begin{itemize}
-\item \verb|% TO DO: tekst zalecenia| 
--- jeśli jest to jakieś zalecenie promotora, czy też 
-\item \verb|% DONE: tekst wyjaśnienia| 
--- jeśli jakieś zalecenie zostało wykonane przez dyplomanta. 
+	\item prosty w obsłudze metronom z możliwością doboru tempa oraz metrum gry,
+	\item stroik umożliwiający wybór nuty, do której docelowo strojony jest instrument,
+	\item księgę akordów z podpisanym akordem, w to wchodzi wariancja akordu oraz ton w jakiej jest on grany,
+	\item koło kwintowe reprezentujące w przejrzysty sposób skale muzyczne.
 \end{itemize}
 
-Jako zdalne repozytorium można wykorzystać: \texttt{github}, \texttt{bitbucket}, \texttt{gitlab} (są to serwisy, które pozwalają zarządzać repozytoriami \texttt{git}).
-Dobrą praktyką jest też uruchomienie klientów git oferujących graficzny interfejs (jak \texttt{SourceTree}, \texttt{GitCracken} itp.). W narzędziach tych można zobaczyć natychmiast na czym polegały wprowadzone w repozytorium zmiany. 
+\section{Makieta aplikacji}
+
+Makieta aplikacji utworzona została za pomocą oprogramowania figma, przedstawia ona podstawowy koncept, oraz zarys sekcji aplikacji. Na poszczególnych obrazkach można zobaczyć wizualizacje scen, zaczynając od głównego ekranu, stroika, metronomu, koła kwintowego, księgi akordów, kończąc na treningu słuchu. 
+
+%\begin{figure}[htb]
+	%\centering
+	%\includegraphics[width=.7\linewidth]{rys03/pageLayout2}
+	%\caption{Kontrola marginesów i odstępów elementów na stronie} \label{fig:pageLayout}
+%\end{figure}
+
+%\begin{figure}[htb]
+	%\centering
+	%\includegraphics[width=.7\linewidth]{rys03/pageLayout2}
+	%\caption{Kontrola marginesów i odstępów elementów na stronie} \label{fig:pageLayout}
+%\end{figure}
+
+%\begin{figure}[htb]
+	%\centering
+	%\includegraphics[width=.7\linewidth]{rys03/pageLayout2}
+	%\caption{Kontrola marginesów i odstępów elementów na stronie} \label{fig:pageLayout}
+%\end{figure}
+
+%\begin{figure}[htb]
+	%\centering
+	%\includegraphics[width=.7\linewidth]{rys03/pageLayout2}
+	%\caption{Kontrola marginesów i odstępów elementów na stronie} \label{fig:pageLayout}
+%\end{figure}
+
+%\begin{figure}[htb]
+	%\centering
+	%\includegraphics[width=.7\linewidth]{rys03/pageLayout2}
+	%\caption{Kontrola marginesów i odstępów elementów na stronie} \label{fig:pageLayout}
+%\end{figure}
+
+\section{Projekt graficznego interfejsu użytkownika}
+
+Projekt gui użytkownika utworzony w aplikacji figma obejmuje utworzenie:
+
+\begin{itemize}
+	\item grafik przycisków dla poszczególnych scen,
+	\item graficznych tytułow poszczególnych scen,
+	\item elementów wizualizujących poszczególne funkcjonalności np: akordy gitarowe, takty metronomu,
+	\item tło oraz elementy kontekstowe ułatwiające posługiwanie się aplikacją.
+\end{itemize}
+
+Poszczególne zaprojektowane elementy prezentują się następująco, na poniższych grafikach przedstawiono: projekt przycisków, tytułów scen oraz przykładów reprezentacji akordów na gryfie. 
+
+%\begin{figure}[htb]
+	%\centering
+	%\includegraphics[width=.7\linewidth]{rys03/pageLayout2}
+	%\caption{Kontrola marginesów i odstępów elementów na stronie} \label{fig:pageLayout}
+%\end{figure}
+
+%\begin{figure}[htb]
+	%\centering
+	%\includegraphics[width=.7\linewidth]{rys03/pageLayout2}
+	%\caption{Kontrola marginesów i odstępów elementów na stronie} \label{fig:pageLayout}
+%\end{figure}
+
+%\begin{figure}[htb]
+	%\centering
+	%\includegraphics[width=.7\linewidth]{rys03/pageLayout2}
+	%\caption{Kontrola marginesów i odstępów elementów na stronie} \label{fig:pageLayout}
+%\end{figure}
+
+\section{Projekt architektury aplikacji}
+
+Projekt architektury dla aplikacji stworzony został w sposób taki, aby każda z poszczególnych funkcjonalności była przejrzysta, a sama aplikacja umożliwiała płynne przełączanie pomiędzy sekcjami aplikacji. Zastosowano wzorzec Model-View-ViewModel, umożliwiający rozdzielenie logiki aplikacji, interfejsu oraz zarządzania danymi. 
+
+%\begin{figure}[htb]
+	%\centering
+	%\includegraphics[width=.7\linewidth]{rys03/pageLayout2}
+	%\caption{Kontrola marginesów i odstępów elementów na stronie} \label{fig:pageLayout}
+%\end{figure}
+
+W skład wzorca wchodzą poniższe 3 elementy:
+\begin{itemize}
+	\item Model: Logika danych aplikacji, zawierająca dane akordów, dźwięków, tempo metronomu,
+	\item View: Zawierająca sceny samej aplikacji, dla każdej z funkcjonalności zaplanowany jest osobny widok (sceny),
+	\item ViewModel: Do każdej ze scen przypisany został kontroler odpowiedniej sceny umożliwiający komunikację pomiędzy widokiem, a modelem, zawiera on logikę aplikacji oraz funkcji potrzebnych w danej scenie.
+\end{itemize}
+
+\subsection{Projekt poszczególnych scen}
+
+W tej sekcji przedstawiono projekt dla każdej z funkcjonalności aplikacji, rozrysowując przy tym komponenty wchodzące w skład danego narzędzia, wraz z ich celem, sposobem implementacji, technologiami użytymi do stworzenia poszczególnych elementów. 
+
+\subsubsection{Scena 1: Scena Główna}
+
+\begin{itemize}
+
+\item Cel: Reprezentacja możliwości wyboru, oraz udzielenie użytkownikowi dostępu do poszczególnych narzędzi za pomocą czytelnych przycisków, które po naciśnięciu przechodzą do odpowiadającej im sceny z danym narzędziem. 
+\item Komponenty: Elementami wchodzącymi w skład sceny głównej, jest 5 przycisków: stroik, metronom, koło kwintowe, księga akordów, trening słuchu. Dodatkowo scena główna zawiera obiekt tekstowy z logiem aplikacji.  
+\item Technologie: Do realizacji tej oto sceny użyto wbudowaną bibliotekę w silnik Unity, a mianowicie Unity.UI, umożliwiającą utworzenie graficznego interfejsu uzytkownika. 
+\item Komunikacja: Każdy z przycisków wchodzących w skład sceny podłączony jest pod kontroler sceny, służący jako pośrednik, w skrypcie należącym do kontrolera poszczególnym przyciskom przypisywana jest funkcja odpowiadająca za załadowanie odpowiedniej sceny. 
+\end{itemize}
+
+\subsubsection{Scena 2: Stroik}
+
+\begin{itemize}
+\item Cel: Udostępnienie możliwości nastrojenia gitary poprzez wybór docelowej struny, do której użytkownik chce nastroić instrument. Następnie zagrane przez użytkownika dźwięki analizowane będą, a wyniki analizy reprezentowane zostaną jako informacja odnośnie tego, czy ton należy obniżyć czy podwyższyć.
+\item Komponenty: W skład sceny wchodzi mikrofon, analizator dźwięku, przyciski odpowiadające strunom na gitarze, oraz wizualizator aktualnego poziomu nastrojenia instrumentu.  
+\item Technologie: Do użytych technologii wykorzystano bibliotekę opartą na otwartej licencji służącą do analizy dostarczanego dźwięku, oraz wyciągnięcie z niego częstotliwości zagranej nuty. Dodatkowo do stworzenia graficznego interfejsu posłużono się biblioteką Unity.UI.   
+\item Komunikacja: Użyto kontroler sceny, aby umożliwić komunikacje pomiędzy elementami graficznymi a analizatorem dźwięku. 
+\end{itemize}
+
+\subsubsection{Metronom}
+
+\begin{itemize}
+\item Cel: Zapewnienie użytkownikowi możliwości treningu rytmu podczas gry, poprzez reprezentację poszczególnych taktów zsynchronizowanych z dźwiękiem "bitu".
+\item Komponenty: Do realizacji tej sceny zastosowano przyciski umożliwiające parametryzację taktu, oraz bpm(ang. beats per minute). Wizualizacja metronomu odbywa się za pośrednictwem pojawiających się na ekranie kwadratów reprezentujących poszczególny takt, które zmieniają swoje kolory z białego na czarny, wraz z czasem wybijania danego rytmu.
+\item Technologie: Skrypt napisany w języku C\# realizujący logikę działania metronomu.
+\item Komunikacja: Poszczególne komponenty komunikują się ze sobą za pośrednictwem kontrolera sceny metronomu, zawierający odwołania do poszczególnych komponentów.
+\end{itemize}
+
+\subsubsection{Księga akordów}
+
+\begin{itemize}
+\item Cel: Wizualizacja pozycji akordów na gryfie, dla każdej nut, wraz z możliwymi wariancjami akordów.
+\item Komponenty: Do komponentów należą przyciski odpowiadające za przeglądanie listy dostępnych akordów, element graficzny wizualizujący aktualnie wybrany akord, wraz z przyciskami odpowiadającymi za przełączenie sceny do widoku diagramu wszystkich możliwych akordów.
+\item Technologie: Wbudowana biblioteka do obsługi graficznego interfejsu użytkownika - Unity.UI.
+\item Komunikacja: Komponenty komunikują się ze sobą za pomocą menadżera sceny, przechowującego za pomoca listy graficzne reprezentacje akordów, które wyświetlane są w odpowiednich momentach. 
+\end{itemize}
+
+\subsubsection{Trening słuchu}
+
+\begin{itemize}
+\item Cel: Umożliwienie użytkownikowi przeprowadzenie ćwiczeń mających na celu nabycia umiejętności rozpoznawania granej nuty za pomocą samego słuchu.
+\item Komponenty: Przycisk odpowiadający za odegranie losowo jednej z 12 nut skali chromatycznej, przyciski odpowiadające za odpowiedź, po naciśnięciu których weryfikowana jest poprawność udzielonej odpowiedzi. Scena zawiera również system audio odpowiadający za odegranie dźwięku
+\item Technologie: Za odgrywanie dźwięków odpowiada biblioteka Unity.Sound, wraz z gotowym komponentem audio wbudowanym w silnik Unity.
+\item Komunikacja: Za komunikację pomiędzy komponentami odpowiada menadzer sceny, łączący ze sobą przyciski, zawierający logike odpowiedzialną za działanie sceny.
+\end{itemize}
+
+\subsubsection{Koło kwintowe}
+
+\begin{itemize}
+	\item Cel: Wizualizacja koła kwintowego, wraz z skalą molową i durową.
+	\item Komponenty: Elementy graficzne, w postaci przycisków, zawierające komponent image, który zawiera odpowiadającą nutę.
+	\item Technologie: Użyto biblioteki Unity.UI do reprezentacji poszczególnych nut.
+	\item Komunikacja: Komunikacja odbywa się poprzez menadżer sceny, zawierający logikę odpowiadającą za podświetlenie odpowiadających nut po naciśnięciu jednego z przycisków na kole kwintowym
+\end{itemize}

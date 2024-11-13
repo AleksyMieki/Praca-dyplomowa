@@ -1,4 +1,5 @@
 \chapter{Wstęp}
+
 \section{Wprowadzenie}
 Muzyka towarzyszyła ludziom od zarania dziejów. Pierwotne instrumenty przybierały postać prostych bębnów czy grzechotek, używanych podczas rytuałów dawnych plemion. Wraz z rozwojem cywilizacji muzyka również ewoluowała, przybierając różne formy – od bluesa granego przez uciemiężonych niewolników, po muzykę klasyczną, popularną w bogatszych kręgach Europy. Instrumenty stawały się coraz bardziej skomplikowane, a sama muzyka coraz bardziej powszechna i dostępna dla zwykłych ludzi.
 
@@ -17,57 +18,42 @@ Problem nie znika nawet po opanowaniu podstaw i teorii potrzebnej do komponowani
 
 Biorąc pod uwagę powyższe aspekty i brak zunifikowanego systemu nauki, postanowiłem stworzyć aplikację desktopową, łączącą w sobie najważniejsze aspekty teorii i praktyki, aby umożliwić graczom łatwy sposób przyswajania teorii muzyki, oferując jednocześnie wszystkie istotne narzędzia potrzebne do nauki i samej gry na gitarze.
 
-\section{Cel pracy}
-Celem tej oto pracy dyplomowej jest stworzenie aplikacji desktopowej zawierającej wszystkie potrzebne narzędzia służące przyswajaniu teorii oraz umożliwiającej łatwą praktykę samej gry. Aplikacja ma na celu ułatwienie użytkownikom procesu nauki w sposób prosty, zwracając uwagę na najbardziej istotne aspekty gry oraz wypłaszczyć próg wejścia do gry dla początkujących graczy, a dla graczy bardziej zaawansowanych ułatwić proces kompozycji własnych utworów. 
+\section{Cel i zakres pracy}
 
-Aby osiągnąć wyżej postawiony cel aplikacja powinna zawierać:
-\begin{itemize}
-    \item grę polegającą na wyświetlaniu na ekranie nut na gryfie, które następnie użytkownik ma rozpoznać
-    \item metronom
-    \item stroik monochromatyczny
-    \item wizualną reprezentację koła kwintowego
-    \item listę dostępnych akordów wraz z ich permutacjami oraz możliwość zapisu do 5 wybranych akordów, które następnie można będzie wyświetlić w oddzielnym oknie
-\end{itemize}
+Celem pracy jest stworzenie aplikacji desktopowej zawierającej potrzebne narzędzia służące przyswajaniu teorii, oraz umożliwiające łatwą praktykę samej gry. Aplikacja ma na celu ułatwić użytkownikom proces nauki, poprzez zwracanie uwagi na najbardziej istotne aspekty gry oraz złagodzić próg wejścia dla początkujących graczy. Dla graczy bardziej zaawansowanych ma na celu ułatwić proces kompozycji własnych utworów. 
 
-\section{Zakres pracy}
-Zakres pracy obejmuje:
-\begin{itemize}
-    \item Analiza wymagań
-    \begin{itemize}
-        \item Zidentyfikowanie problemów, z jakimi mierzą się początkujący jak i średniozaawansowani gitarzyści, takie jak trudności w nauce teorii, akordów, skal oraz progresji. 
-        \item Określenie wymagań funkcjonalnych i niefunkcjonalnych. Ustalenie, jakie funkcje powinny się znaleźć w aplikacji
-    \end{itemize}
-    \item Przegląd istniejących rozwiązań
-    \begin{itemize}
-        \item Analiza dostęnych aplikacji pod kątem tego jakie funkcjonalności zawierają, ustalenie ich zalet oraz wad, przeprowadzenie na tej podstawie analizy odnośnie tego co zawierać ma docelowa aplikacja
-    \end{itemize}
-    \item Projektowanie aplikacji
-    \begin{itemize}
-        \item Stworzenie makiety aplikacji w oprogramowaniu FIGMA
-        \item Stworzenie graficznego interfejsu użytkownika
-        \item Opracowanie architektury aplikacji
-    \end{itemize}
-    \item Implementacja aplikacji
-    \begin{itemize}
-        \item Ustalenie technologii w jakiej aplikacja będzie realizowana
-        \item Zaimplementowanie ustalonych wcześniej funkcjonalności wraz z interfejsem użytkownika
-    \end{itemize}
-    \item Testowanie aplikacji
-    \begin{itemize}
-        \item Testy funkcjonalne - sprawdzenie poprawności działania poszczególnych funkcjonalności aplikacji
-        \item Testy manualne - przeprowadzenie testów sprawdzających intuicyjność oraz użyteczność zaimplementowanych funkcjonalności
-    \end{itemize}
-    \item Dokumentacja aplikacji
-    \begin{itemize}
-        \item Sporządzenie instrukcji użytkownika, opisującej dogłębnie sposób korzystania z aplikacji
-        \item Sporządzenie dokumentacji technicznej aplikacji
-    \end{itemize}
-\end{itemize}
+Aby powyższy cel został jak najlepiej zrealizowany na sam początek postanowiono przyjrzeć się istniejącym już rozwiązaniom, takim jak "Guitar Tuna" czy "Tunefire". Celem analizy aplikacji istniejących na rynku od dłuższego czasu jest wyciągnięcie z nich najlepszych cech, największych wad, a następnie wzięcie analizy pod uwagę podczas planowania funkcjonalności projektu. 
+
+Etapem następującym po analizie istniejących rozwiązań jest sporządzenie wymagań funkcjonalnych i niefunkcjonalnych, ustalenie potrzebnych narzędzi jakie potrzebne są gitarzystom, wraz z ustaleniem wyglądu i designu interfejsu użytkownika.
+
+Kolejnym krokiem jest wstępne zaprojektowanie aplikacji, w pierwszej kolejności utworzenie makiety za pomocą oprogramowania Figma, tworząc dzięki temu wstępną wizję końcowej wersji projektu. Stworzenie graficznego interfejsu użytkownika, również za pomocą aplikacji Figma, stworzenie grafik potrzebnych przycisków, grafik reprezentacji akordów, oraz pozostałych elementów takich jak napisy, grafiki, tytuły poszczególnych scen. Ostatnim krokiem przy projektowaniu jest utworzenie architektury systemu - zaplanowanie komunikacji pomiędzy elementami scen, układ scen, systemy ładowania elementów podczas przemieszczania pomiędzy widokami w aplikacji. 
+
+Mając gotowy projekt, makietę oraz architekturę nastąpi faza implementacji aplikacji za pomocą silnika Unity, z wykorzystaniem języka C\#, korzystając z IDE Rider.
+
+Po zaimplementowaniu wszystkich funkcjonalności aplikacja poddana zostanie testom, z racji muzycznej natury aplikacji wymagającej zewnętrznego instrumentu aby w pełni funkcjonować, większość testów przeprowadzane będzie manualnie. Części aplikacji implementujące pewne algorytmy przeprowadzone zostaną za pomocą testów jednostkowych, wraz z testowaniem poszczególnych komponentów.  
+
+Mając gotowy projekt aplikacji sporządzona zostanie pełna dokumentacja projektu, razem z instrukcją dla nowo wdrażających się użytkowników, aby uniknąć niejasności podczas pierwszego spotkania z aplikacją. 
+
+
+\section{Opis dziedziny}
+
+Praca opiera się w dużej mierze na muzyce, a co za tym idzie czerpie wiele z dziedziny teorii muzyki, która przy pierwszym spotkaniu może okazac się dość zagmatwana, niejasna i niezrozumiała. Dlatego też sekcja ta ma na celu przybliżenie czytelnikowi kilku zagadnień występujących w pracy, oraz wyjaśnienie poszczególnych konceptów i terminów występujących w dokumencie. 
+
+Pierwszym konceptem z jakim należy się zapoznać są skale muzyczne, używane w wielu częściach aplikacji. Skala muzyczna jest to w najprostszym wytłumaczeniu zestaw nut, które zagrane w połączeniu ze sobą dają dźwięk, które ludzki mózg postrzega jako przyjemny. Wykorzystywane w aplikacji skala durowa i molowa składają się z 7 dźwięków. Do zobrazowania obydwu tych skal posłużono się kołem kwintowym, zaimplementowanym jako jedna z funkcjonalności aplikacji. Koło kwintowe jest graficzną reprezentacją nut, ułożonych na okręgu, przy czym nie są one ułożone według klasycznego zestawienia - skali chromatycznej(C, C\#, D, D\#, E, F, F\#, G, G\#, A, A\#, B - jedna gama dźwięków, odpowiadająca kolejnym klawiszom pianina), lecz za pomocą naturalnego ułożenia dźwięków. Przez naturalne ułożenie dźwięków należy rozumieć różnice pomiędzy częstotliwościami poszczególnych nut, na kole kwintowym są one ułożone w kolejności rosnącej, dzięki temu można w łatwy sposób dostrzec skąd biorą się poszczególne skale. 
+
+Następnie należy przytoczyć koncept metronomu, urządzenia służącego do wybijania rytmu, użytecznego przy okazji treningu słuchu oraz wyczuwania owego rytmu podczas gry. Pojawiają się tutaj takie koncepty jak bpm(ang. beat per minute) - uderzenia na minutę, oraz 4 ustalone możliwości wyboru wybijania rytmu, bazujące na 4 podstawowych nutach. Są to cała nuta - jedno uderzenie na takt, pół nuta - dwa uderzenia na takt, ćwierć nuta - trzy uderzenia na takt, ósemka - 4 uderzenia na takt. Działanie metronomu polega na wybijaniu poszczególnych taktów, podążając za ustalonym wcześniej tempem gry. 
+
+Jeżeli chodzi o notację gitarową używaną w projekcie, posłużono się najbardziej rozpowszechnioną i czytelną formą. Do reprezentacji akordów(zbiorów nut, które grane ze sobą tworzą ujednolicony dźwięk) posłużono się graficzną reprezentacją gryfu gitarowego, przy czym czytając od góry reprezentowana jest kolejno 1,2,3,4,5,6 struna gitary, obok możemy dostrzec ich odpowiadające dźwięki, natomiast kropki symbolizują, które progi należy nacisnąć aby wydobyć oczekiwany dźwięk z instrumentu.
+
+W samej graficznej reprezentacji akordów zawarto takie określenia jak major, minor, sus4, minor7, 7, 9, sus2, maj7, 7\#9, 5, są to ustalone zbiory nut tworzące poszczególne akordy. Zawarcie wszystkich wariacji akordów jest istotne ze względów kompozycyjnych, ponieważ poszerza horyzonty muzyków jeżeli chodzi o tworzenie nowych dźwięków, nie ograniczając przy tym ich kreatywności. 
+
+Istotnym aspektem w tworzeniu muzyki jest umiejętność rozpoznawania dźwięków posługując się tylko i wyłącznie słuchem. Posiadanie takiej umiejętności zwykło się nazywać "słuchem absolutnym" dlatego też zawarto w aplikacji trening słuchu, odgrywający losową nutę, którą użytkownik następnie winien odgadnąć.  
 
 
 \section{Układ dokumentu}
-W rozdziale pierwszym przedstawiono w zarysie czym jest i czego dotyczy niniejszy dokument (jest to szablon, który można zastosować podczas redagowania pracy dyplomowej inżynierskiej bądź magisterskiej). W rozdziale drugim opisano sposób pracy z szablonem. W kolejnym, trzecim rozdziale, przedstawiono zalecenia dotyczące formatowania dokumentu. Rozdział ten pełni rolę czysto informacyjną (dostarczony szablon zapewnia uzyskanie opisanego tam formatowania).
-W rozdziale czwartym zwrócono uwagę na redakcję pracy dyplomowej (od strony edytorskiej i merytorycznej).
-Rozdział piąty poświęcono na uwagi techniczne. Ostatni, szósty rozdział, przeznaczono na kilka słów podsumowania oraz ,,lorem ipsum'' -- wygenerowany tekst, pełniący rolę ,,wypełniacza'', wykorzystany w celach poglądowych (jak dzielić dokument na sekcje).
-Pracy towarzyszy przykładowy wykaz literatury oraz przykładowe dwa dodatki. 
+Rozdział pierwszy poświęcony został na wstęp, zaznajomienie czytelnika z tematem pracy, wyjasnieniem potrzebnych konceptów, wytłumaczenie celu pracy oraz określenie zakresu jaki owa praca obejmuje. 
+
+Rozdział drugi zawiera analizę istniejących rozwiązań, niezbędną do stworzenia własnej aplikacji. Analiza przedstawia wyciągnięte z istniejących rozwiązań najlepsze cechy, wraz z wadami, które następnie zostały wzięte pod uwagę podczas etapu projektowania.
+
+W rozdziale 3 przedstawiony został projekt aplikacji, zawiera on: wymagania funkcjonalne, niefunkcjonalne, projekt graficznego interfejsu użytkownika, oraz projekt architektury produktu.
 
