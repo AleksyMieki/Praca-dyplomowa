@@ -1,89 +1,164 @@
-\chapter{Implementacja}
+\chapter{Założenia projektowe}
+% TO DO: zwykle projekty informatyczne zaczynają się od studium wykonalności (i analizy dziedzinowej).
+%        Potem pojawia się analiza wymagań, której wynikiem jest zestaw zachowań, jakimi powinna
+%        charakteryzować się powstająca aplikacja z punktu widzenia użytkownika.
+%        W efekcie po tym etapie powinno być wiadome, jakie aplikacja będzie oferować funkcje i do czego ma służyć.
+%       U Pana etap analizy wymagań nie został wyraźnie zaznaczony. 
+%       Analizę wymagań formalizuje się, stosując listy wyliczeniowe, diagramy przypadków użycia itp.
+%       Temu wszystkiemu towarzyszyć mogą makiety interfejsu użytkownika.
+%       Makiety służą bowiem jako język, którym projektant komunikuje się z użytkownikiem.
+%       Są one też językiem komunikacji między projektantem a programistą
+%       Ogólnie - tworzenie makiet można zaliczyć do etapu analizyw wymagań funkcjonalnych
+%       (makiety eksponują funkcje, które są wystawiane na graficznym interfejsie użytkownika)
 
-\section{Wprowadzenie do implementacji}
+% TO DO: proszę dodać wyjaśnienie, jaką ścieżką Pan poszedł rozpoczynając projekt.
+%        z tego, co widzę, całą analizę wymagań załatwił Pan makietami. 
+%        W sumie można tak zrobić. Proszę to jednak uzasadnić, by czytelnik nie miał wątpliwości, 
+%        że to celowy zabieg, a nie przeoczenie !!! 
 
-Rozdział ten zawiera szczegóły implementacji aplikacji. Każdej scen poświęcono odpowiadający podrozdział wyjaśniający wykorzystane technologie, biblioteki oraz sposób komunikacji pomiędzy poszczególnymi elementami widoku. 
 
-\section{Implementacja elementów aplikacji}
+% TO DO: proszę przeredagować rozdział. W tej chwili wygląda on słabo - nie widać jakiejś myśli przewodniej.
 
+% TO DO: proszę uważać ze stosowaniem określenia "architektura aplikacji"
+%        zwykle gdy pada to określenie to odnosi się ono do sposobu "poukładania" komponentów aplikacji w jakieś hierarchie czy warstwy, z wydzieleniem odpowiedzialności, określeniem mechanizmów przepływu informacji itd. U Pana zaś mamy termin ten pada w kontekście użycia wzorca projektowego MVC.
 
-\subsubsection{Stroik}
-                                                                                                                                                              
+\section{Makiety}
+Makieta aplikacji utworzona została za pomocą oprogramowania figma, % TO DO: z dużej czy małej?
+przedstawia ona podstawowy koncept, oraz zarys sekcji aplikacji. Na poszczególnych obrazkach można zobaczyć wizualizacje scen, zaczynając od głównego ekranu, stroika, metronomu, koła kwintowego, księgi akordów, kończąc na treningu słuchu. 
+
+%\begin{figure}[htb]
+	%\centering
+	%\includegraphics[width=.7\linewidth]{rys03/pageLayout2}
+	%\caption{Kontrola marginesów i odstępów elementów na stronie} \label{fig:pageLayout}
+%\end{figure}
+
+%\begin{figure}[htb]
+	%\centering
+	%\includegraphics[width=.7\linewidth]{rys03/pageLayout2}
+	%\caption{Kontrola marginesów i odstępów elementów na stronie} \label{fig:pageLayout}
+%\end{figure}
+
+%\begin{figure}[htb]
+	%\centering
+	%\includegraphics[width=.7\linewidth]{rys03/pageLayout2}
+	%\caption{Kontrola marginesów i odstępów elementów na stronie} \label{fig:pageLayout}
+%\end{figure}
+
+%\begin{figure}[htb]
+	%\centering
+	%\includegraphics[width=.7\linewidth]{rys03/pageLayout2}
+	%\caption{Kontrola marginesów i odstępów elementów na stronie} \label{fig:pageLayout}
+%\end{figure}
+
+%\begin{figure}[htb]
+	%\centering
+	%\includegraphics[width=.7\linewidth]{rys03/pageLayout2}
+	%\caption{Kontrola marginesów i odstępów elementów na stronie} \label{fig:pageLayout}
+%\end{figure}
+
+\section{Projekt graficznego interfejsu użytkownika}
+
+Projekt gui użytkownika utworzony w aplikacji figma obejmuje utworzenie:
+
+\begin{itemize}
+	\item grafik przycisków dla poszczególnych scen,
+	\item graficznych tytułow poszczególnych scen,
+	\item elementów wizualizujących poszczególne funkcjonalności np: akordy gitarowe, takty metronomu,
+	\item tło oraz elementy kontekstowe ułatwiające posługiwanie się aplikacją.
+\end{itemize}
+
+Poszczególne zaprojektowane elementy prezentują się następująco, na poniższych grafikach przedstawiono: projekt przycisków, tytułów scen oraz przykładów reprezentacji akordów na gryfie. 
+
+%\begin{figure}[htb]
+	%\centering
+	%\includegraphics[width=.7\linewidth]{rys03/pageLayout2}
+	%\caption{Kontrola marginesów i odstępów elementów na stronie} \label{fig:pageLayout}
+%\end{figure}
+
+%\begin{figure}[htb]
+	%\centering
+	%\includegraphics[width=.7\linewidth]{rys03/pageLayout2}
+	%\caption{Kontrola marginesów i odstępów elementów na stronie} \label{fig:pageLayout}
+%\end{figure}
+
+%\begin{figure}[htb]
+	%\centering
+	%\includegraphics[width=.7\linewidth]{rys03/pageLayout2}
+	%\caption{Kontrola marginesów i odstępów elementów na stronie} \label{fig:pageLayout}
+%\end{figure}
+
+\section{Projekt architektury aplikacji}
+
+Projekt architektury dla aplikacji stworzony został w sposób taki, aby każda z poszczególnych funkcjonalności była przejrzysta, a sama aplikacja umożliwiała płynne przełączanie pomiędzy sekcjami aplikacji. Zastosowano wzorzec Model-View-ViewModel, umożliwiający rozdzielenie logiki aplikacji, interfejsu oraz zarządzania danymi. 
+
+%\begin{figure}[htb]
+	%\centering
+	%\includegraphics[width=.7\linewidth]{rys03/pageLayout2}
+	%\caption{Kontrola marginesów i odstępów elementów na stronie} \label{fig:pageLayout}
+%\end{figure}
+
+W skład wzorca wchodzą poniższe 3 elementy:
+\begin{itemize}
+	\item Model: Logika danych aplikacji, zawierająca dane akordów, dźwięków, tempo metronomu,
+	\item View: Zawierająca sceny samej aplikacji, dla każdej z funkcjonalności zaplanowany jest osobny widok (sceny),
+	\item ViewModel: Do każdej ze scen przypisany został kontroler odpowiedniej sceny umożliwiający komunikację pomiędzy widokiem, a modelem, zawiera on logikę aplikacji oraz funkcji potrzebnych w danej scenie.
+\end{itemize}
+
+\subsection{Projekt poszczególnych scen}
+
+W tej sekcji przedstawiono projekt dla każdej z funkcjonalności aplikacji, rozrysowując przy tym komponenty wchodzące w skład danego narzędzia, wraz z ich celem, sposobem implementacji, technologiami użytymi do stworzenia poszczególnych elementów. 
+
+\subsubsection{Scena 1: Scena Główna}
+
+\begin{itemize}
+
+\item Cel: Reprezentacja możliwości wyboru, oraz udzielenie użytkownikowi dostępu do poszczególnych narzędzi za pomocą czytelnych przycisków, które po naciśnięciu przechodzą do odpowiadającej im sceny z danym narzędziem. 
+\item Komponenty: Elementami wchodzącymi w skład sceny głównej, jest 5 przycisków: stroik, metronom, koło kwintowe, księga akordów, trening słuchu. Dodatkowo scena główna zawiera obiekt tekstowy z logiem aplikacji.  
+\item Technologie: Do realizacji tej oto sceny użyto wbudowaną bibliotekę w silnik Unity, a mianowicie Unity.UI, umożliwiającą utworzenie graficznego interfejsu uzytkownika. 
+\item Komunikacja: Każdy z przycisków wchodzących w skład sceny podłączony jest pod kontroler sceny, służący jako pośrednik, w skrypcie należącym do kontrolera poszczególnym przyciskom przypisywana jest funkcja odpowiadająca za załadowanie odpowiedniej sceny. 
+\end{itemize}
+
+\subsubsection{Scena 2: Stroik}
+
+\begin{itemize}
+\item Cel: Udostępnienie możliwości nastrojenia gitary poprzez wybór docelowej struny, do której użytkownik chce nastroić instrument. Następnie zagrane przez użytkownika dźwięki analizowane będą, a wyniki analizy reprezentowane zostaną jako informacja odnośnie tego, czy ton należy obniżyć czy podwyższyć.
+\item Komponenty: W skład sceny wchodzi mikrofon, analizator dźwięku, przyciski odpowiadające strunom na gitarze, oraz wizualizator aktualnego poziomu nastrojenia instrumentu.  
+\item Technologie: Do użytych technologii wykorzystano bibliotekę opartą na otwartej licencji służącą do analizy dostarczanego dźwięku, oraz wyciągnięcie z niego częstotliwości zagranej nuty. Dodatkowo do stworzenia graficznego interfejsu posłużono się biblioteką Unity.UI.   
+\item Komunikacja: Użyto kontroler sceny, aby umożliwić komunikacje pomiędzy elementami graficznymi a analizatorem dźwięku. 
+\end{itemize}
+
 \subsubsection{Metronom}
+
+\begin{itemize}
+\item Cel: Zapewnienie użytkownikowi możliwości treningu rytmu podczas gry, poprzez reprezentację poszczególnych taktów zsynchronizowanych z dźwiękiem "bitu".
+\item Komponenty: Do realizacji tej sceny zastosowano przyciski umożliwiające parametryzację taktu, oraz bpm(ang. beats per minute). Wizualizacja metronomu odbywa się za pośrednictwem pojawiających się na ekranie kwadratów reprezentujących poszczególny takt, które zmieniają swoje kolory z białego na czarny, wraz z czasem wybijania danego rytmu.
+\item Technologie: Skrypt napisany w języku C\# realizujący logikę działania metronomu.
+\item Komunikacja: Poszczególne komponenty komunikują się ze sobą za pośrednictwem kontrolera sceny metronomu, zawierający odwołania do poszczególnych komponentów.
+\end{itemize}
 
 \subsubsection{Księga akordów}
 
-Scena księgi akordów zawiera element graficzny reprezentujący aktualnie wybrany akord gitarowy, przyciski umożliwiające wybór docelowego akordu oraz elementy graficzne ułatwiające nawigację po widoku sceny.
-
-Głównym skryptem realizującym logikę sceny jest ChordChartsManager przypięty do menadżera sceny. Zawiera on 14 pól obiektów :
-
 \begin{itemize}
-    \item noteText
-    \item variantText
-    \item noteList
-    \item variantList
-    \item noteLeft
-    \item noteRight
-    \item variantLeft
-    \item variantRight
-    \item chordImage
-    \item image
-    \item Chords
-    \item ch
-    \item noteIterator
-    \item variantIterator
-\end{itemize}
-
-Funkcje wchodzące w skład skryptu to:
-
-\begin{itemize}
-    \item Start - Funkcja odpowiedzialna za przygotowanie potrzebnych elementów sceny. Przypisuje grafiki akordów z pomocniczej listy Chords do listy głównej ch. Ustawia wartości zmiennych noteIterator, variantIterator z wartości przechowywanych w skrypcie SceneConnector, łączącej scenę księgi akordów z widokiem wszystkich akordów w postaci diagramu. Przypisuje ona funkcje do odpowiednich przycisków i resetuje wartości obiektów tekstowych.
-    \item noteIncrement - Funkcja przypisana do przycisku, odpowiedzialna za zmianę nuty akordu, inkrementując wartość aktualnie wybranej nuty.
-    \item noteDecrement - Funkcja przypisana do przycisku, odpowiedzialna za zmianę nuty akordu, dekrementując wartość aktualnie wybranej nuty.
-    \item variantIncrement - Funkcja przypisana do przycisku, odpowiedzialna za zmianę wariacji akordu, inkrementując wartość aktualnie wybranej wariacji.
-    \item variantDecrement - Funkcja przypisana do przycisku, odpowiedzialna za zmianę wariacji akordu, dekrementując wartość aktualnie wybranej wariacji.
-    \item ChangeVariantText - Funkcja odpowiedzialna za zmianę przypisanej wartości obiektu tekstowego sceny, wykorzystywana w momencie zmiany wariacji akordu.
-    \item ChangeNoteText - Funkcja odpowiedzialna za zmianę przypisanej wartości obiektu tekstowego sceny, wykorzystywana w momencie zmiany nuty akordu.
-    \item ChangeChord - Funkcja odpowiedzialna za zmianę aktualnie wyświetlanego akordu, zmienia przypisaną grafikę obiektu Image sceny.
-
+\item Cel: Wizualizacja pozycji akordów na gryfie, dla każdej nut, wraz z możliwymi wariancjami akordów.
+\item Komponenty: Do komponentów należą przyciski odpowiadające za przeglądanie listy dostępnych akordów, element graficzny wizualizujący aktualnie wybrany akord, wraz z przyciskami odpowiadającymi za przełączenie sceny do widoku diagramu wszystkich możliwych akordów.
+\item Technologie: Wbudowana biblioteka do obsługi graficznego interfejsu użytkownika - Unity.UI.
+\item Komunikacja: Komponenty komunikują się ze sobą za pomocą menadżera sceny, przechowującego za pomoca listy graficzne reprezentacje akordów, które wyświetlane są w odpowiednich momentach. 
 \end{itemize}
 
 \subsubsection{Trening słuchu}
 
-Scena treningu słuchu zawiera przycisk odpowiedzialny za odegranie dźwięku, który następnie ma zostać odgadnięty przez użytkownika za pomocą jednego z 12 przycisków obecnych na scenie. 
-W skład sceny wchodzą dwa skrypty, EarTrainerManager - przypisany do menadżera sceny realizujący główną logikę sceny oraz ButtonIndex - skrypt pomocniczy przypisany do każdego z 12 przycisków odpowiedzialnych za udzielenie odpowiedzi.
-
-Główny skrypt zawiera 6 pól zmiennych:
-
 \begin{itemize}
-    \item noteClips 
-    \item playNoteButton  
-    \item answerButtons  
-    \item feedbackText  
-    \item audioSource 
-    \item correctNoteIndex
+\item Cel: Umożliwienie użytkownikowi przeprowadzenie ćwiczeń mających na celu nabycia umiejętności rozpoznawania granej nuty za pomocą samego słuchu.
+\item Komponenty: Przycisk odpowiadający za odegranie losowo jednej z 12 nut skali chromatycznej, przyciski odpowiadające za odpowiedź, po naciśnięciu których weryfikowana jest poprawność udzielonej odpowiedzi. Scena zawiera również system audio odpowiadający za odegranie dźwięku
+\item Technologie: Za odgrywanie dźwięków odpowiada biblioteka Unity.Sound, wraz z gotowym komponentem audio wbudowanym w silnik Unity.
+\item Komunikacja: Za komunikację pomiędzy komponentami odpowiada menadzer sceny, łączący ze sobą przyciski, zawierający logike odpowiedzialną za działanie sceny.
 \end{itemize}
-
-Funkcje wchodzące w skład głównego skryptu to:
-
-\begin{itemize}
-    \item Start - Funkcja przypisująca obiekt audioSource, odpowiedzialny za odgrywanie dźwięków. Ustawia ona również funkcję PlayRandomNote do przycisku playNoteButton. Dodatkowo przypisuje ona funkcję NoteGuessed do każdego z przycisków odpowiedzialnych za odpowiedź.
-    \item PlayRandomNote - Funkcja odpowiedzialna za odegranie losowego dźwięku po naciśnięciu przycisku playNoteButton. Ustawia ona odpowiedni index dla odegranej nuty, wykorzystywany następnie podczas zweryfikowania odpowiedzi podanej przez użytkownika.
-    \item NoteGuessed - Funkcja weryfikująca odpowiedź użytkownika, wykorzystywana po naciśnięciu jednego z 12 przycisków odpowiedzi. Ustawia ona obiekty tekstowe sceny, w zależności od tego czy odpowiedź była poprawna, czy też nie. 
-\end{itemize}
-
-Skrypt pomocniczy przechowuje jedynie jedną zmienną, wykorzystywaną w momencie weryfikacji odpowiedzi udzielonej przez użytkownika, jest nią: buttonNumber.
 
 \subsubsection{Koło kwintowe}
 
-Scena koła kwintowego zawiera 24 przyciski, każdemu z nich przypisana została odpowiednia nuta. W skrypcie menadżera sceny utworzone zostały dwie listy, przechowujące przyciski koła zewnętrznego oraz koła wewnętrznego. Skrypt zawiera w sobie 6 funkcji:
-
 \begin{itemize}
-\item Start - Funkcja używana podczas tworzenia obiektu, służy ona przygotowaniu wszystkich przycisków oraz przypisania im działania przy ich naciśnięciu, w tym przypadku przypisuje ich działanie do funkcji DisplayScale
-\item DisplayScale - Funkcja odpowiedzialna jest ona za wyświetlenie skali majorowej, oraz 3 akordów minorowych pasujących do wybranej przez użytkownika nuty. 
-\item GetColorTint - Funkcja pomocnicza generująca kolejne odcienie kolorów, dla funkcji DisplayScale. 
-\item GetMajorScaleIndices - Funkcja pomocnicza generująca interwały kolejnych nut w skali majorowej
-\item ChangeButtonColor - Funkcja pomocnicza odpowiedzialna za zmianę koloru odpowiedniego przycisku
-\item ClearColors - Funkcja pomocnicza czyszcząca kolory wszystkich przycisków
+	\item Cel: Wizualizacja koła kwintowego, wraz z skalą molową i durową.
+	\item Komponenty: Elementy graficzne, w postaci przycisków, zawierające komponent image, który zawiera odpowiadającą nutę.
+	\item Technologie: Użyto biblioteki Unity.UI do reprezentacji poszczególnych nut.
+	\item Komunikacja: Komunikacja odbywa się poprzez menadżer sceny, zawierający logikę odpowiadającą za podświetlenie odpowiadających nut po naciśnięciu jednego z przycisków na kole kwintowym
 \end{itemize}
-
