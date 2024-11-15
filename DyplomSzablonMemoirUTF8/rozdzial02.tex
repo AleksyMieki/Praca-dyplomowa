@@ -6,15 +6,25 @@ Pierwszym konceptem z jakim należy się zapoznać, są skale muzyczne (wystąpi
 Skala durowa i molowa (obsługiwane w aplikacji) składają się z 7 dźwięków. 
 
 Do zobrazowania obu tych skal wykorzystuje się koło kwintowe (zaimplementowane zostanie jako jedna z funkcji aplikacji). Koło kwintowe jest graficzną reprezentacją nut, ułożonych na okręgu, przy czym nie są one ułożone według klasycznego zestawienia -- skali chromatycznej(C, C\#, D, D\#, E, F, F\#, G, G\#, A, A\#, B -- jedna gama dźwięków, odpowiadająca kolejnym klawiszom pianina), lecz za pomocą naturalnego ułożenia dźwięków. Przez naturalne ułożenie dźwięków należy rozumieć różnice pomiędzy częstotliwościami poszczególnych nut, na kole kwintowym są one ułożone w kolejności rosnącej, dzięki temu można w łatwy sposób dostrzec skąd biorą się poszczególne skale. 
-% TO DO: warto pokazać rysunek koła kwintowego - to jescze nie jest makieta, ale ilustracja do opisanych podstaw
+% DONE: warto pokazać rysunek koła kwintowego - to jesscze nie jest makieta, ale ilustracja do opisanych podstaw
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=.3\linewidth]{rys02/cof2.1}
+	\caption{Wizualizacja koła kwintowego} \label{fig:pageLayout}
+\end{figure}
 
 Ważnym narzędziem dla muzyków jest metronom. Urządzenie to służy do wybijania rytmu, użytecznego przy okazji treningu słuchu oraz wyczuwania owego rytmu podczas gry. 
-% TO DO: w zaleceniach było, jak pisać agielskojęzyczne terminy !!!!!
-Wymijanie rytmu można parametryzować. Określa się np.\ parametr bpm (ang.\~emph{beat per minute}) -- liczba uderzeń na minutę. Ponadto zwykle możliwe jest wybranie jednej z 4 opcji wyboru wybijania rytmu, bazujące na 4 podstawowych nutach. Są to: cała nuta -- jedno uderzenie na takt, pół nuta -- dwa uderzenia na takt, ćwierć nuta -- trzy uderzenia na takt, ósemka -- 4 uderzenia na takt. Działanie metronomu polega na wybijaniu poszczególnych taktów, podążając za ustalonym wcześniej tempem gry. 
+% DONE: w zaleceniach było, jak pisać agielskojęzyczne terminy !!!!!
+Wymijanie rytmu można parametryzować. Określa się np.\ parametr bpm (ang.~\emph{beat per minute}) -- liczba uderzeń na minutę. Ponadto zwykle możliwe jest wybranie jednej z 4 opcji wyboru wybijania rytmu, bazujące na 4 podstawowych nutach. Są to: cała nuta -- jedno uderzenie na takt, pół nuta -- dwa uderzenia na takt, ćwierć nuta -- trzy uderzenia na takt, ósemka -- 4 uderzenia na takt. Działanie metronomu polega na wybijaniu poszczególnych taktów, podążając za ustalonym wcześniej tempem gry. 
 
 Jeżeli chodzi o notację gitarową, to podczas realizacji niniejszej pracy posłużono się najbardziej rozpowszechnioną i czytelną formą. Do reprezentacji akordów (zbiorów nut, które grane ze sobą tworzą ujednolicony dźwięk) posłużono się widokiem gryfu gitarowego, przy czym czytając od góry reprezentowana jest kolejno 1, 2, 3, 4, 5, 6 struna gitary. Obok można dostrzec ich odpowiadające dźwięki, natomiast kropki symbolizują, które progi należy nacisnąć aby wydobyć oczekiwany dźwięk z instrumentu.
-% TO DO: przydałby się jakiś rysunek poglądowy - to jescze nie jest makieta, ale ilustracja do opisanych podstaw
-
+% DONE: przydałby się jakiś rysunek poglądowy - to jescze nie jest makieta, ale ilustracja do opisanych podstaw
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=.5\linewidth]{rys02/akord2.2}
+	\caption{Wizualna reprezentacja akordu} \label{fig:pageLayout}
+\end{figure}
 
 W samej graficznej reprezentacji akordów zawarto takie określenia, jak: major, minor, sus4, minor7, 7, 9, sus2, maj7, 7\#9, 5. Są to ustalone zbiory nut tworzące poszczególne akordy. Zawarcie wszystkich wariacji akordów jest istotne ze względów kompozycyjnych, ponieważ poszerza horyzonty muzyków jeżeli chodzi o tworzenie nowych dźwięków, nie ograniczając przy tym ich kreatywności. 
 
@@ -28,27 +38,33 @@ Poniżej przedstawiono 2 najbardziej popularne serwisy internetowe oferujące ma
 Jedną z większych i najbardziej spopularyzowanych aplikacji jest Guitar Tuna, przeznaczona ona jest w głównej mierze na urządzenia mobilne, z ograniczoną ilością funkcjonalności na urządzenia desktopowe. Do dostępnych narzędzi zalicza się:
 
 \paragraph{Stroik}
+
+
 Stroik gitarowy pokazuje graficznie zagrany ton oraz ,,odległość'' od domniemanej nuty. Narzędzie umożliwia parametryzację polegającą na wyborze docelowej nuty do jakiej chcemy dostroić instrument. Narzędzie umożliwia też wybór instrumentu, wraz z jego graficzną reprezentacją na ekranie i przypisanymi nazwami nut obok odpowiadających pokręteł. Użytkownik do wyboru ma takie instrumenty jak gitara, ukulele, gitara basowa. Dodatkowym atutem jest możliwość wyboru niestandardowych strojeń instrumentów. 
 
-% \begin{figure}[htb]
-% 	\centering
-% 	\includegraphics[width=.7\linewidth]{rysunki/GTSTROIK}
-% 	\caption{Stroik aplikacji Guitar Tuna} \label{fig:pageLayout}
-% \end{figure}
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=.4\linewidth]{rys02/GTSTROIK}
+	\caption{Stroik aplikacji Guitar Tuna} \label{fig:pageLayout}
+\end{figure}
 
 \paragraph{Akordy}
 Sekcja akordów witryny internetowej jest uboższa aniżeli w aplikacji mobilnej. Narzędzie to daje dostęp do licznych piosenek, przy których przedstawione zostały akordy potrzebne do ich zagrania, wraz z tekstem i przejściami akordów w odpowiednich momentach. Zostało to zrobione statycznie, bez informacji na temat tempa utworu, czy dynamiki przejść pomiędzy granymi akordami. Istnieje tu również myląca funkcja "smart scroll" sugerująca możliwość grania wraz z podkładem grającym w tle, po naciśnięciu przycisku pojawia się jedynie odnośnik do pobrania aplikacji mobilnej.\\
 
-% \begin{figure}[htb]
-% 	\centering
-% 	\includegraphics[width=.7\linewidth]{rysunki/ChordsGT}
-% 	\caption{Sekcja akordów aplikacji Guitar Tuna} \label{fig:pageLayout}
-% \end{figure}
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=.4\linewidth]{rys02/ChordsGT}
+	\caption{Sekcja akordów aplikacji Guitar Tuna} \label{fig:pageLayout}
+\end{figure}
+
+\paragraph{Podsumowanie}
 
 Podsumowując powyższe obserwacje można stwierdzić, że aplikacja sama w sobie jest bardzo przystępna i intuicyjna, największym atutem jest stroik dający dowolność jeżeli chodzi o używany instrument. Wersja desktopowa jest jednak znacznie okrojona w porównaniu do aplikacji mobilnej, nie znajdziemy tu listy akordów, diagramów skal czy metronomu. 
 
 \subsection{Truefire}
+
 Aplikacja ta zawiera w większości płatne lekcje i materiały edukacyjne do gry na gitarze takie jak:
+
 \begin{itemize}
     \item podkłady muzyczne do gry,
     \item kursy nauki gry poszczególnych stylów muzycznych np. blues, funk czy jazz,
@@ -59,46 +75,52 @@ Aplikacja ta zawiera w większości płatne lekcje i materiały edukacyjne do gr
 Poza tym sama witryna zawiera sekcję z narzędziami do nauki, na podstawie której przeprowadzono analizę pod względem użyteczności, łatwości przekazu, sposobu przedstawienia poszczególnych elementów. 
 
 \paragraph{Stroik}
+
 Został skonstruowany w sposób bardzo prosty -- rozpoznaje poszczególne dźwięki skali chromatycznej. Zawiera on w sobie \emph{input meter}, będący indykatorem poziomu decybeli dostarczanych do mikrofonu. Ma on również \emph{slider} umożliwiający parametryzację czułości mikrofonu. Samo narzędzie naturalnie umożliwia dostrojenie gitary do poszczególnych dźwięków, może być ono natomiast mało intuicyjne dla początkujących graczy, którzy nie są zapoznani z domyślnym strojeniem strun gitary.
-% \begin{figure}[htb]
-% 	\centering
-% 	\includegraphics[width=.7\linewidth]{rysunki/tuneFireStroik}
-% 	\caption{Stroik aplikacji Truefire} \label{fig:pageLayout}
-% \end{figure}
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=.6\linewidth]{rys02/tuneFireStroik}
+	\caption{Stroik aplikacji Truefire} \label{fig:pageLayout}
+\end{figure}
 
 \paragraph{Eksplorator akordów}
+
 Na podstawie zaznaczonych pozycji naciśniętych progów narzędzie to przeszukuje dostępne możliwe akordy, wyświetlając przy tym te będące najbardziej podobne do zaznaczonych pozycji. Samo narzędzie jest z całą pewnością bardzo kreatywne. Jeżeli chodzi o samą naukę narzędzie wydaje się być mało przydatne, z racji braku kontekstu przy wyświetlanych znalezionych akordach, nie podając informacji odnośnie skal, do których sam akord należy. Ze względu na algorytm dopasowujący nawet w przypadku, gdy podamy losową pozycję naciśniętych progów, wyświetlone i tak zostana prawidłowe akordy. Narzędzie może być mylące dla nowych graczy, mogących założyć, że podany przez nich układ wpisuje się pod prawidłowe akordy uznawane przez teorię muzyki.
-% \begin{figure}[htb]
-% 	\centering
-% 	\includegraphics[width=.7\linewidth]{rysunki/ChordFinder}
-% 	\caption{Eksplorator akordów aplikacji TrueFire} \label{fig:pageLayout}
-% \end{figure}
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=.5\linewidth]{rys02/ChordFinder}
+	\caption{Eksplorator akordów aplikacji TrueFire} \label{fig:pageLayout}
+\end{figure}
 
 \paragraph{Metronom}
 % TO DO: funkcje - nie funkcjonalności.
 Zaimplementowany jest w sposób prosty, dostarczając wszystkie potrzebne funkcje w jasny i przejrzysty sposób. Dla użytkownika dostępne są funkcje zmiany tempa wybijania poszczególnych beatów, możliwość ręcznego ustawienia tempa, oraz dobór metrum z listy 6 dostępnych. Sama realizacja tej funkcjonalności, mogłaby zawierać dodatkowo opcję wyboru całych nut, a nie jedynie pół nut i ósemek przy wyborze metrum, poza tym samo narzędzie wykonuje swoje zadanie, umożliwiając treningu rytmu.
-% \begin{figure}[htb]
-% 	\centering
-% 	\includegraphics[width=.7\linewidth]{rysunki/METRO}
-% 	\caption{Metronom aplikacji TrueFire} \label{fig:pageLayout}
-% \end{figure}
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=.4\linewidth]{rys02/METRO}
+	\caption{Metronom aplikacji TrueFire} \label{fig:pageLayout}
+\end{figure}
 
 \paragraph{Księga akordów}
 Zaprezentowana została w mało przystępny sposób. Mianowicie w aplikacji prezentowany jest diagram w formie statycznego obrazka, z mało czytelnym podziałem pomiędzy poszczególnymi akordami. Diagram ten jest wadliwy z powodu jego nieczytelności. Z powodu braku kontekstu pod akordami może też być niezrozumiały dla graczy początkujących, jak i średnio zaawansowanych. Same diagramy nie obrazują numeru progu, na którym dany akord ma być grany oraz nie przedstawia nuty odpowiadającej danej strunie.
-% \begin{figure}[htb]
-% 	\centering
-% 	\includegraphics[width=.7\linewidth]{rysunki/ChordChart}
-% 	\caption{Lista akordów aplikacji Tunefire} \label{fig:pageLayout}
-% \end{figure}
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=.4\linewidth]{rys02/ChordChart}
+	\caption{Lista akordów aplikacji Truefire} \label{fig:pageLayout}
+\end{figure}
 
 \paragraph{Diagramy skal}
 Przedstawiają one 6 najpopularniejszych skal muzycznych. Brakuje jednak możliwości przeniesienia tych diagramów poprzez gryf, wraz z informacją na temat tego w jakiej skali grany miałby być poszczególny diagram. Jest to rozwiązanie wadliwe, nie dostarczające wystarczająco dużej ilości informacji. \\
 
-% \begin{figure}[htb]
-% 	\centering
-% 	\includegraphics[width=.7\linewidth]{rysunki/SKALETF}
-% 	\caption{Kontrola marginesów i odstępów elementów na stronie} \label{fig:pageLayout}
-% \end{figure}
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=.4\linewidth]{rys02/SKALETF}
+	\caption{Diagramy skal aplikacji TrueFire} \label{fig:pageLayout}
+\end{figure}
 
 Podsumowując powyższe analizy można uznać, że narzędzie to jest dobre -- dostarcza podstawowych funkcji umożliwiających naukę gry na gitarze, trening rytmu oraz możliwość dostrojenia samego instrumentu. Same funkcje natomiast zostawiają dużo miejsca na rozwój, możliwość parametryzacji czy też umieszczenie informacji kontekstowych, oraz objaśnienie pewnych sformułowań związanych z pozycjami akordów na gryfie. Narzędzie wyszukiwania akordów na podstawie podanych numerów progów jest natomiast samo w sobie bardzo mylące. Najbardziej przydatnym narzędziem z całego zestawienia jest metronom, będący prosty w obsłudze i dający możliwość prostego treningu rytmu grania. 
 
