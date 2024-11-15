@@ -1,7 +1,7 @@
 \chapter{Wstęp}
 
 \section{Wprowadzenie}
-Już od zarania dziejów muzyka towarzyszyła ludziom w dobrych i złych chwilach. Moc niesionego przez nią przekazu często zwiększano poprzez użycie instrumentów. Pierwsze z nich przyjmowały postać prostych bębnów czy też grzechotek, używanych podczas rytuałów plemiennych, czy też piszczałek lub okaryn, zabieranych na wędrówki. Wraz z rozwojem cywilizacji instrumenty te zaczęto doskonalić, sama zaś muzyka ewoluowała, przybierając różne formy~--~od bluesa, granego przez uciemiężonych niewolników, po muzykę klasyczną, popularną w bogatszych kręgach Europy. 
+Już od zarania dziejów muzyka towarzyszyła ludziom w dobrych i złych chwilach. Moc niesionego przez nią przekazu często zwiększano poprzez wykorzystanie różnego rodzaju instrumentów. Pierwsze z nich przyjmowały postać prostych bębnów i grzechotek, pełniących ważną rolę podczas rytuałów plemiennych, albo piszczałek czy też okaryn, zabieranych na wędrówki. Wraz z rozwojem cywilizacji instrumenty te zaczęto doskonalić, sama zaś muzyka ewoluowała, przybierając różne formy -- od bluesa, granego przez uciemiężonych niewolników, po muzykę klasyczną, popularną w bogatszych kręgach Europy. 
 
 %Tworzenie i słuchanie muzyki z biegiem lat stało się czynnością powszechną, dostępna dla zwykłych ludzi.
 
@@ -18,17 +18,18 @@ Istnieją również strony internetowe oferujące rozpiski wszystkich możliwych
 
 Problem nie znika nawet po opanowaniu podstaw i teorii potrzebnej do rozpoczęcia pierwszych kompozycji. Pojawia się wtedy trudność w tworzeniu progresji akordów. Mimo zaznajomienia z typowymi akordami w skalach, trudno zapamiętać wszystkie dostępne permutacje. Jedynym sposobem na sprostanie temu wyzwaniu jest wyszukiwanie akordów i notowanie ich ,,na boku'' (istnieje wiele sposobów na aranżację nawet prostych przejść akordowych, jednak przy braku wspierających narzędzia do tworzenia progresji ręczne zapiski są jedyną opcją).
 
-Biorąc pod uwagę powyższe aspekty i brak zunifikowanego systemu nauki w ramach niniejszej pracy postanowiono zajęć się stworzeniem aplikacji desktopowej, łączącej w sobie najważniejsze aspekty teorii i praktyki. Dzięki niej osoby rozpoczynające swoją przygodę z grą na instrumentach powinny w łatwiejszy sposób przyswajać sobie teorii muzyki, mając do dyspozycji wszystkie istotne narzędzia potrzebne do nauki i samej gry na gitarze.
+Biorąc pod uwagę powyższe aspekty i brak zunifikowanego systemu nauki w ramach niniejszej pracy postanowiono zająć się stworzeniem aplikacji desktopowej, łączącej w sobie najważniejsze aspekty teorii i praktyki. Dzięki niej osoby rozpoczynające swoją przygodę z grą na instrumentach powinny w łatwiejszy sposób przyswajać sobie teorii muzyki, mając do dyspozycji wszystkie istotne narzędzia potrzebne do nauki i samej gry na gitarze.
 
 \section{Cel i zakres pracy}
-Celem pracy jest stworzenie aplikacji desktopowej dostarczającej zbiór narzędzi wspierających przyswajanie teorii muzyki, umożliwiającej praktykowanie gry na instrumencie. Aplikacja ma ułatwiać muzyczną edukację początkującym graczom poprzez zwracanie uwagi na najbardziej istotne aspekty gry, z jednoczesnym złagodzeniem progu wejścia w poszczególne tematy, zaś graczom bardziej zaawansowanym -- ma pomóc w procesie kompozycji własnych utworów. 
+Celem pracy jest stworzenie aplikacji desktopowej dostarczającej zbiór narzędzi wspierających przyswajanie teorii muzyki oraz umożliwiającej praktykowanie gry na instrumencie. Aplikacja ma ułatwiać muzyczną edukację początkującym graczom poprzez kierowanie ich uwagi na najbardziej istotne aspekty gry, łagodząc przy tym próg wejścia w poszczególne tematy, zaś graczom bardziej zaawansowanym -- ma pomóc w procesie kompozycji własnych utworów. 
 
 Myśląc o jak najlepszym sposobie osiągnięcia wyznaczonego celu w trakcie realizacji pracy na sam początek postanowiono przyjrzeć się rozwiązaniom istniejącym już na rynku od dłuższego czasu, takim jak wymienionych wcześniej już \texttt{Guitar Tuna} czy \texttt{Tunefire}. % DONE - jak to się ma do trzech aplikacji wymienionych we wprowadzeniu? 
 Analiza tych aplikacji pozwolić na zidentyfikowanie ich najlepszych cech, największych wad, a następnie wykorzystanie zdobytej wiedzy podczas realizacji autorskiego projektu. 
 
-Na kolejny etapie zaplanowano zdefiniowanie wymagań funkcjonalnych i niefunkcjonalnych, zidentyfikowanie narzędzi najbardziej odpowiadającym gitarzystom, ustaleniem wyglądu i designu interfejsu użytkownika. Po sprecyzowaniu założeń dla autorskiej aplikacji nastąpić ma jej implementacja. 
 
-Do projektowania makiet interfejsu użytkownika posłuży oprogramowanie Figma. Z jego pomocą zostanie przygotowana wstępna wizja widoków aplikacji. Ponadto oprogramowanie to zostanie użyte do stworzenia grafik potrzebnych dla przycisków, do reprezentacji akordów, oraz pozostałych elementów takich jak napisy, grafiki, tytuły poszczególnych scen. 
+Jako kolejny krok zaplanowano określenie wymagań funkcjonalnych i niefunkcjonalnych, rozpoznanie narzędzi najbardziej odpowiadającym gitarzystom, ustaleniem wyglądu i designu interfejsu użytkownika. Na bazie tych założeń nastąpić ma implementacja aplikacji.
+
+Do projektowania makiet interfejsu użytkownika posłużyć ma oprogramowanie Figma. Z~jego pomocą zostanie przygotowana wstępna wizja widoków aplikacji. Ponadto oprogramowanie to zostanie użyte do stworzenia grafik potrzebnych dla przycisków, do reprezentacji akordów, oraz pozostałych elementów takich jak napisy, grafiki, tytuły poszczególnych scen. 
 
 Za makietami musi działać jakaś logika biznesowa zgodnie z przyjętym modelem architektury. W ramach projektu trzeba będzie określić zasady komunikacji pomiędzy elementami scen, układ scen, systemy ładowania elementów podczas przemieszczania pomiędzy widokami w aplikacji. Mając gotowy projekt, makietę oraz architekturę nastąpi faza implementacji aplikacji za pomocą silnika Unity, z wykorzystaniem języka C\#, korzystając z IDE Rider.
 
@@ -38,7 +39,7 @@ W ramach pracy sporządzona zostanie pełna dokumentacja projektu, razem z instr
 
 
 \section{Układ dokumentu}
-Rozdział pierwszy poświęcony został na wstęp, zaznajomienie czytelnika z tematem pracy, wyjasnieniem potrzebnych konceptów, wytłumaczenie celu pracy oraz określenie zakresu jaki owa praca obejmuje. 
+Rozdział pierwszy poświęcony został na wstęp, zaznajomienie czytelnika z tematem pracy, wyjaśnieniem potrzebnych konceptów, wytłumaczenie celu pracy oraz określenie zakresu jaki owa praca obejmuje. 
 
 Rozdział drugi zawiera analizę istniejących rozwiązań, niezbędną do stworzenia własnej aplikacji. Analiza przedstawia wyciągnięte z istniejących rozwiązań najlepsze cechy, wraz z wadami, które następnie zostały wzięte pod uwagę podczas etapu projektowania.
 
