@@ -1,5 +1,5 @@
 \chapter{Założenia projektowe}
-% TO DO: zwykle projekty informatyczne zaczynają się od studium wykonalności (i analizy dziedzinowej).
+% DONE?: Zamieszczono analizę wymagań, funkcjonalnych i niefunkcjonalnych, razem z wizualizacją funkcji za pomocą makiet \\\  zwykle projekty informatyczne zaczynają się od studium wykonalności (i analizy dziedzinowej).
 %        Potem pojawia się analiza wymagań, której wynikiem jest zestaw zachowań, jakimi powinna
 %        charakteryzować się powstająca aplikacja z punktu widzenia użytkownika.
 %        W efekcie po tym etapie powinno być wiadome, jakie aplikacja będzie oferować funkcje i do czego ma służyć.
@@ -11,102 +11,113 @@
 %       Ogólnie - tworzenie makiet można zaliczyć do etapu analizyw wymagań funkcjonalnych
 %       (makiety eksponują funkcje, które są wystawiane na graficznym interfejsie użytkownika)
 
-% TO DO: proszę dodać wyjaśnienie, jaką ścieżką Pan poszedł rozpoczynając projekt.
+\section{Analiza wymagań}
+
+\subsection{Przebieg pracy}
+
+Podczas tworzenia projektu, po ustaleniu wymagań funkcjonalnych i niefunkcjonalnych podjęto się utworzenia makiety aplikacji demonstrującej zaplanowane funkcje. Następnie zdecydowano się na wybór wzorca projektowego, na podstawie którego ustalono komponenty wchodzące w skład każdej z poszczególnych scen. Po zadeklarowaniu potrzebnych elementów przystąpiono do tworzenia grafik komponentów wchodzących w skład scen, takich jak: grafiki przycisków, tekstu, grafik akordów. Następnie zajęto się implementacją widoków i funkcji.
+
+\subsection{Wymagania funkcjonalne}
+
+Bazując na sporządzonej w poprzednim rozdziale analizie dostępnych aplikacji zadeklarowane zostały wymagania funkcjonalne i niefunkcjonalne aplikacji. Poniżej omówiono wymagania funkcjonalne, które docelowa aplikacja ma zawierać.
+
+\paragraph{Stroik gitarowy} Stroik gitarowy umożliwiający dostrojenie strun gitary. Zawierać on ma opcję wyboru nuty, do której struna ma docelowo zostać nastrojona. Stroik zawierać ma graficzną reprezentację aktualnego poziomu nastrojenia instrumentu, poprzez wyświetlanie na ekranie informacji, czy struna jest: niedostrojona, nastrojona, przestrojona.
+\paragraph{Metronom} Metronom pozwalający na przeprowadzenie treningu rytmu. Pozwalać ma on na parametryzację wartości: bpm, taktu, metrum.
+\paragraph{Księga akordów} Księga akordów zawierająca informacje o aktualnie wyświetlanym akordzie, wraz z jego wariacją. Zawierać ona ma również przycisk zezwalający na zapis aktualnie wyświetlanego akordu, z możliwością zapisu do 4 akordów, które następnie dostępne będą w osobnym widoku.
+\paragraph{Koło kwintowe} Koło kwintowe z przyciskami, po których naciśnięciu podświetlona zostanie skala molowa, wraz z siedmioma akordami, które wpasowują się pod wybraną nutę.
+\paragraph{Trening słuchu} Trening słuchu polegający na odgadnięciu odegranej nuty, następnie zweryfikowanie poprawności udzielonej odpowiedzi. 
+
+\subsection{Wymagania niefunkcjonalne}
+
+Dla projektu ustalono poniższe wymagania niefunkcjonalne:
+
+\paragraph{Intuicyjny interfejs} Aplikacja zawierać ma prosty i przejrzysty interfejs, wraz z możliwością włączenia pomocy kontekstowej wyjaśniająca działanie poszczególnych elementów w widoku.
+\paragraph{Kompatybilność z systemem Windows 10} Główną platformą na jaką aplikacja zostanie stworzona są urządzenia desktopowe z systemem operacyjnym Windows10.
+\paragraph{Responsywność} Czas odpowiedzi aplikacji nie powinien wynosić więcej niż 2 sekundy. 
+
+% DONE?: Wyjaśnienie zamieszczone w podrozdziale "przebieg" \\\ proszę dodać wyjaśnienie, jaką ścieżką Pan poszedł rozpoczynając projekt.
 %        z tego, co widzę, całą analizę wymagań załatwił Pan makietami. 
 %        W sumie można tak zrobić. Proszę to jednak uzasadnić, by czytelnik nie miał wątpliwości, 
 %        że to celowy zabieg, a nie przeoczenie !!! 
 
 
-% TO DO: proszę przeredagować rozdział. W tej chwili wygląda on słabo - nie widać jakiejś myśli przewodniej.
+% DONE?: proszę przeredagować rozdział. W tej chwili wygląda on słabo - nie widać jakiejś myśli przewodniej.
 
 % TO DO: proszę uważać ze stosowaniem określenia "architektura aplikacji"
 %        zwykle gdy pada to określenie to odnosi się ono do sposobu "poukładania" komponentów aplikacji w jakieś hierarchie czy warstwy, z wydzieleniem odpowiedzialności, określeniem mechanizmów przepływu informacji itd. U Pana zaś mamy termin ten pada w kontekście użycia wzorca projektowego MVC.
 
 \section{Makiety}
-Makieta aplikacji utworzona została za pomocą oprogramowania Figma, % TO DO: z dużej czy małej?
-przedstawia ona podstawowy koncept, oraz zarys sekcji aplikacji. Na poszczególnych obrazkach można zobaczyć wizualizacje scen, zaczynając od głównego ekranu, stroika, metronomu, koła kwintowego, księgi akordów, kończąc na treningu słuchu. 
 
-%\begin{figure}[htb]
-	%\centering
-	%\includegraphics[width=.7\linewidth]{rys03/pageLayout2}
-	%\caption{Kontrola marginesów i odstępów elementów na stronie} \label{fig:pageLayout}
-%\end{figure}
+Poniżej przedstawione makiety projektowe wizualizują poszczególne funkcje i widoki, jakie zawarte zostaną w aplikacji. 
+Nie są one końcową wersją graficznego interfejsu użytkownika, mają one na celu zademonstrować czytelnikowi ogólny zarys układu poszczególnych widoków.
 
-%\begin{figure}[htb]
-	%\centering
-	%\includegraphics[width=.7\linewidth]{rys03/pageLayout2}
-	%\caption{Kontrola marginesów i odstępów elementów na stronie} \label{fig:pageLayout}
-%\end{figure}
+\begin{figure}[htb]
+    \centering
+    \begin{minipage}[b]{0.4\textwidth}
+        \centering
+        \includegraphics[width=0.9\linewidth]{rys03/MakMain}
+        \caption{Makieta sceny głównej}
+        \label{fig:pageLayout1}
+    \end{minipage}
+    \hspace{0.05\textwidth}
+    \begin{minipage}[b]{0.4\textwidth}
+        \centering
+        \includegraphics[width=0.9\linewidth]{rys03/MakAkordy}
+        \caption{Makieta księgi akordów}
+        \label{fig:pageLayout2}
+    \end{minipage}
+    
+    \vspace{0.5cm}
+    \begin{minipage}[b]{0.4\textwidth}
+        \centering
+        \includegraphics[width=0.9\linewidth]{rys03/MakMetronom}
+        \caption{Makieta metronomu}
+        \label{fig:pageLayout3}
+    \end{minipage}
+    \hspace{0.05\textwidth}
+    \begin{minipage}[b]{0.4\textwidth}
+        \centering
+        \includegraphics[width=0.9\linewidth]{rys03/MakStroik}
+        \caption{Makieta narzędzia stroika}
+        \label{fig:pageLayout4}
+    \end{minipage}
+\end{figure}
 
-%\begin{figure}[htb]
-	%\centering
-	%\includegraphics[width=.7\linewidth]{rys03/pageLayout2}
-	%\caption{Kontrola marginesów i odstępów elementów na stronie} \label{fig:pageLayout}
-%\end{figure}
+\clearpage
 
-%\begin{figure}[htb]
-	%\centering
-	%\includegraphics[width=.7\linewidth]{rys03/pageLayout2}
-	%\caption{Kontrola marginesów i odstępów elementów na stronie} \label{fig:pageLayout}
-%\end{figure}
+\begin{figure}[htb]
+    \centering
+    \begin{minipage}[b]{0.4\textwidth}
+        \centering
+        \includegraphics[width=0.9\linewidth]{rys03/MakTrening}
+        \caption{Makieta sceny treningu słuchu}
+        \label{fig:pageLayout5}
+    \end{minipage}
+    \hspace{0.05\textwidth}
+    \begin{minipage}[b]{0.4\textwidth}
+        \centering
+        \includegraphics[width=0.9\linewidth]{rys03/MakKK}
+        \caption{Makieta koła kwintowego}
+        \label{fig:pageLayout6}
+    \end{minipage}
+\end{figure}
 
-%\begin{figure}[htb]
-	%\centering
-	%\includegraphics[width=.7\linewidth]{rys03/pageLayout2}
-	%\caption{Kontrola marginesów i odstępów elementów na stronie} \label{fig:pageLayout}
-%\end{figure}
 
-\section{Projekt graficznego interfejsu użytkownika}
+\section{Projekt struktury aplikacji}
 
-Projekt gui użytkownika utworzony w aplikacji figma obejmuje utworzenie:
-
-\begin{itemize}
-	\item grafik przycisków dla poszczególnych scen,
-	\item graficznych tytułow poszczególnych scen,
-	\item elementów wizualizujących poszczególne funkcjonalności np: akordy gitarowe, takty metronomu,
-	\item tło oraz elementy kontekstowe ułatwiające posługiwanie się aplikacją.
-\end{itemize}
-
-Poszczególne zaprojektowane elementy prezentują się następująco, na poniższych grafikach przedstawiono: projekt przycisków, tytułów scen oraz przykładów reprezentacji akordów na gryfie. 
-
-%\begin{figure}[htb]
-	%\centering
-	%\includegraphics[width=.7\linewidth]{rys03/pageLayout2}
-	%\caption{Kontrola marginesów i odstępów elementów na stronie} \label{fig:pageLayout}
-%\end{figure}
-
-%\begin{figure}[htb]
-	%\centering
-	%\includegraphics[width=.7\linewidth]{rys03/pageLayout2}
-	%\caption{Kontrola marginesów i odstępów elementów na stronie} \label{fig:pageLayout}
-%\end{figure}
-
-%\begin{figure}[htb]
-	%\centering
-	%\includegraphics[width=.7\linewidth]{rys03/pageLayout2}
-	%\caption{Kontrola marginesów i odstępów elementów na stronie} \label{fig:pageLayout}
-%\end{figure}
-
-\section{Projekt architektury aplikacji}
-
-Projekt architektury dla aplikacji stworzony został w sposób taki, aby każda z poszczególnych funkcjonalności była przejrzysta, a sama aplikacja umożliwiała płynne przełączanie pomiędzy sekcjami aplikacji. Zastosowano wzorzec Model-View-ViewModel, umożliwiający rozdzielenie logiki aplikacji, interfejsu oraz zarządzania danymi. 
-
-%\begin{figure}[htb]
-	%\centering
-	%\includegraphics[width=.7\linewidth]{rys03/pageLayout2}
-	%\caption{Kontrola marginesów i odstępów elementów na stronie} \label{fig:pageLayout}
-%\end{figure}
+Projekt aplikacji stworzony został w sposób taki, aby każda z poszczególnych funkcji była przejrzysta, a sama aplikacja umożliwiała płynne przełączanie pomiędzy widokami. Zastosowano wzorzec Model-View-ViewModel, umożliwiający rozdzielenie logiki aplikacji, interfejsu oraz zarządzania danymi. 
 
 W skład wzorca wchodzą poniższe 3 elementy:
+
 \begin{itemize}
 	\item Model: Logika danych aplikacji, zawierająca dane akordów, dźwięków, tempo metronomu,
-	\item View: Zawierająca sceny samej aplikacji, dla każdej z funkcjonalności zaplanowany jest osobny widok (sceny),
-	\item ViewModel: Do każdej ze scen przypisany został kontroler odpowiedniej sceny umożliwiający komunikację pomiędzy widokiem, a modelem, zawiera on logikę aplikacji oraz funkcji potrzebnych w danej scenie.
+	\item View: Zawierająca sceny samej aplikacji, dla każdej z funkcji zaplanowany jest osobny widok (sceny),
+	\item ViewModel: Do każdej ze scen przypisany został kontroler odpowiedniej sceny umożliwiający komunikację pomiędzy widokiem, a modelem, zawiera on logikę aplikacji, oraz definicje funkcji potrzebnych w danej scenie.
 \end{itemize}
 
 \subsection{Projekt poszczególnych scen}
 
-W tej sekcji przedstawiono projekt dla każdej z funkcjonalności aplikacji, rozrysowując przy tym komponenty wchodzące w skład danego narzędzia, wraz z ich celem, sposobem implementacji, technologiami użytymi do stworzenia poszczególnych elementów. 
+W tej sekcji przedstawiono projekt dla każdej ze scen aplikacji, rozrysowując przy tym komponenty wchodzące w skład danego narzędzia, wraz z ich celem i technologiami użytymi do stworzenia poszczególnych elementów. 
 
 \subsubsection{Scena 1: Scena Główna}
 
@@ -123,11 +134,11 @@ W tej sekcji przedstawiono projekt dla każdej z funkcjonalności aplikacji, roz
 \begin{itemize}
 \item Cel: Udostępnienie możliwości nastrojenia gitary poprzez wybór docelowej struny, do której użytkownik chce nastroić instrument. Następnie zagrane przez użytkownika dźwięki analizowane będą, a wyniki analizy reprezentowane zostaną jako informacja odnośnie tego, czy ton należy obniżyć czy podwyższyć.
 \item Komponenty: W skład sceny wchodzi mikrofon, analizator dźwięku, przyciski odpowiadające strunom na gitarze, oraz wizualizator aktualnego poziomu nastrojenia instrumentu.  
-\item Technologie: Do użytych technologii wykorzystano bibliotekę opartą na otwartej licencji służącą do analizy dostarczanego dźwięku, oraz wyciągnięcie z niego częstotliwości zagranej nuty. Dodatkowo do stworzenia graficznego interfejsu posłużono się biblioteką Unity.UI.   
+\item Technologie: Do użytych technologii wykorzystano bibliotekę opartą na otwartej licencji służącą do analizy dostarczanego dźwięku \cite{https://github.com/nakakq/AudioPitchEstimatorForUnity}, oraz wyciągnięcie z niego częstotliwości zagranej nuty. Dodatkowo do stworzenia graficznego interfejsu posłużono się biblioteką Unity.UI.   
 \item Komunikacja: Użyto kontroler sceny, aby umożliwić komunikacje pomiędzy elementami graficznymi a analizatorem dźwięku. 
 \end{itemize}
 
-\subsubsection{Metronom}
+\subsubsection{Scena 3: Metronom}
 
 \begin{itemize}
 \item Cel: Zapewnienie użytkownikowi możliwości treningu rytmu podczas gry, poprzez reprezentację poszczególnych taktów zsynchronizowanych z dźwiękiem "bitu".
@@ -136,7 +147,7 @@ W tej sekcji przedstawiono projekt dla każdej z funkcjonalności aplikacji, roz
 \item Komunikacja: Poszczególne komponenty komunikują się ze sobą za pośrednictwem kontrolera sceny metronomu, zawierający odwołania do poszczególnych komponentów.
 \end{itemize}
 
-\subsubsection{Księga akordów}
+\subsubsection{Scena 4: Księga akordów}
 
 \begin{itemize}
 \item Cel: Wizualizacja pozycji akordów na gryfie, dla każdej nut, wraz z możliwymi wariancjami akordów.
@@ -145,20 +156,21 @@ W tej sekcji przedstawiono projekt dla każdej z funkcjonalności aplikacji, roz
 \item Komunikacja: Komponenty komunikują się ze sobą za pomocą menadżera sceny, przechowującego za pomoca listy graficzne reprezentacje akordów, które wyświetlane są w odpowiednich momentach. 
 \end{itemize}
 
-\subsubsection{Trening słuchu}
+\subsubsection{Scena 5: Trening słuchu}
 
 \begin{itemize}
 \item Cel: Umożliwienie użytkownikowi przeprowadzenie ćwiczeń mających na celu nabycia umiejętności rozpoznawania granej nuty za pomocą samego słuchu.
-\item Komponenty: Przycisk odpowiadający za odegranie losowo jednej z 12 nut skali chromatycznej, przyciski odpowiadające za odpowiedź, po naciśnięciu których weryfikowana jest poprawność udzielonej odpowiedzi. Scena zawiera również system audio odpowiadający za odegranie dźwięku
+\item Komponenty: Przycisk odpowiadający za odegranie losowo jednej z 12 nut skali chromatycznej, przyciski odpowiadające za odpowiedź, po naciśnięciu których weryfikowana jest poprawność udzielonej odpowiedzi. Scena zawiera również system audio odpowiadający za odegranie dźwięku.
 \item Technologie: Za odgrywanie dźwięków odpowiada biblioteka Unity.Sound, wraz z gotowym komponentem audio wbudowanym w silnik Unity.
 \item Komunikacja: Za komunikację pomiędzy komponentami odpowiada menadzer sceny, łączący ze sobą przyciski, zawierający logike odpowiedzialną za działanie sceny.
 \end{itemize}
 
-\subsubsection{Koło kwintowe}
+\subsubsection{Scena 6: Koło kwintowe}
 
 \begin{itemize}
 	\item Cel: Wizualizacja koła kwintowego, wraz z skalą molową i durową.
 	\item Komponenty: Elementy graficzne, w postaci przycisków, zawierające komponent image, który zawiera odpowiadającą nutę.
 	\item Technologie: Użyto biblioteki Unity.UI do reprezentacji poszczególnych nut.
-	\item Komunikacja: Komunikacja odbywa się poprzez menadżer sceny, zawierający logikę odpowiadającą za podświetlenie odpowiadających nut po naciśnięciu jednego z przycisków na kole kwintowym
+	\item Komunikacja: Komunikacja odbywa się poprzez menadżer sceny, zawierający logikę odpowiadającą za podświetlenie odpowiadających nut po naciśnięciu jednego z przycisków na kole kwintowym.
 \end{itemize}
+

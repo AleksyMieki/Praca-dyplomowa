@@ -35,7 +35,7 @@ Poniżej przedstawiono 2 najbardziej popularne serwisy internetowe oferujące ma
 
 \subsection{Guitar Tuna}
 
-Jedną z większych i najbardziej spopularyzowanych aplikacji jest Guitar Tuna, przeznaczona ona jest w głównej mierze na urządzenia mobilne, z ograniczoną ilością funkcjonalności na urządzenia desktopowe. Do dostępnych narzędzi zalicza się:
+Jedną z większych i najbardziej spopularyzowanych aplikacji jest Guitar Tuna, przeznaczona ona jest w głównej mierze na urządzenia mobilne, z ograniczoną ilością funkcji na urządzenia desktopowe. Do dostępnych narzędzi zalicza się:
 
 \paragraph{Stroik}
 
@@ -95,8 +95,8 @@ Na podstawie zaznaczonych pozycji naciśniętych progów narzędzie to przeszuku
 \end{figure}
 
 \paragraph{Metronom}
-% TO DO: funkcje - nie funkcjonalności.
-Zaimplementowany jest w sposób prosty, dostarczając wszystkie potrzebne funkcje w jasny i przejrzysty sposób. Dla użytkownika dostępne są funkcje zmiany tempa wybijania poszczególnych beatów, możliwość ręcznego ustawienia tempa, oraz dobór metrum z listy 6 dostępnych. Sama realizacja tej funkcjonalności, mogłaby zawierać dodatkowo opcję wyboru całych nut, a nie jedynie pół nut i ósemek przy wyborze metrum, poza tym samo narzędzie wykonuje swoje zadanie, umożliwiając treningu rytmu.
+% DONE: zmieniono w dokumencie błędne użycia \ funkcje - nie funkcjonalności.
+Zaimplementowany jest w sposób prosty, dostarczając wszystkie potrzebne funkcje w jasny i przejrzysty sposób. Dla użytkownika dostępne są funkcje zmiany tempa wybijania poszczególnych bić, możliwość ręcznego ustawienia tempa, oraz dobór metrum z listy 6 dostępnych. Sama realizacja tej funkcji, mogłaby zawierać dodatkowo opcję wyboru całych nut, a nie jedynie pół nut i ósemek przy wyborze metrum, poza tym samo narzędzie wykonuje swoje zadanie, umożliwiając treningu rytmu.
 
 \begin{figure}[htb]
 	\centering
@@ -105,6 +105,7 @@ Zaimplementowany jest w sposób prosty, dostarczając wszystkie potrzebne funkcj
 \end{figure}
 
 \paragraph{Księga akordów}
+
 Zaprezentowana została w mało przystępny sposób. Mianowicie w aplikacji prezentowany jest diagram w formie statycznego obrazka, z mało czytelnym podziałem pomiędzy poszczególnymi akordami. Diagram ten jest wadliwy z powodu jego nieczytelności. Z powodu braku kontekstu pod akordami może też być niezrozumiały dla graczy początkujących, jak i średnio zaawansowanych. Same diagramy nie obrazują numeru progu, na którym dany akord ma być grany oraz nie przedstawia nuty odpowiadającej danej strunie.
 
 \begin{figure}[htb]
@@ -118,22 +119,17 @@ Przedstawiają one 6 najpopularniejszych skal muzycznych. Brakuje jednak możliw
 
 \begin{figure}[htb]
 	\centering
-	\includegraphics[width=.4\linewidth]{rys02/SKALETF}
+	\includegraphics[width=.6\linewidth]{rys02/SKALETF}
 	\caption{Diagramy skal aplikacji TrueFire} \label{fig:pageLayout}
 \end{figure}
 
 Podsumowując powyższe analizy można uznać, że narzędzie to jest dobre -- dostarcza podstawowych funkcji umożliwiających naukę gry na gitarze, trening rytmu oraz możliwość dostrojenia samego instrumentu. Same funkcje natomiast zostawiają dużo miejsca na rozwój, możliwość parametryzacji czy też umieszczenie informacji kontekstowych, oraz objaśnienie pewnych sformułowań związanych z pozycjami akordów na gryfie. Narzędzie wyszukiwania akordów na podstawie podanych numerów progów jest natomiast samo w sobie bardzo mylące. Najbardziej przydatnym narzędziem z całego zestawienia jest metronom, będący prosty w obsłudze i dający możliwość prostego treningu rytmu grania. 
 
 \section{Wnioski}
-% TO DO: proszę nawiązać trochę do teorii z początku rozdziału
+% DONE: proszę nawiązać trochę do teorii z początku rozdziału
 %        potem można przejść do oceny końcowej aplikacji
 %        Chodzi o to, by rozdział był spójny - wnioski mają być podsumowaniem całego rozdziału
-Biorąc pod uwagę powyżej wymienione aplikacje, wyciągnięto wnioski odnośnie ich najlepszych cech oraz niedoskonałości. Do dobrych cech aplikacji można zaliczyć prostotę ich obsługi, zwłaszcza w funkcjonalności stroika aplikacji Guitar Tuna oraz metronomu Tunefire. Do największych wad należy brak kontekstu przy wizualizacji listy dostępnych akordów, oraz ograniczoną ilość możliwości przy wersji desktopowej aplikacji. Na tej podstawie wyciągnięto aspekty, oraz narzędzia jakie znajdą się w docelowym produkcie, mianowicie:
 
-\begin{itemize}
-	\item prosty w obsłudze metronom z możliwością doboru tempa oraz metrum gry,
-	\item stroik umożliwiający wybór nuty, do której docelowo strojony jest instrument,
-	\item księgę akordów z podpisanym akordem, w to wchodzi wariancja akordu oraz ton w jakiej jest on grany,
-	\item koło kwintowe reprezentujące w przejrzysty sposób skale muzyczne.
-\end{itemize}
+Przyglądając się powyżej wymienionym aplikacjom można dostrzec brak implementacji funkcji koła kwintowego w obydwu rozwiązaniach, będącym ważnym elementem jeżeli chodzi o początki nauki teorii muzyki. Użytkownik podczas korzystania z aplikacji nie ma możliwości zapoznania się z terminami skal muzycznych. Funkcja metronomu pomimo możliwości parametryzacji tempa nie gwarantuje możliwości wyboru wszystkich dostępnych nut wymienionych w pierwszej części rozdziału. Istniejące natomiast narzędzie diagramów skal nie dostarcza wystarczającej ilości informacji, aby uznać je za narzędzie skończone. Biorąc pod uwagę notację gitarową można dostrzec brak ujednoliconego sposobu reprezentacji akordów, wykorzystywane są dwie różne wariacje, przy których również nie znajdziemy pomocy kontekstowej. Do dobrych cech aplikacji można zaliczyć prostotę ich obsługi, zwłaszcza w narzędziu stroika aplikacji Guitar Tuna oraz metronomu Truefire. Do największych wad należy brak kontekstu przy wizualizacji listy dostępnych akordów, oraz ograniczoną ilość możliwości przy wersji desktopowej aplikacji.
+
 
