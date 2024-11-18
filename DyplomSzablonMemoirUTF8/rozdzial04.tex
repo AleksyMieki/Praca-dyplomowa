@@ -2,11 +2,14 @@
 
 \section{Wprowadzenie do implementacji}
 
+%TODO wrzucić listingi
+
 Rozdział ten zawiera szczegóły implementacji aplikacji. Każdej scen poświęcono odpowiadający podrozdział wyjaśniający wykorzystane technologie, biblioteki oraz sposób komunikacji pomiędzy poszczególnymi elementami widoku. 
 
 \section{Implementacja elementów aplikacji}
 
 \subsubsection{Stroik}
+
 Głównymi elementami sceny sa przyciski służące do wyboru domniemanej nuty. W skład widoku wchodzi tez jej tytuł, informator odnośnie aktualnego poziomu nastrojenia instrumentu i przyciski odpowiedzialne za zmianę docelowego instrumentu. Do menadżera sceny przypięte zostały 3 skrypty realizujące logikę potrzebną do nagrania, przeanalizowania i wyświetlenia wyników analizy dźwięku. Nazwy tych skryptów to: \emph{Audio Recorder} - skrypt odbierający dźwięk ze sceny, \emph{Audio Pitch Estimator} - odpowiedzialny za analizę odebranego dźwięku, \emph{Tuner Manager} - główny skrypt realizujący logikę sceny. Skrypt \emph{Audio Recorder} zawiera dwa pola:
 
 \begin{itemize}
