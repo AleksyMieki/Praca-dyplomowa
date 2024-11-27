@@ -6,86 +6,91 @@
 
 Rozdział ten zawiera szczegóły implementacji aplikacji. Każdej scen poświęcono odpowiadający podrozdział wyjaśniający wykorzystane technologie, biblioteki oraz sposób komunikacji pomiędzy poszczególnymi elementami widoku. 
 
+% TO DO: w rozdziale dobrze byłoby zamieścić opis struktury projektu. Ponieważ rozwijał Pan aplikację w środowisku UNITY, to środowisko narzuca trochę tę strukturę (parę uwag na ten temat też by się przydało). Strukturę projektu można pokazać robiąc zrzuty drzewa źródeł kodu.
+
+% TO DO: przydałoby się też opowiedzieć trochę o budowaniu aplikacji (testowe uruchomienia odbywają się w środowisku, aby można było uruchomić aplikację poza tym środowiskiem - coś trzeba przecież zrobić).
+
+
 \section{Implementacja elementów aplikacji}
 
-\subsubsection{Stroik}
+\subsection{Stroik}
 
-Głównymi elementami sceny sa przyciski służące do wyboru domniemanej nuty. W skład widoku wchodzi tez jej tytuł, informator odnośnie aktualnego poziomu nastrojenia instrumentu i przyciski odpowiedzialne za zmianę docelowego instrumentu. Do menadżera sceny przypięte zostały 3 skrypty realizujące logikę potrzebną do nagrania, przeanalizowania i wyświetlenia wyników analizy dźwięku. Nazwy tych skryptów to: \emph{Audio Recorder} - skrypt odbierający dźwięk ze sceny, \emph{Audio Pitch Estimator} - odpowiedzialny za analizę odebranego dźwięku, \emph{Tuner Manager} - główny skrypt realizujący logikę sceny. Skrypt \emph{Audio Recorder} zawiera dwa pola:
+Głównymi elementami sceny sa przyciski służące do wyboru domniemanej nuty. W skład widoku wchodzi tez jej tytuł, informator odnośnie aktualnego poziomu nastrojenia instrumentu i przyciski odpowiedzialne za zmianę docelowego instrumentu. Do menadżera sceny przypięte zostały 3 skrypty realizujące logikę potrzebną do nagrania, przeanalizowania i wyświetlenia wyników analizy dźwięku. Nazwy tych skryptów to: \texttt{Audio Recorder} - skrypt odbierający dźwięk ze sceny, \texttt{Audio Pitch Estimator} - odpowiedzialny za analizę odebranego dźwięku, \texttt{Tuner Manager} - główny skrypt realizujący logikę sceny. 
 
+Skrypt \texttt{Audio Recorder} zawiera dwa pola:
 \begin{itemize}
-    \item audioSource - obiekt przechowujące odwołanie do wbudowanego w silnik Unity narzędzia \emph{AudioSource}, umożliwiającego nagranie dźwięku,
-    \item duration - zmienna odpowiedzialna za ustalenie czasu, przez jaki mikrofon ma odbierać dźwięk z otoczenia.
+    \item \texttt{audioSource} -- obiekt przechowujące odwołanie do wbudowanego w silnik Unity narzędzia \texttt{AudioSource}, umożliwiającego nagranie dźwięku,
+    \item \texttt{duration} -- zmienna odpowiedzialna za ustalenie czasu, przez jaki mikrofon ma odbierać dźwięk z otoczenia.
 \end{itemize}
 
-Skrypt zawiera jedną funkcję \emph{OnEnable}, która podczas uruchomienia zaczyna odbierać dźwięk dostarczany do mikrofonu. Skrypt \emph{AudioPitchEstimator}, zaczerpnięty z repozytorium \cite{https://github.com/nakakq/AudioPitchEstimatorForUnity}, służy do analizy odebranego dźwięku. Biblioteka zawiera poniżej wymienione zmienne, na które użytkownik może wpłynąć, aby dopasować narzędzie do swoich potrzeb.
-
+Skrypt zawiera jedną funkcję \texttt{OnEnable}, która podczas uruchomienia zaczyna odbierać dźwięk dostarczany do mikrofonu. Skrypt \texttt{AudioPitchEstimator}, zaczerpnięty z repozytorium \cite{https://github.com/nakakq/AudioPitchEstimatorForUnity}, % TO DO: to nie jest poprawne cytowanie, proszę zrobić odpowiedni rekord w bib, a potem użyć jego klucza w \cite
+służy do analizy odebranego dźwięku. Biblioteka zawiera poniżej wymienione zmienne, na które użytkownik może wpłynąć, aby dopasować narzędzie do swoich potrzeb.
 \begin{itemize}
-    \item frequencyMin - minimalna częstotliwość, jaka ma być analizowana,
-    \item frequencyMax - maksymalna częstotliwość poddawana analizie,
-    \item harmonicsToUse - ilość harmonicznych jakie mają być brane pod uwagę, podczas ustalania końcowej częstotliwości odebranego dźwięku,
-    \item smoothingWidth - pasmo częstotliwości filtra wygładzającego widmo,
-    \item thresholdSRH - wartość graniczna ilości decybeli, od której dźwięk ma być wzięty pod analizę.
+    \item \texttt{frequencyMin} -- minimalna częstotliwość, jaka ma być analizowana,
+    \item \texttt{frequencyMax} -- maksymalna częstotliwość poddawana analizie,
+    \item \texttt{harmonicsToUse} -- ilość harmonicznych jakie mają być brane pod uwagę, podczas ustalania końcowej częstotliwości odebranego dźwięku,
+    \item \texttt{smoothingWidth} -- pasmo częstotliwości filtra wygładzającego widmo,
+    \item \texttt{thresholdSRH} -- wartość graniczna decybeli, od której dźwięk ma być wzięty pod analizę.
 \end{itemize}
 
-Funkcją realizującą główną logikę działania jest metoda \emph{Estimate}, wykonująca szybką transformatę Fouriera na odebranym dźwięku. Funkcja ta zwraca zmienną float \emph{bestFreq}, będąca najlepszym możliwym według programu "trafieniem", jeżeli chodzi o odebraną częstotliwość. Skrypt \emph{TunerManager} odpowiedzialny za realizowanie logiki sceny, przechowuje odwołania do komponentów sceny: przyciski, pola tekstowe, obiekt \emph{AudioSource}. W jego skład wchodzi 6 funkcji o nazwie \emph{SetDesiredFrequency*}, przy czym każdemu z przycisków przypisany jest jeden jej odpowiednik, ustawiający parametry skryptu \emph{AudioPitchEstimator}. Funkcją odpowiedzialną za logikę analizy dźwięku jest \emph{EstimatePitch}, która korzysta ze skryptu \emph{AudioPitchEstimator}, na etj podstawia ustawia wartości elementów tekstowych informujących użytkownika o poziomie nastrojenia instrumentu. Poza tym istnieją tu jeszcze dwie metody:
+Funkcją realizującą główną logikę działania jest metoda \texttt{Estimate}, wykonująca szybką transformatę Fouriera na odebranym dźwięku. Funkcja ta zwraca zmienną float \texttt{bestFreq}, będąca najlepszym możliwym według programu ,,trafieniem'', jeżeli chodzi o odebraną częstotliwość. Skrypt \texttt{TunerManager} odpowiedzialny za realizowanie logiki sceny, przechowuje odwołania do komponentów sceny: przyciski, pola tekstowe, obiekt \texttt{AudioSource}. W jego skład wchodzi 6 funkcji o nazwie \texttt{SetDesiredFrequency*}, przy czym każdemu z przycisków przypisany jest jeden jej odpowiednik, ustawiający parametry skryptu \texttt{AudioPitchEstimator}. Funkcją odpowiedzialną za logikę analizy dźwięku jest \texttt{EstimatePitch}, która korzysta ze skryptu \texttt{AudioPitchEstimator}, na tej podstawia ustawia wartości elementów tekstowych informujących użytkownika o poziomie nastrojenia instrumentu. Poza tym istnieją tu jeszcze dwie metody:
 
 \begin{itemize}
-    \item Start - Funkcja przypisująca przyciskom im działania w wypadku naciśnięcia.
-    \item ClearColor - Funkcja pomocnicza, odpowiedzialna za "czyszczenie" elementów graficznych sceny.
+    \item \texttt{Start} -- funkcja przypisująca przyciskom im działania w wypadku naciśnięcia.
+    \item \texttt{ClearColor} -- funkcja pomocnicza, odpowiedzialna za ,,czyszczenie'' elementów graficznych sceny.
 \end{itemize}
 
-\subsubsection{Metronom}
-Scena metronomu zawiera 9 przycisków służących do parametryzacji działania metronomu, umożliwiając zwiększenie tempa, zmianę metrum, zwiększanie lub zmniejszanie liczby taktów. Za logikę odpowiada menadżer sceny z przypiętym skryptem \emph{MetronomeManager}, zawierający 10 pól obiektów przycisków, pole obiektu tekstowego i kilka zmiennych pomocniczych. Metronom realizowany jest za pomocą wizualizacji poszczególnych taktów za pomocą graficznych elementów w postaci "kółek", które dodawane sa do widoku dynamicznie w zależności od ustalonych przez użytkownika wartości. Funkcje jakie implementuje dany skrypt to:
+\subsection{Metronom}
+Scena metronomu zawiera 9 przycisków służących do parametryzacji działania metronomu, umożliwiając zwiększenie tempa, zmianę metrum, zwiększanie lub zmniejszanie liczby taktów. Za logikę odpowiada menadżer sceny z przypiętym skryptem \texttt{MetronomeManager}, zawierający 10 pól obiektów przycisków, pole obiektu tekstowego i kilka zmiennych pomocniczych. Metronom realizowany jest za pomocą wizualizacji poszczególnych taktów za pomocą graficznych elementów w postaci "kółek", które dodawane sa do widoku dynamicznie w zależności od ustalonych przez użytkownika wartości. Funkcje jakie implementuje dany skrypt to:
 
 \begin{itemize}
-    \item Start - Funkcja odpowiadająca za ustawienie zmiennych, obiektów widoku. 
-    \item AddCircle - Funkcja wykorzystywana do zwiększenia tempa.
-    \item DeleteCircle - Funkcja wykorzystywana do zmniejszenia tempa.
-    \item RearrangeElements - Funkcja stworzona do rozmieszczania "kółek" taktów na ekranie.
-    \item StartMetronome - Funkcja uaktywniająca metronom.
-    \item RecolorAll - Funkcja uruchamiana podczas resetu metronomu, czyszcząca grafiki wizualizacji metronomu.
-    \item MetronomeCoroutine - Osobny wątek odpowiedzialny za działanie metronomu, w czasie działania tej funkcji wybijane jest na ekranie tempo.
-    \item AddBpm - Funkcja odpowiedzialna za zwiększenie tempa.
-    \item SubtractBpm - Funkcja odpowiedzialna za zmniejszenie tempa.
-    \item ChangeMeasure* - Funkcje, przypisane do odpowiednich przycisków, w zależności od wyboru całej nuty, pół nuty, ćwierć nuty czy ósemki, odpowiednio ustawiają ilość bić na takt.
+    \item \texttt{Start} -- funkcja odpowiadająca za ustawienie zmiennych, obiektów widoku. 
+    \item \texttt{AddCircle} -- funkcja wykorzystywana do zwiększenia tempa.
+    \item \texttt{DeleteCircle} -- funkcja wykorzystywana do zmniejszenia tempa.
+    \item \texttt{RearrangeElements} -- funkcja stworzona do rozmieszczania ,,kółek'' taktów na ekranie.
+    \item \texttt{StartMetronome} -- funkcja uaktywniająca metronom.
+    \item \texttt{RecolorAll} -- funkcja uruchamiana podczas resetu metronomu, czyszcząca grafiki wizualizacji metronomu.
+    \item \texttt{MetronomeCoroutine} -- oobny wątek odpowiedzialny za działanie metronomu, w czasie działania tej funkcji wybijane jest na ekranie tempo.
+    \item \texttt{AddBpm} -- funkcja odpowiedzialna za zwiększenie tempa.
+    \item \texttt{SubtractBpm} -- funkcja odpowiedzialna za zmniejszenie tempa.
+    \item \texttt{ChangeMeasure*} -- funkcje, przypisane do odpowiednich przycisków, w zależności od wyboru całej nuty, pół nuty, ćwierć nuty czy ósemki, odpowiednio ustawiają ilość bić na takt.
 \end{itemize}
-\subsubsection{Księga akordów}
+\subsection{Księga akordów}
 
-Scena księgi akordów zawiera element graficzny reprezentujący aktualnie wybrany akord gitarowy, przyciski umożliwiające wybór docelowego akordu, elementy graficzne ułatwiające nawigację po widoku sceny. Funkcje wchodzące w skład skryptu menadżera sceny nazwanego \emph{ChordChartsManager} to:
+Scena księgi akordów zawiera element graficzny reprezentujący aktualnie wybrany akord gitarowy, przyciski umożliwiające wybór docelowego akordu, elementy graficzne ułatwiające nawigację po widoku sceny. Funkcje wchodzące w skład skryptu menadżera sceny nazwanego \texttt{ChordChartsManager} to:
 
 \begin{itemize}
-    \item Start - Funkcja odpowiedzialna za przygotowanie potrzebnych elementów sceny. Przypisuje grafiki akordów z pomocniczej listy Chords do listy głównej ch. Ustawia wartości zmiennych noteIterator, variantIterator z wartości przechowywanych w skrypcie SceneConnector, łączącej scenę księgi akordów z widokiem wszystkich akordów w postaci diagramu. Przypisuje ona funkcje do odpowiednich przycisków i resetuje wartości obiektów tekstowych.
-    \item noteIncrement - Funkcja przypisana do przycisku, odpowiedzialna za zmianę nuty akordu.
-    \item noteDecrement - Funkcja przypisana do przycisku, odpowiedzialna za zmianę nuty akordu.
-    \item variantIncrement - Funkcja przypisana do przycisku, odpowiedzialna za zmianę wariacji akordu.
-    \item variantDecrement - Funkcja przypisana do przycisku, odpowiedzialna za zmianę wariacji akordu.
-    \item ChangeVariantText - Funkcja odpowiedzialna za zmianę przypisanej wartości obiektu tekstowego sceny, wykorzystywana w momencie zmiany wariacji akordu.
-    \item ChangeNoteText - Funkcja odpowiedzialna za zmianę przypisanej wartości obiektu tekstowego sceny, wykorzystywana w momencie zmiany nuty akordu.
-    \item ChangeChord - Funkcja odpowiedzialna za zmianę aktualnie wyświetlanego akordu, zmienia przypisaną grafikę obiektu Image sceny.
+    \item \texttt{Start} -- funkcja odpowiedzialna za przygotowanie potrzebnych elementów sceny. Przypisuje grafiki akordów z pomocniczej listy Chords do listy głównej ch. Ustawia wartości zmiennych noteIterator, variantIterator z wartości przechowywanych w skrypcie SceneConnector, łączącej scenę księgi akordów z widokiem wszystkich akordów w postaci diagramu. Przypisuje ona funkcje do odpowiednich przycisków i resetuje wartości obiektów tekstowych.
+    \item \texttt{noteIncrement} -- funkcja przypisana do przycisku, odpowiedzialna za zmianę nuty akordu.
+    \item \texttt{noteDecrement} -- funkcja przypisana do przycisku, odpowiedzialna za zmianę nuty akordu.
+    \item \texttt{variantIncrement} -- funkcja przypisana do przycisku, odpowiedzialna za zmianę wariacji akordu.
+    \item \texttt{variantDecrement} -- funkcja przypisana do przycisku, odpowiedzialna za zmianę wariacji akordu.
+    \item \texttt{ChangeVariantText} -- funkcja odpowiedzialna za zmianę przypisanej wartości obiektu tekstowego sceny, wykorzystywana w momencie zmiany wariacji akordu.
+    \item \texttt{ChangeNoteText} -- funkcja odpowiedzialna za zmianę przypisanej wartości obiektu tekstowego sceny, wykorzystywana w momencie zmiany nuty akordu.
+    \item \texttt{ChangeChord} -- funkcja odpowiedzialna za zmianę aktualnie wyświetlanego akordu, zmienia przypisaną grafikę obiektu Image sceny.
 \end{itemize}
 
-\subsubsection{Trening słuchu}
+\subsection{Trening słuchu}
 
-Scena treningu słuchu zawiera przycisk odpowiedzialny za odegranie dźwięku, który następnie ma zostać odgadnięty przez użytkownika za pomocą jednego z 12 przycisków obecnych na scenie. W skład sceny wchodzą dwa skrypty, \emph{EarTrainerManager} - przypisany do menadżera sceny realizujący główną logikę sceny oraz \emph{ButtonIndex} - skrypt pomocniczy przypisany do każdego z 12 przycisków odpowiedzialnych za udzielenie odpowiedzi. Funkcje wchodzące w skład głównego skryptu to:
-
+Scena treningu słuchu zawiera przycisk odpowiedzialny za odegranie dźwięku, który następnie ma zostać odgadnięty przez użytkownika za pomocą jednego z 12 przycisków obecnych na scenie. W skład sceny wchodzą dwa skrypty: \texttt{EarTrainerManager} -- przypisany do menadżera sceny realizujący główną logikę sceny oraz \texttt{ButtonIndex} -- skrypt pomocniczy przypisany do każdego z 12 przycisków odpowiedzialnych za udzielenie odpowiedzi. Funkcje wchodzące w skład głównego skryptu to:
 \begin{itemize}
-    \item Start - Funkcja przypisująca obiekt audioSource, odpowiedzialny za odgrywanie dźwięków. Ustawia ona również funkcję \emph{PlayRandomNote} do przycisku \emph{playNoteButton}. Dodatkowo przypisuje ona funkcję \emph{NoteGuessed} do każdego z przycisków odpowiedzialnych za odpowiedź.
-    \item PlayRandomNote - Funkcja odpowiedzialna za odegranie losowego dźwięku po naciśnięciu przycisku \emph{playNoteButton}. Ustawia ona odpowiedni index dla odegranej nuty, wykorzystywany następnie podczas zweryfikowania odpowiedzi podanej przez użytkownika.
-    \item NoteGuessed - Funkcja weryfikująca odpowiedź użytkownika, wykorzystywana po naciśnięciu jednego z 12 przycisków odpowiedzi. Ustawia ona obiekty tekstowe sceny, w zależności od tego czy odpowiedź była poprawna, czy też nie. 
+    \item \texttt{Start} -- funkcja przypisująca obiekt \texttt{audioSource}, odpowiedzialny za odgrywanie dźwięków. Ustawia ona również funkcję \texttt{PlayRandomNote} do przycisku \texttt{playNoteButton}. Dodatkowo przypisuje ona funkcję \texttt{NoteGuessed} do każdego z przycisków odpowiedzialnych za odpowiedź.
+    \item \texttt{PlayRandomNote} -- funkcja odpowiedzialna za odegranie losowego dźwięku po naciśnięciu przycisku \texttt{playNoteButton}. Ustawia ona odpowiedni index dla odegranej nuty, wykorzystywany następnie podczas zweryfikowania odpowiedzi podanej przez użytkownika.
+    \item \texttt{NoteGuessed} -- funkcja weryfikująca odpowiedź użytkownika, wykorzystywana po naciśnięciu jednego z 12 przycisków odpowiedzi. Ustawia ona obiekty tekstowe sceny, w zależności od tego czy odpowiedź była poprawna, czy też nie. 
 \end{itemize}
 
-Skrypt pomocniczy przechowuje jedynie jedną zmienną, wykorzystywaną w momencie weryfikacji odpowiedzi udzielonej przez użytkownika, jest nią: buttonNumber.
+Skrypt pomocniczy przechowuje jedynie jedną zmienną, wykorzystywaną w momencie weryfikacji odpowiedzi udzielonej przez użytkownika, jest nią: \texttt{buttonNumber}.
 
-\subsubsection{Koło kwintowe}
+\subsection{Koło kwintowe}
 
 Scena koła kwintowego zawiera 24 przyciski, każdemu z nich przypisana została odpowiednia nuta. W skrypcie menadżera sceny utworzone zostały dwie listy, przechowujące przyciski koła zewnętrznego oraz koła wewnętrznego. Skrypt zawiera w sobie 6 funkcji:
 
 \begin{itemize}
-\item Start - Funkcja używana podczas tworzenia obiektu, służy ona przygotowaniu wszystkich przycisków oraz przypisania im działania przy ich naciśnięciu, w tym przypadku przypisuje ich działanie do funkcji \emph{DisplayScale}
-\item DisplayScale - Funkcja odpowiedzialna jest ona za wyświetlenie skali majorowej, oraz 3 akordów minorowych pasujących do wybranej przez użytkownika nuty. 
-\item GetColorTint - Funkcja pomocnicza generująca kolejne odcienie kolorów, dla funkcji \emph{DisplayScale}. 
-\item GetMajorScaleIndices - Funkcja pomocnicza generująca interwały kolejnych nut w skali majorowej
-\item ChangeButtonColor - Funkcja pomocnicza odpowiedzialna za zmianę koloru odpowiedniego przycisku
-\item ClearColors - Funkcja pomocnicza czyszcząca kolory wszystkich przycisków
+\item \texttt{Start} -- funkcja używana podczas tworzenia obiektu, służy ona przygotowaniu wszystkich przycisków oraz przypisania im działania przy ich naciśnięciu, w tym przypadku przypisuje ich działanie do funkcji \texttt{DisplayScale}
+\item \texttt{DisplayScale} -- funkcja odpowiedzialna jest ona za wyświetlenie skali majorowej, oraz 3 akordów minorowych pasujących do wybranej przez użytkownika nuty. 
+\item \texttt{GetColorTin}t -- funkcja pomocnicza generująca kolejne odcienie kolorów, dla funkcji \texttt{DisplayScale}.
+\item \texttt{GetMajorScaleIndices} -- funkcja pomocnicza generująca interwały kolejnych nut w skali majorowej.
+\item \texttt{ChangeButtonColor} -- funkcja pomocnicza odpowiedzialna za zmianę koloru odpowiedniego przycisku.
+\item \texttt{ClearColors} -- funkcja pomocnicza czyszcząca kolory wszystkich przycisków.
 \end{itemize}
 
