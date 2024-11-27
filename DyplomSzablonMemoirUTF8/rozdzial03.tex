@@ -11,30 +11,27 @@
 %       Ogólnie - tworzenie makiet można zaliczyć do etapu analizyw wymagań funkcjonalnych
 %       (makiety eksponują funkcje, które są wystawiane na graficznym interfejsie użytkownika)
 
+Podczas tworzenia projektu, po ustaleniu wymagań funkcjonalnych i niefunkcjonalnych na bazie wyników analiz z poprzedniego rozdziału, 
+podjęto się utworzenia makiety aplikacji demonstrującej zaplanowane funkcje. Następnie zdecydowano się na wybór wzorca projektowego, na podstawie którego ustalono komponenty wchodzące w skład każdej z poszczególnych scen. Po zadeklarowaniu potrzebnych elementów przystąpiono do tworzenia grafik komponentów wchodzących w skład scen, takich jak: grafiki przycisków, tekstu, grafik akordów. Następnie zajęto się implementacją widoków i funkcji. Poniżej opisano szczegóły tych działań.
+
 \section{Analiza wymagań}
-
-\subsection{Przebieg pracy}
-
-Podczas tworzenia projektu, po ustaleniu wymagań funkcjonalnych i niefunkcjonalnych podjęto się utworzenia makiety aplikacji demonstrującej zaplanowane funkcje. Następnie zdecydowano się na wybór wzorca projektowego, na podstawie którego ustalono komponenty wchodzące w skład każdej z poszczególnych scen. Po zadeklarowaniu potrzebnych elementów przystąpiono do tworzenia grafik komponentów wchodzących w skład scen, takich jak: grafiki przycisków, tekstu, grafik akordów. Następnie zajęto się implementacją widoków i funkcji.
-
 \subsection{Wymagania funkcjonalne}
-
-Bazując na sporządzonej w poprzednim rozdziale analizie dostępnych aplikacji zadeklarowane zostały wymagania funkcjonalne i niefunkcjonalne aplikacji. Poniżej omówiono wymagania funkcjonalne, które docelowa aplikacja ma zawierać.
-
-\paragraph{Stroik gitarowy} Stroik gitarowy umożliwiający dostrojenie strun gitary. Zawierać on ma opcję wyboru nuty, do której struna ma docelowo zostać nastrojona. Stroik zawierać ma graficzną reprezentację aktualnego poziomu nastrojenia instrumentu, poprzez wyświetlanie na ekranie informacji, czy struna jest: niedostrojona, nastrojona, przestrojona.
-\paragraph{Metronom} Metronom pozwalający na przeprowadzenie treningu rytmu. Pozwalać ma on na parametryzację wartości: bpm, taktu, metrum.
-\paragraph{Księga akordów} Księga akordów zawierająca informacje o aktualnie wyświetlanym akordzie, wraz z jego wariacją. Zawierać ona ma również przycisk zezwalający na zapis aktualnie wyświetlanego akordu, z możliwością zapisu do 4 akordów, które następnie dostępne będą w osobnym widoku.
-\paragraph{Koło kwintowe} Koło kwintowe z przyciskami, po których naciśnięciu podświetlona zostanie skala molowa, wraz z siedmioma akordami, które wpasowują się pod wybraną nutę.
-\paragraph{Trening słuchu} Trening słuchu polegający na odgadnięciu odegranej nuty, następnie zweryfikowanie poprawności udzielonej odpowiedzi. 
+Docelowa aplikacja powinna oferować funkcje opisane poniżej.
+\begin{itemize}
+\item \textbf{Stroik gitarowy} -- ta funkcja powinna umożliwiać dostrojenie strun gitary. Zawierać on ma opcję wyboru nuty, do której struna ma docelowo zostać nastrojona. Stroik zawierać ma graficzną reprezentację aktualnego poziomu nastrojenia instrumentu, poprzez wyświetlanie na ekranie informacji, czy struna jest: niedostrojona, nastrojona, przestrojona.
+\item \textbf{Metronom} -- ma umożliwiać przeprowadzenie treningu rytmu, pozwalająć na parametryzację wartości: bpm, taktu, metrum.
+\item \textbf{Księga akordów} -- ma dostarczać informacje o aktualnie wyświetlanym akordzie i jego wariacji. Zawierać ona ma również przycisk zezwalający na zapis aktualnie wyświetlanego akordu, z możliwością zapisu do 4 akordów, które następnie dostępne będą w osobnym widoku.
+\item \textbf{Koło kwintowe} -- ma się pojawiać z aktywnymi przyciskami, których naciśnięcie skutkować ma podświetleniem skali molowej, wraz z siedmioma akordami, które wpasowują się pod wybraną nutę.
+\item \textbf{Trening słuchu} -- istotą tej funkcji ma być możliwość odgadywania odegranej nuty poprzez jej zagranie i zweryfikowanie poprawności udzielonej odpowiedzi. 
+\end{itemize}
 
 \subsection{Wymagania niefunkcjonalne}
-
-Dla projektu ustalono poniższe wymagania niefunkcjonalne:
-
-\paragraph{Intuicyjny interfejs} Aplikacja zawierać ma prosty i przejrzysty interfejs, wraz z możliwością włączenia pomocy kontekstowej wyjaśniająca działanie poszczególnych elementów w widoku.
-\paragraph{Kompatybilność z systemem Windows 10} Główną platformą na jaką aplikacja zostanie stworzona są urządzenia desktopowe z systemem operacyjnym Windows10.
-\paragraph{Responsywność} Czas odpowiedzi aplikacji nie powinien wynosić więcej niż 2 sekundy. 
-
+Dla projektu ustalono wymagania niefunkcjonalne. Zebrano je w punktach poniżej.
+\begin{itemize}
+\item \textbf{Intuicyjny interfejs} -- aplikacja ma oferować prosty i przejrzysty interfejs, z możliwością włączenia pomocy kontekstowej wyjaśniająca działanie poszczególnych elementów w widoku.
+\item \textbf{Kompatybilność z systemem Windows 10} --  aplikacja zostanie stworzona głównie dla urządzeń desktopowych, działających pod kontrolą systemu operacyjnego Windows 10 (i wyżej).
+\item \textbf{Responsywność} -- czas odpowiedzi aplikacji nie powinien wynosić więcej niż 2 sekundy. 
+\end{itemize}
 % DONE?: Wyjaśnienie zamieszczone w podrozdziale "przebieg" \\\ proszę dodać wyjaśnienie, jaką ścieżką Pan poszedł rozpoczynając projekt.
 %        z tego, co widzę, całą analizę wymagań załatwił Pan makietami. 
 %        W sumie można tak zrobić. Proszę to jednak uzasadnić, by czytelnik nie miał wątpliwości, 
@@ -47,58 +44,37 @@ Dla projektu ustalono poniższe wymagania niefunkcjonalne:
 %        zwykle gdy pada to określenie to odnosi się ono do sposobu "poukładania" komponentów aplikacji w jakieś hierarchie czy warstwy, z wydzieleniem odpowiedzialności, określeniem mechanizmów przepływu informacji itd. U Pana zaś mamy termin ten pada w kontekście użycia wzorca projektowego MVC.
 
 \section{Makiety}
-
-Poniżej przedstawione makiety projektowe wizualizują poszczególne funkcje i widoki, jakie zawarte zostaną w aplikacji. 
-Nie są one końcową wersją graficznego interfejsu użytkownika, mają one na celu zademonstrować czytelnikowi ogólny zarys układu poszczególnych widoków.
-
+Poniżej przedstawione makiety projektowe wizualizują poszczególne funkcje i widoki, jakie zawarte zostaną w aplikacji (rys.~\ref{fig:makiety}).
+Nie są one końcową wersją graficznego interfejsu użytkownika. Mają one przybliżyć ogólny zarys układu poszczególnych widoków.
 \begin{figure}[htb]
     \centering
-     \begin{tabular}{ll}
-        a) & b) \\
-        \includegraphics[width=0.4\linewidth]{rys03/MakMain} & \includegraphics[width=0.4\linewidth]{rys03/MakAkordy}
-        \\
-        c) & d) \\
-        \includegraphics[width=0.4\linewidth]{rys03/MakMetronom} & \includegraphics[width=0.4\linewidth]{rys03/MakStroik}
-    \end{tabular}
-        \caption{Makiety interfejsu użytkownika: a) scena główna, b) księgi akordów, c) metronom, d) stroik, e) f)}
-        \label{fig:pageLayout1}
-    
-\end{figure}
-
-\clearpage
-
-\begin{figure}[htb]
-    \centering
-    \begin{minipage}[b]{0.4\textwidth}
-        \centering
-        \includegraphics[width=0.9\linewidth]{rys03/MakTrening}
-        \caption{Makieta sceny treningu słuchu}
-        \label{fig:pageLayout5}
-    \end{minipage}
-    \hspace{0.05\textwidth}
-    \begin{minipage}[b]{0.4\textwidth}
-        \centering
-        \includegraphics[width=0.9\linewidth]{rys03/MakKK}
-        \caption{Makieta koła kwintowego}
-        \label{fig:pageLayout6}
-    \end{minipage}
+		\begin{tabular}{ll}
+		a) & b \\
+		\vtop{\vskip-2ex\hbox{\includegraphics[width=0.45\linewidth]{rys03/MakMain}}} &
+		\vtop{\vskip-2ex\hbox{\includegraphics[width=0.45\linewidth]{rys03/MakAkordy}}} \\
+		c) & d) \\
+		\vtop{\vskip-2ex\hbox{\includegraphics[width=0.45\linewidth]{rys03/MakMetronom}}} &
+		\vtop{\vskip-2ex\hbox{\includegraphics[width=0.45\linewidth]{rys03/MakStroik}}} \\
+		e) & f) \\
+		\vtop{\vskip-2ex\hbox{\includegraphics[width=0.45\linewidth]{rys03/MakTrening}}} &
+		\vtop{\vskip-2ex\hbox{\includegraphics[width=0.45\linewidth]{rys03/MakKK}}}	
+		\end{tabular}
+        \caption{Zaprojektowane makiety interfejsu: a) scena główna, b) księga akordów, c) metronom, d) stroik, e) trening słuchu, f) koło kwintylowe}
+        \label{fig:makiety}
 \end{figure}
 
 
 \section{Projekt struktury aplikacji}
-
-Projekt aplikacji stworzony został w sposób taki, aby każda z poszczególnych funkcji była przejrzysta, a sama aplikacja umożliwiała płynne przełączanie pomiędzy widokami. Zastosowano wzorzec Model-View-ViewModel, umożliwiający rozdzielenie logiki aplikacji, interfejsu oraz zarządzania danymi. 
-
-W skład wzorca wchodzą poniższe 3 elementy:
+% TO DO: proszę zadbać o to, by na końcach linii nie pozostały samotne literki
+Projekt aplikacji stworzony został w sposób taki, aby każda z poszczególnych funkcji była przejrzysta, a sama aplikacja umożliwiała płynne przełączanie pomiędzy widokami. Zastosowano wzorzec Model-View-ViewModel, umożliwiający rozdzielenie logiki aplikacji, interfejsu oraz zarządzania danymi. W skład wzorca wchodzą poniższe 3 elementy:
 
 \begin{itemize}
 	\item Model: Logika danych aplikacji, zawierająca dane akordów, dźwięków, tempo metronomu,
-	\item View: Zawierająca sceny samej aplikacji, dla każdej z funkcji zaplanowany jest osobny widok (sceny),
+	\item View: Zawiera sceny samej aplikacji, dla każdej funkcji zaplanowano osobny widok (sceny),
 	\item ViewModel: Do każdej ze scen przypisany został kontroler odpowiedniej sceny umożliwiający komunikację pomiędzy widokiem, a modelem, zawiera on logikę aplikacji, oraz definicje funkcji potrzebnych w danej scenie.
 \end{itemize}
 
 \subsection{Projekt poszczególnych scen}
-
 W tej sekcji przedstawiono projekt dla każdej ze scen aplikacji, rozrysowując przy tym komponenty wchodzące w skład danego narzędzia, wraz z ich celem i technologiami użytymi do stworzenia poszczególnych elementów. 
 
 \subsubsection{Scena 1: Scena Główna}
