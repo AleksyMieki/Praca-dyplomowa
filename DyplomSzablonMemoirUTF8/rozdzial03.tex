@@ -8,7 +8,7 @@
 %       Temu wszystkiemu towarzyszyć mogą makiety interfejsu użytkownika.
 %       Makiety służą bowiem jako język, którym projektant komunikuje się z użytkownikiem.
 %       Są one też językiem komunikacji między projektantem a programistą
-%       Ogólnie - tworzenie makiet można zaliczyć do etapu analizyw wymagań funkcjonalnych
+%       Ogólnie - tworzenie makiet można zaliczyć do etapu analizy wymagań funkcjonalnych
 %       (makiety eksponują funkcje, które są wystawiane na graficznym interfejsie użytkownika)
 
 Podczas tworzenia projektu, po ustaleniu wymagań funkcjonalnych i niefunkcjonalnych na bazie wyników analiz z poprzedniego rozdziału, 
@@ -40,7 +40,7 @@ Dla projektu ustalono wymagania niefunkcjonalne. Zebrano je w punktach poniżej.
 
 % DONE?: proszę przeredagować rozdział. W tej chwili wygląda on słabo - nie widać jakiejś myśli przewodniej.
 
-% TO DO: proszę uważać ze stosowaniem określenia "architektura aplikacji"
+% DONE: proszę uważać ze stosowaniem określenia "architektura aplikacji"
 %        zwykle gdy pada to określenie to odnosi się ono do sposobu "poukładania" komponentów aplikacji w jakieś hierarchie czy warstwy, z wydzieleniem odpowiedzialności, określeniem mechanizmów przepływu informacji itd. U Pana zaś mamy termin ten pada w kontekście użycia wzorca projektowego MVC.
 
 \section{Makiety}
@@ -91,7 +91,7 @@ W tej sekcji przedstawiono projekt dla każdej ze scen aplikacji, rozrysowując 
 
 \begin{itemize}
 \item Cel: Udostępnienie możliwości nastrojenia gitary poprzez wybór docelowej struny, do której użytkownik chce nastroić instrument. Następnie zagrane przez użytkownika dźwięki analizowane będą, a wyniki analizy reprezentowane zostaną jako informacja odnośnie tego, czy ton należy obniżyć czy podwyższyć.
-\item Komponenty: W skład sceny wchodzi mikrofon, analizator dźwięku, przyciski odpowiadające strunom na gitarze, oraz wizualizator aktualnego poziomu nastrojenia instrumentu.  
+\item Komponenty: W skład sceny wchodzi mikrofon, analizator dźwięku, przyciski odpowiadające strunom na gitarze, oraz indykator aktualnego poziomu nastrojenia instrumentu.  
 \item Technologie: Do użytych technologii wykorzystano bibliotekę opartą na otwartej licencji służącą do analizy dostarczanego dźwięku \cite{https://github.com/nakakq/AudioPitchEstimatorForUnity}, oraz wyciągnięcie z niego częstotliwości zagranej nuty. Dodatkowo do stworzenia graficznego interfejsu posłużono się biblioteką Unity.UI.   
 \item Komunikacja: Użyto kontroler sceny, aby umożliwić komunikacje pomiędzy elementami graficznymi a analizatorem dźwięku. 
 \end{itemize}
