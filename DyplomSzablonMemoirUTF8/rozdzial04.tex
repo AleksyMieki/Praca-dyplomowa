@@ -9,17 +9,17 @@ Rozdział ten zawiera szczegóły implementacji aplikacji. Każdej scen poświę
 \section{Struktura aplikacji}
 Struktura projektu wykorzystuje domyślne ułożenie plików w systemie Unity. Jako główny folder służy folder \texttt{Assets}, zawiera on główne pliki projektowe: skrypty, tekstury, dźwięki, grafiki, prefaby(gotowe elementy często wykorzystywane w projekcie).
 
-Struktura plików folderu \texttt{Scripts} podzielona została według ich celu. Każdy plik przypisany do sceny znajduje się w odpowiadającym mu folderze. Elementy pomocnicze jak np. skrypt pomocy kontekstowej, skrypt przycisku zamykania sceny znajdują się w folderze \texttt{Utility}.
-
-Rysunek 4.1. pokazuje strukturę plików źródłowych projektu.
-% \begin{figure}[htb]
-%     \centering
-% 	\includegraphics[width=0.4\linewidth]{rys04/StrukturaPlikow}
-% \end{figure}
+Strukturę plików folderu \texttt{Scripts} (patrz rysunek~\ref{fig:strukturaKodu}) zorganizowano według ich celu. Każdy plik przypisany do sceny znajduje się w odpowiadającym mu folderze. Elementy pomocnicze jak np.\ skrypt pomocy kontekstowej, skrypt przycisku zamykania sceny znajdują się w folderze \texttt{Utility}. 
+ \begin{figure}[htb]
+     \centering
+ 	\includegraphics[scale=.8]{rys04/StrukturaPlikow}
+	\caption{Struktura źródeł kodu w projekcie}
+	\label{fig:strukturaKodu}
+ \end{figure}
 % DONE: w rozdziale dobrze byłoby zamieścić opis struktury projektu. Ponieważ rozwijał Pan aplikację w środowisku UNITY, to środowisko narzuca trochę tę strukturę (parę uwag na ten temat też by się przydało). Strukturę projektu można pokazać robiąc zrzuty drzewa źródeł kodu.
 
 % DONE: przydałoby się też opowiedzieć trochę o budowaniu aplikacji (testowe uruchomienia odbywają się w środowisku, aby można było uruchomić aplikację poza tym środowiskiem - coś trzeba przecież zrobić).
-Aby na bieżąco analizować poprawność zaimplementowanych funkcji wykorzystywano wbudowaną w silnik Unity opcję \emph{play}, która umożliwia "odpalenie" jednej sceny, nie wymuszając przy tym budowania całej aplikacji od nowa. Po wykryciu zmian w skryptach aplikacja się przeładowuje i jest gotowa do użycia/przetestowania przez użytkownika.
+Aby na bieżąco analizować poprawność zaimplementowanych funkcji wykorzystywano wbudowaną w silnik Unity opcję \emph{play}, która umożliwia ,,odpalenie'' jednej sceny, nie wymuszając przy tym budowania całej aplikacji od nowa. Po wykryciu zmian w skryptach aplikacja się przeładowuje i jest gotowa do użycia/przetestowania przez użytkownika.
 
 \section{Implementacja elementów aplikacji}
 
@@ -48,7 +48,7 @@ służy do analizy odebranego dźwięku. Biblioteka zawiera poniżej wymienione 
 
 Funkcją realizującą główną logikę działania jest metoda \texttt{Estimate}, wykonująca szybką transformatę Fouriera na odebranym dźwięku. Funkcja ta zwraca zmienną float \texttt{bestFreq}, będąca najlepszym możliwym według programu ,,trafieniem'', jeżeli chodzi o odebraną częstotliwość. Skrypt \texttt{TunerManager} odpowiedzialny za realizowanie logiki sceny, przechowuje odwołania do komponentów sceny: przyciski, pola tekstowe, obiekt \texttt{AudioSource}. W jego skład wchodzi 6 funkcji o nazwie \texttt{SetDesiredFrequency*}, przy czym każdemu z przycisków przypisany jest jeden jej odpowiednik, ustawiający parametry skryptu \texttt{AudioPitchEstimator}. Funkcją odpowiedzialną za logikę analizy dźwięku jest \texttt{EstimatePitch}, która korzysta ze skryptu \texttt{AudioPitchEstimator}, na tej podstawia ustawia wartości elementów tekstowych informujących użytkownika o poziomie nastrojenia instrumentu. 
 
-\begin{lstlisting}[language=csh,caption=Funkcja \texttt{Estimate}, label=lst:1]
+\begin{lstlisting}[style=sharpcstyle,caption=Funkcja \texttt{Estimate}, label=lst:1]
     public float Estimate(AudioSource audioSource)
     {
         var nyquistFreq = AudioSettings.outputSampleRate / 2.0f;
@@ -140,7 +140,7 @@ Scena metronomu zawiera 9 przycisków służących do parametryzacji działania 
 
 Funkcja realizująca główną logikę sceny to \texttt{MetronomeCoroutine}, na bieżąco odgrywająca dźwięk oznaczający kolejny takt metronomu i zmieniająca kolory odpowiednich przycisków.
 
-\begin{lstlisting}[language=csh,caption=Wątek \texttt{MetronomeCoroutine}, label=lst:2]
+\begin{lstlisting}[style=sharpcstyle,caption=Wątek \texttt{MetronomeCoroutine}, label=lst:2]
     IEnumerator MetronomeCoroutine()
     {
         
@@ -200,7 +200,7 @@ Scena księgi akordów zawiera element graficzny reprezentujący aktualnie wybra
 
 Istotną funkcją wymagającą jest \texttt{ChangeChord}, która odpowiada za zmianę wyświetlanej grafiki. Wewnątrz funkcji z racji sposobu zapisu grafik jako pliki png, nie obsługiwanych domyślnie przez silnik Unity, tworzone są wpierw tekstury, na podstawie których tworzone są \emph{sprity}, które przypisywane są do elementu graficznego znajdującego się na scenie.
 
-\begin{lstlisting}[language=csh,caption=Funkcja \texttt{ChangeChord}, label=lst:3]
+\begin{lstlisting}[style=sharpcstyle,caption=Funkcja \texttt{ChangeChord}, label=lst:3]
     private void ChangeChord()
     {
         Texture2D selectedTexture = ch[noteIterator][variantIterator];
@@ -223,7 +223,7 @@ Scena treningu słuchu zawiera przycisk odpowiedzialny za odegranie dźwięku, k
 
 Skrypt główny natomiast odpowiada za odegranie nuty, a następnie sprawdzenia poprawności odpowiedzi, funkcje realizujące te zadania zamieszczono na listingu 4.4.
 
-\begin{lstlisting}[language=csh,caption=Funkcje \texttt{PlayRandomNote} i \texttt{NoteGuessed}, label=lst:4]
+\begin{lstlisting}[style=sharpcstyle,caption=Funkcje \texttt{PlayRandomNote} i \texttt{NoteGuessed}, label=lst:4]
     void PlayRandomNote()
     {
         feedbackText.text = "Odgadnij"; 
@@ -263,7 +263,7 @@ Scena koła kwintowego zawiera 24 przyciski, każdemu z nich przypisana została
 
 Najistotniejsza funkcja, czyli \texttt{DisplayScale} zamieszczona została na listingu 4.5, pominięta część funkcji to fragment kodu odpowiedzialny jedynie za zmianę koloru odpowiednich elementów.
 
-\begin{lstlisting}[language=csh,caption=Funkcja \texttt{DisplayScale}, label=lst:5]
+\begin{lstlisting}[style=sharpcstyle,caption=Funkcja \texttt{DisplayScale}, label=lst:5]
     public void DisplayScale(int noteIndex)
     {
 
