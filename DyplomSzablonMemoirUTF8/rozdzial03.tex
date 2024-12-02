@@ -10,9 +10,7 @@
 %       Są one też językiem komunikacji między projektantem a programistą
 %       Ogólnie - tworzenie makiet można zaliczyć do etapu analizy wymagań funkcjonalnych
 %       (makiety eksponują funkcje, które są wystawiane na graficznym interfejsie użytkownika)
-
-Podczas tworzenia projektu, po ustaleniu wymagań funkcjonalnych i niefunkcjonalnych na bazie wyników analiz z poprzedniego rozdziału, 
-podjęto się utworzenia makiety aplikacji demonstrującej zaplanowane funkcje. Następnie zdecydowano się na wybór wzorca projektowego, na podstawie którego ustalono komponenty wchodzące w skład każdej z poszczególnych scen. Po zadeklarowaniu potrzebnych elementów przystąpiono do tworzenia grafik komponentów wchodzących w skład scen, takich jak: grafiki przycisków, tekstu, grafik akordów. Następnie zajęto się implementacją widoków i funkcji. Poniżej opisano szczegóły tych działań.
+W niniejszym rozdziale opisano szczegóły działań, jakie podjęto po analizie dziedzinowej. W~ich ramach zdefiniowano wymagania funkcjonalnych i niefunkcjonalnych dla budowanej aplikacji. Na tej bazie przystąpiono do zaprojektowania makiet interfejsu użytkownika. Następnie zdecydowano się na wybór wzorca projektowego, na podstawie którego miała się odbywać implementacja komponentów wchodzących w skład poszczególnych scen. Po zadeklarowaniu potrzebnych elementów przystąpiono do tworzenia grafik tych komponentów, w tym: grafiki przycisków, tekstu, grafik akordów. Następnie zajęto się implementacją widoków i funkcji. 
 
 \section{Analiza wymagań}
 \subsection{Wymagania funkcjonalne}
@@ -44,8 +42,7 @@ Dla projektu ustalono wymagania niefunkcjonalne. Zebrano je w punktach poniżej.
 %        zwykle gdy pada to określenie to odnosi się ono do sposobu "poukładania" komponentów aplikacji w jakieś hierarchie czy warstwy, z wydzieleniem odpowiedzialności, określeniem mechanizmów przepływu informacji itd. U Pana zaś mamy termin ten pada w kontekście użycia wzorca projektowego MVC.
 
 \section{Makiety}
-Poniżej przedstawione makiety projektowe wizualizują poszczególne funkcje i widoki, jakie zawarte zostaną w aplikacji (rys.~\ref{fig:makiety}).
-Nie są one końcową wersją graficznego interfejsu użytkownika. Mają one przybliżyć ogólny zarys układu poszczególnych widoków.
+Na rysunku~\ref{fig:makiety} przedstawiono zaprojektowane makiety interfejsu użytkownika. Makiety te mają przybliżyć ogólny zarys planowanego układu udostępnianych widoków wraz z rozmieszczeniem na nich funkcji. Końcowa wersja interfejsu użytkownika może od odbiegać od tej propozycji.
 \begin{figure}[htb]
     \centering
 		\begin{tabular}{ll}
@@ -69,20 +66,20 @@ Nie są one końcową wersją graficznego interfejsu użytkownika. Mają one prz
 Projekt aplikacji stworzony został w sposób taki, aby każda z poszczególnych funkcji była przejrzysta, a sama aplikacja umożliwiała płynne przełączanie pomiędzy widokami. Zastosowano wzorzec Model-View-ViewModel, umożliwiający rozdzielenie logiki aplikacji, interfejsu oraz zarządzania danymi. W skład wzorca wchodzą poniższe 3 elementy:
 
 \begin{itemize}
-	\item Model: Logika danych aplikacji, zawierająca dane akordów, dźwięków, tempo metronomu,
-	\item View: Zawiera sceny samej aplikacji, dla każdej funkcji zaplanowano osobny widok (sceny),
-	\item ViewModel: Do każdej ze scen przypisany został kontroler odpowiedniej sceny umożliwiający komunikację pomiędzy widokiem, a modelem, zawiera on logikę aplikacji, oraz definicje funkcji potrzebnych w danej scenie.
+	\item \emph{Model}: Logika danych aplikacji, zawierająca dane akordów, dźwięków, tempo metronomu,
+	\item \emph{View}: Zawiera sceny samej aplikacji, dla każdej funkcji zaplanowano osobny widok (sceny),
+	\item \emph{ViewModel}: Do każdej ze scen przypisany został kontroler odpowiedniej sceny umożliwiający komunikację pomiędzy widokiem, a modelem, zawiera on logikę aplikacji, oraz definicje funkcji potrzebnych w danej scenie.
 \end{itemize}
 
 \subsection{Projekt poszczególnych scen}
-W tej sekcji przedstawiono projekt dla każdej ze scen aplikacji, rozrysowując przy tym komponenty wchodzące w skład danego narzędzia, wraz z ich celem i technologiami użytymi do stworzenia poszczególnych elementów. 
+Poniżej omówiono schemat każdej z projektowanych scen aplikacji, zaznaczając komponenty wchodzące w skład danego narzędzia, wyjaśniając co jest ich celem oraz jakie technologie wykorzystano w ich implementacji. 
 
 \subsubsection{Scena 1: Scena Główna}
 
 \begin{itemize}
 
 \item Cel: Reprezentacja możliwości wyboru, oraz udzielenie użytkownikowi dostępu do poszczególnych narzędzi za pomocą czytelnych przycisków, które po naciśnięciu przechodzą do odpowiadającej im sceny z danym narzędziem. 
-\item Komponenty: Elementami wchodzącymi w skład sceny głównej, jest 5 przycisków: stroik, metronom, koło kwintowe, księga akordów, trening słuchu. Dodatkowo scena główna zawiera obiekt tekstowy z logiem aplikacji.  
+\item Komponenty: Elementami wchodzącymi w skład sceny głównej są przyciski (jest ich 5): stroik, metronom, koło kwintowe, księga akordów, trening słuchu. Dodatkowo scena główna zawiera obiekt tekstowy z logiem aplikacji.  
 \item Technologie: Do realizacji tej oto sceny użyto wbudowaną bibliotekę w silnik Unity, a mianowicie Unity.UI, umożliwiającą utworzenie graficznego interfejsu uzytkownika. 
 \item Komunikacja: Każdy z przycisków wchodzących w skład sceny podłączony jest pod kontroler sceny, służący jako pośrednik, w skrypcie należącym do kontrolera poszczególnym przyciskom przypisywana jest funkcja odpowiadająca za załadowanie odpowiedniej sceny. 
 \end{itemize}
