@@ -65,7 +65,7 @@ Nie są one końcową wersją graficznego interfejsu użytkownika. Mają one prz
 
 
 \section{Projekt struktury aplikacji}
-% TO DO: proszę zadbać o to, by na końcach linii nie pozostały samotne literki
+% DONE: proszę zadbać o to, by na końcach linii nie pozostały samotne literki
 Projekt aplikacji stworzony został w sposób taki, aby każda z poszczególnych funkcji była przejrzysta, a sama aplikacja umożliwiała płynne przełączanie pomiędzy widokami. Zastosowano wzorzec Model-View-ViewModel, umożliwiający rozdzielenie logiki aplikacji, interfejsu oraz zarządzania danymi. W skład wzorca wchodzą poniższe 3 elementy:
 
 \begin{itemize}
@@ -92,7 +92,7 @@ W tej sekcji przedstawiono projekt dla każdej ze scen aplikacji, rozrysowując 
 \begin{itemize}
 \item Cel: Udostępnienie możliwości nastrojenia gitary poprzez wybór docelowej struny, do której użytkownik chce nastroić instrument. Następnie zagrane przez użytkownika dźwięki analizowane będą, a wyniki analizy reprezentowane zostaną jako informacja odnośnie tego, czy ton należy obniżyć czy podwyższyć.
 \item Komponenty: W skład sceny wchodzi mikrofon, analizator dźwięku, przyciski odpowiadające strunom na gitarze, oraz indykator aktualnego poziomu nastrojenia instrumentu.  
-\item Technologie: Do użytych technologii wykorzystano bibliotekę opartą na otwartej licencji służącą do analizy dostarczanego dźwięku \cite{https://github.com/nakakq/AudioPitchEstimatorForUnity}, oraz wyciągnięcie z niego częstotliwości zagranej nuty. Dodatkowo do stworzenia graficznego interfejsu posłużono się biblioteką Unity.UI.   
+\item Technologie: Do użytych technologii wykorzystano bibliotekę opartą na otwartej licencji służącą do analizy dostarczanego dźwięku \cite{AudioPitchEstimator}, oraz wyciągnięcie z niego częstotliwości zagranej nuty. Dodatkowo do stworzenia graficznego interfejsu posłużono się biblioteką Unity.UI.   
 \item Komunikacja: Użyto kontroler sceny, aby umożliwić komunikacje pomiędzy elementami graficznymi a analizatorem dźwięku. 
 \end{itemize}
 

@@ -2,9 +2,9 @@
 
 \section{Sprawdzanie poprawności funkcji}
 
-Aplikacja w dużej mierze wymaga wizualnej oceny odnośnie sposobu działania, z racji muzycznej jej natury. Większość testów przeprowadzona została manualnie. Z racji natury działania silnika Unity, działanie aplikacji było na bieżąco kontrolowane poprzez funkcję \emph{Play}, uruchamiając aktualny stan sceny wraz z podłączonymi komponentami.
+Aplikacja z racji muzycznej jej natury, w dużej mierze wymaga wizualnej oceny odnośnie sposobu działania. Większość testów przeprowadzona została manualnie. Działanie aplikacji było na bieżąco kontrolowane poprzez funkcję \emph{Play}, uruchamiając aktualny stan sceny wraz z podłączonymi komponentami.
 
-Aby zapewnić poprawność działania sporządzono plan testów obejmujący każdy zawarty w aplikacji widok. Plan prezentował się następująco:
+Aby zapewnić poprawność działania sporządzono plan testów obejmujący każdy zawarty w~aplikacji widok. Plan prezentował się następująco:
 \begin{itemize}
     \item przetestowanie działania każdego z przycisków sceny głównej,
     \item przetestowanie działania metronomu, przy 5 różnych ustawieniach parametrów, w tym: różne wartości tempa i metrum,
@@ -15,15 +15,15 @@ Aby zapewnić poprawność działania sporządzono plan testów obejmujący każ
 
 \paragraph{Testy metronomu}
 
-Testy obejmowały sprawdzenie poprawności działania przycisków, oraz funkcji odpowiedzialnej za wątek główny. Posłużono się zewnętrznym narzędziem mobilnym \texttt{Metronome}, aby porównać działanie aplikacji.  Wątek oceniono pod względem tego, jak długo trwa on w zależności od ustalonego tempa gry. Korzystając z narzędzia \texttt{Debug.Log()} silnika Unity, sprawdzono czas trwania każdego poszczególnego "obiegu" wątku. Przy ilości taktów wynoszących 3,5,7,8 i bpm odpowiednio 60,60,80,100 narzędzie to nie ujawniło żadnych usterek w działaniu.
+Testy obejmowały sprawdzenie poprawności działania przycisków, oraz funkcji odpowiedzialnej za wątek główny. Posłużono się zewnętrznym narzędziem \texttt{Metronome} \cite{Musicca}, aby porównać działanie aplikacji. Wątek oceniono pod względem tego, jak długo trwa on w~zależności od ustalonego tempa gry. Korzystając z funkcji \texttt{Debug.Log()} silnika Unity, sprawdzono czas trwania każdego poszczególnego "obiegu" wątku. Przy ilości taktów wynoszących 3,5,7,8 i bpm odpowiednio 60,60,80,100 narzędzie to nie ujawniło żadnych usterek w działaniu.
 
 \paragraph{Testy księgi akordów}
 
-Test księgi akordów polegał na wizualnym porównaniu aktualnie wyświetlanego akordu, z bazą wszystkich możliwych akordów gotowego narzędzia mobilnej wersji aplikacji \emph{GuitarTuna}.  Przeanalizowano wszystkie możliwe kombinacje, aby upewnić się, że grafiki wyświetlają się poprawnie, a akordy umieszczone zostały w prawidłowych pozycjach.
+Test księgi akordów polegał na wizualnym porównaniu aktualnie wyświetlanego akordu, z bazą wszystkich możliwych akordów narzędzia mobilnej wersji aplikacji \emph{GuitarTuna}.  Przeanalizowano wszystkie możliwe kombinacje, aby upewnić się, że grafiki wyświetlają się poprawnie, a akordy umieszczone zostały w prawidłowych pozycjach.
 
 \paragraph{Stroika}
 
-Testy stroika przeprowadzone zostały ręcznie, z użyciem gitary, na której odgrywane były kolejne nuty w naturalnym strojeniu(E1,B,G,D,A,E2). Wyniki analizowane były pod kątem dokładności, korzystając przy tym z narzędzia stroika \emph{GuitarTuna}, którego to wyniki porównywane były do rezultatów uzyskiwanych w aplikacji. Same testy wykazały poprawność działania, umożliwiając nastrojenie gitary. 
+Testy stroika przeprowadzone zostały ręcznie, z użyciem gitary, na której odgrywane były kolejne nuty w naturalnym strojeniu(E1,B,G,D,A,E2). Wyniki analizowane były pod kątem dokładności, korzystając przy tym z narzędzia stroika \emph{GuitarTuna}, którego to wyniki porównywane były do rezultatów uzyskiwanych w aplikacji. Same testy wykazały poprawność działania, umożliwiając poprawne nastrojenie gitary. 
 
 \paragraph{Testy treningu słuchu}
 
