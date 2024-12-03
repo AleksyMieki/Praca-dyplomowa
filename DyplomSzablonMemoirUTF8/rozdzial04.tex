@@ -1,24 +1,20 @@
 \chapter{Implementacja}
-
-\section{Wprowadzenie do implementacji}
-
-Rozdział ten zawiera szczegóły implementacji aplikacji. Każdej scen poświęcono odpowiadający podrozdział wyjaśniający wykorzystane technologie, biblioteki oraz sposób komunikacji pomiędzy poszczególnymi elementami widoku. W projekcie zamieszczono kody funkcji realizujących najistotniejsze zadania.
+W niniejszym rozdziale przedstawiono szczegóły implementacji aplikacji. Każdej ze scen poświęcono osobny podrozdział, w którym odniesiono się do wykorzystanych technologii, bibliotek oraz zrealizowanych sposobów komunikacji pomiędzy poszczególnymi elementami widoku. W projekcie zamieszczono kody funkcji realizujących najistotniejsze zadania.
 
 \section{Struktura aplikacji}
 Struktura projektu wykorzystuje domyślne ułożenie plików w systemie Unity. Jako główny folder służy folder \texttt{Assets}, zawiera on główne pliki projektowe: skrypty, tekstury, dźwięki, grafiki, prefaby(gotowe elementy często wykorzystywane w projekcie).
 
-Struktura plików folderu \texttt{Scripts} podzielona została według ich celu. Każdy plik przypisany do sceny znajduje się w odpowiadającym mu folderze (rys.~\ref{fig:struktura}). Elementy pomocnicze jak np. skrypt pomocy kontekstowej, skrypt przycisku zamykania sceny znajdują się w folderze \texttt{Utility}.
-
-
-\begin{figure}[htb]
-    \centering
-	\includegraphics[width=0.3\linewidth]{rys04/StrukturaPlikow}
-    \label{fig:struktura}
-\end{figure}
+Pliki w folderze \texttt{Scripts} zorganizowano według ich celu. Każdy plik przypisany do danej sceny znajduje się w odpowiednim folderze (rys.~\ref{fig:strukturaKodu}). Elementy pomocnicze, jak np.\ skrypt pomocy kontekstowej, skrypt przycisku zamykania sceny, znajdują się w folderze \texttt{Utility}. 
+ \begin{figure}[htb]
+     \centering
+ 	\includegraphics[scale=.8]{rys04/StrukturaPlikow}
+	\caption{Struktura źródeł kodu w projekcie}
+	\label{fig:strukturaKodu}
+ \end{figure}
 % DONE: w rozdziale dobrze byłoby zamieścić opis struktury projektu. Ponieważ rozwijał Pan aplikację w środowisku UNITY, to środowisko narzuca trochę tę strukturę (parę uwag na ten temat też by się przydało). Strukturę projektu można pokazać robiąc zrzuty drzewa źródeł kodu.
 
 % DONE: przydałoby się też opowiedzieć trochę o budowaniu aplikacji (testowe uruchomienia odbywają się w środowisku, aby można było uruchomić aplikację poza tym środowiskiem - coś trzeba przecież zrobić).
-Aby na bieżąco analizować poprawność zaimplementowanych funkcji wykorzystywano wbudowaną w silnik Unity opcję \emph{play}, która umożliwia "odpalenie" jednej sceny, nie wymuszając przy tym budowania całej aplikacji od nowa. Po wykryciu zmian w skryptach aplikacja się przeładowuje i jest gotowa do użycia/przetestowania przez użytkownika.
+Aby na bieżąco analizować poprawność zaimplementowanych funkcji wykorzystywano wbudowaną w silnik Unity opcję \emph{play}, która umożliwia ,,odpalenie'' jednej sceny, nie wymuszając przy tym budowania całej aplikacji od nowa. Po wykryciu zmian w skryptach aplikacja się przeładowuje i jest gotowa do użycia/przetestowania przez użytkownika.
 
 \section{Implementacja elementów aplikacji}
 
@@ -31,12 +27,10 @@ Skrypt \texttt{Audio Recorder} zawiera dwa pola:
     \item \texttt{audioSource} -- obiekt przechowujące odwołanie do wbudowanego w silnik Unity narzędzia \texttt{AudioSource}, umożliwiającego nagranie dźwięku,
     \item \texttt{duration} -- zmienna odpowiedzialna za ustalenie czasu, przez jaki mikrofon ma odbierać dźwięk z otoczenia.
 \end{itemize}
+oraz funkcję \texttt{OnEnable}, która podczas uruchomienia zaczyna rejestrować dźwięk z mikrofonu. 
 
 Skrypt zawiera jedną funkcję \texttt{OnEnable}, która podczas uruchomienia zaczyna odbierać dźwięk dostarczany do mikrofonu. Skrypt \texttt{AudioPitchEstimator}, zaczerpnięty z repozytorium \cite{AudioPitchEstimator}, % DONE: to nie jest poprawne cytowanie, proszę zrobić odpowiedni rekord w bib, a potem użyć jego klucza w \cite
 służy do analizy odebranego dźwięku. Biblioteka zawiera poniżej wymienione zmienne, na które użytkownik może wpłynąć, aby dopasować narzędzie do swoich potrzeb.
-
-
-
 \begin{itemize}
     \item \texttt{frequencyMin} -- minimalna częstotliwość, jaka ma być analizowana,
     \item \texttt{frequencyMax} -- maksymalna częstotliwość poddawana analizie,
@@ -47,63 +41,62 @@ służy do analizy odebranego dźwięku. Biblioteka zawiera poniżej wymienione 
 
 Funkcją realizującą główną logikę działania jest metoda \texttt{Estimate} (\ref{lst:1}), wykonująca szybką transformatę Fouriera na odebranym dźwięku. Funkcja ta zwraca zmienną float \texttt{bestFreq}, będąca najlepszym możliwym według programu ,,trafieniem'', jeżeli chodzi o odebraną częstotliwość. Skrypt \texttt{TunerManager} odpowiedzialny za realizowanie logiki sceny, przechowuje odwołania do komponentów sceny: przyciski, pola tekstowe, obiekt \texttt{AudioSource}. W jego skład wchodzi 6 funkcji o nazwie \texttt{SetDesiredFrequency*}, przy czym każdemu z przycisków przypisany jest jeden jej odpowiednik, ustawiający parametry skryptu \texttt{AudioPitchEstimator}. Funkcją odpowiedzialną za logikę analizy dźwięku jest \texttt{EstimatePitch}, która korzysta ze skryptu \texttt{AudioPitchEstimator}, na tej podstawia ustawia wartości elementów tekstowych informujących użytkownika o poziomie nastrojenia instrumentu. 
 
-\begin{lstlisting}[language=csh,caption=Funkcja \texttt{Estimate}, label=lst:1]
-    public float Estimate(AudioSource audioSource)
-    {
-        var nyquistFreq = AudioSettings.outputSampleRate / 2.0f;
+\begin{lstlisting}[style=sharpcstyle,caption=Funkcja \texttt{Estimate}, label=lst:1]
+public float Estimate(AudioSource audioSource)
+{
+    var nyquistFreq = AudioSettings.outputSampleRate / 2.0f;
 
-        if (!audioSource.isPlaying) return float.NaN;
-        audioSource.GetSpectrumData(spectrum, 0, FFTWindow.Hanning);
-   
-        for (int i = 0; i < spectrumSize; i++)
-        {
-            specRaw[i] = Mathf.Log(spectrum[i] + 1e-9f);
-        }
+    if (!audioSource.isPlaying) return float.NaN;
 
-       
-        specCum[0] = 0;
-        for (int i = 1; i < spectrumSize; i++)
-        {
-            specCum[i] = specCum[i - 1] + specRaw[i];
-        }
-   
-        var halfRange = Mathf.RoundToInt((smoothingWidth / 2) / nyquistFreq * spectrumSize);
-        for (int i = 0; i < spectrumSize; i++)
-        {
-            var indexUpper = Mathf.Min(i + halfRange, spectrumSize - 1);
-            var indexLower = Mathf.Max(i - halfRange + 1, 0);
-            var upper = specCum[indexUpper];
-            var lower = specCum[indexLower];
-            var smoothed = (upper - lower) / (indexUpper - indexLower);
+    audioSource.GetSpectrumData(spectrum, 0, FFTWindow.Hanning);
 
-            specRes[i] = specRaw[i] - smoothed;
-        }
-
-        float bestFreq = 0, bestSRH = 0;
-        for (int i = 0; i < outputResolution; i++)
-        {
-            var currentFreq = (float)i / (outputResolution - 1) * (frequencyMax - frequencyMin) + frequencyMin;
-
-            var currentSRH = GetSpectrumAmplitude(specRes, currentFreq, nyquistFreq);
-            for (int h = 2; h <= harmonicsToUse; h++)
-            {
-               currentSRH += GetSpectrumAmplitude(specRes, currentFreq * h, nyquistFreq);
-
-                currentSRH -= GetSpectrumAmplitude(specRes, currentFreq * (h - 0.5f), nyquistFreq);
-            }
-            srh[i] = currentSRH;
- 
-            if (currentSRH > bestSRH)
-            {
-                bestFreq = currentFreq;
-                bestSRH = currentSRH;
-            }
-        }
-        
-        if (bestSRH < thresholdSRH) return float.NaN;
-
-        return bestFreq;
+    for (int i = 0; i < spectrumSize; i++)
+    {       
+        specRaw[i] = Mathf.Log(spectrum[i] + 1e-9f);
     }
+
+   
+    specCum[0] = 0;
+    for (int i = 1; i < spectrumSize; i++)
+    {
+        specCum[i] = specCum[i - 1] + specRaw[i];
+    }
+
+    var halfRange = Mathf.RoundToInt((smoothingWidth / 2) / nyquistFreq * spectrumSize);
+    for (int i = 0; i < spectrumSize; i++)
+    {    
+        var indexUpper = Mathf.Min(i + halfRange, spectrumSize - 1);
+        var indexLower = Mathf.Max(i - halfRange + 1, 0);
+        var upper = specCum[indexUpper];
+        var lower = specCum[indexLower];
+        var smoothed = (upper - lower) / (indexUpper - indexLower);        
+        specRes[i] = specRaw[i] - smoothed;
+    }
+
+   
+    float bestFreq = 0, bestSRH = 0;
+    for (int i = 0; i < outputResolution; i++)
+    {
+        var currentFreq = (float)i / (outputResolution - 1) * (frequencyMax - frequencyMin) + frequencyMin;       
+        var currentSRH = GetSpectrumAmplitude(specRes, currentFreq, nyquistFreq);
+        for (int h = 2; h <= harmonicsToUse; h++)
+        {
+           currentSRH += GetSpectrumAmplitude(specRes, currentFreq * h, nyquistFreq);
+           currentSRH -= GetSpectrumAmplitude(specRes, currentFreq * (h - 0.5f), nyquistFreq);
+        }
+        srh[i] = currentSRH;
+       
+        if (currentSRH > bestSRH)
+        {
+            bestFreq = currentFreq;
+            bestSRH = currentSRH;
+        }
+    }
+    
+    if (bestSRH < thresholdSRH) return float.NaN;
+
+    return bestFreq;
+}
 \end{lstlisting}
 
 \begin{itemize}
@@ -129,45 +122,43 @@ Scena metronomu zawiera 9 przycisków służących do parametryzacji działania 
 
 Funkcja realizująca główną logikę sceny to \texttt{MetronomeCoroutine} (\ref{lst:2}), na bieżąco odgrywająca dźwięk oznaczający kolejny takt metronomu i zmieniająca kolory odpowiednich przycisków.
 
-\begin{lstlisting}[language=csh,caption=Wątek \texttt{MetronomeCoroutine}, label=lst:2]
-    IEnumerator MetronomeCoroutine()
+\begin{lstlisting}[style=sharpcstyle,caption=Wątek \texttt{MetronomeCoroutine}, label=lst:2]
+IEnumerator MetronomeCoroutine()
+{
+    float beatDuration = 60f / bpm;
+    float noteDuration;
+    noteDuration = beatDuration;
+    int currentIndex = 0;
+    int previousIndex = -1;
+
+    while (true)
     {
-        float beatDuration = 60f / bpm;
-
-        float noteDuration;
-        noteDuration = beatDuration;
-
-        int currentIndex = 0;
-        int previousIndex = -1;
-
-        while (true)
+        if (circles.Count > 0)
         {
-            if (circles.Count > 0)
+            audioSource.Play();
+            
+            if (previousIndex != -1 && previousIndex < circles.Count)
             {
-                audioSource.Play();
-                      
-                if (previousIndex != -1 && previousIndex < circles.Count)
-                {
-                    circles[previousIndex].GetComponent<BeatCircle>().changeColorWhite();
-                }
-                
-                var currentCircle = circles[currentIndex].GetComponent<BeatCircle>();
-                if (currentCircle.imgComponent.color == Color.black)
-                {
-                    currentCircle.changeColorWhite();
-                }
-                else
-                {
-                    currentCircle.changeColorBlack();
-                }
-
-                previousIndex = currentIndex;
-                currentIndex = (currentIndex + 1) % circles.Count;
+                circles[previousIndex].GetComponent<BeatCircle>().changeColorWhite();
             }
             
-            yield return new WaitForSeconds(noteDuration);
+            var currentCircle = circles[currentIndex].GetComponent<BeatCircle>();
+            if (currentCircle.imgComponent.color == Color.black)
+            {
+                currentCircle.changeColorWhite();
+            }
+            else
+            {
+                currentCircle.changeColorBlack();
+            }
+
+            previousIndex = currentIndex;
+            currentIndex = (currentIndex + 1) % circles.Count;
         }
+        
+        yield return new WaitForSeconds(noteDuration);
     }
+}
 \end{lstlisting}
 
 \subsection{Księga akordów}
@@ -175,28 +166,26 @@ Funkcja realizująca główną logikę sceny to \texttt{MetronomeCoroutine} (\re
 Scena księgi akordów zawiera element graficzny reprezentujący aktualnie wybrany akord gitarowy, przyciski umożliwiające wybór docelowego akordu, elementy graficzne ułatwiające nawigację po widoku sceny. Funkcje wchodzące w~skład skryptu menadżera sceny nazwanego \texttt{ChordChartsManager} to:
 
 \begin{itemize}
-    \item \texttt{Start} -- funkcja odpowiedzialna za przygotowanie potrzebnych elementów sceny. Przypisuje grafiki akordów z pomocniczej listy Chords do listy głównej ch. Ustawia wartości zmiennych noteIterator, variantIterator z wartości przechowywanych w skrypcie SceneConnector, łączącej scenę księgi akordów z widokiem wszystkich akordów w postaci diagramu. Przypisuje ona funkcje do odpowiednich przycisków i resetuje wartości obiektów tekstowych.
+    \item \texttt{Start} -- funkcja odpowiedzialna za przygotowanie potrzebnych elementów sceny. Przypisuje grafiki akordów z pomocniczej listy \texttt{Chords} do listy głównej \texttt{ch}. Ustawia wartości zmiennych n\texttt{oteIterator},\texttt{ variantIterator} z wartości przechowywanych w skrypcie \texttt{SceneConnector}, łączącej scenę księgi akordów z widokiem wszystkich akordów w postaci diagramu. Przypisuje ona funkcje do odpowiednich przycisków i resetuje wartości obiektów tekstowych.
     \item \texttt{noteIncrement} -- funkcja przypisana do przycisku, odpowiedzialna za zmianę nuty akordu.
     \item \texttt{noteDecrement} -- funkcja przypisana do przycisku, odpowiedzialna za zmianę nuty akordu.
     \item \texttt{variantIncrement} -- funkcja przypisana do przycisku, odpowiedzialna za zmianę wariacji akordu.
     \item \texttt{variantDecrement} -- funkcja przypisana do przycisku, odpowiedzialna za zmianę wariacji akordu.
     \item \texttt{ChangeVariantText} -- funkcja odpowiedzialna za zmianę przypisanej wartości obiektu tekstowego sceny, wykorzystywana w momencie zmiany wariacji akordu.
     \item \texttt{ChangeNoteText} -- funkcja odpowiedzialna za zmianę przypisanej wartości obiektu tekstowego sceny, wykorzystywana w momencie zmiany nuty akordu.
-    \item \texttt{ChangeChord} -- funkcja odpowiedzialna za zmianę aktualnie wyświetlanego akordu, zmienia przypisaną grafikę obiektu Image sceny.
+    \item \texttt{ChangeChord} -- funkcja odpowiedzialna za zmianę aktualnie wyświetlanego akordu, zmienia przypisaną grafikę obiektu \texttt{Image} sceny.
 \end{itemize}
 
 Istotną funkcją jest \texttt{ChangeChord} (\ref{lst:3}), która odpowiada za zmianę wyświetlanej grafiki. Wewnątrz funkcji z racji sposobu zapisu grafik jako pliki .png, nie obsługiwanych domyślnie przez silnik Unity, tworzone są wpierw tekstury, na podstawie których tworzone są \emph{sprity}, które przypisywane są do elementu graficznego znajdującego się na scenie.
 
-\begin{lstlisting}[language=csh,caption=Funkcja \texttt{ChangeChord}, label=lst:3]
-    private void ChangeChord()
-    {
-        Texture2D selectedTexture = ch[noteIterator][variantIterator];
-        Sprite newSprite = Sprite.Create(selectedTexture, new Rect(0, 0, selectedTexture.width, selectedTexture.height), new Vector2(0.5f, 0.5f));
-        
-        chordImage.sprite = newSprite;
-        
-        image.sprite = newSprite;
-    }
+\begin{lstlisting}[style=sharpcstyle,caption=Funkcja \texttt{ChangeChord}, label=lst:3]
+private void ChangeChord()
+{
+    Texture2D selectedTexture = ch[noteIterator][variantIterator];
+    Sprite newSprite = Sprite.Create(selectedTexture, new Rect(0, 0, selectedTexture.width, selectedTexture.height), new Vector2(0.5f, 0.5f));        
+    chordImage.sprite = newSprite;        
+    image.sprite = newSprite;
+}
 \end{lstlisting}
 
 \subsection{Trening słuchu}
@@ -210,27 +199,27 @@ Scena treningu słuchu zawiera przycisk odpowiedzialny za odegranie dźwięku, k
 
 Skrypt główny natomiast odpowiada za odegranie nuty, a następnie sprawdzenia poprawności odpowiedzi (\ref{lst:4}).
 
-\begin{lstlisting}[language=csh,caption=Funkcje \texttt{PlayRandomNote} i \texttt{NoteGuessed}, label=lst:4]
-    void PlayRandomNote()
-    {
-        feedbackText.text = "Odgadnij"; 
-        correctNoteIndex = Random.Range(0, noteClips.Count);
-        
-        audioSource.clip = noteClips[correctNoteIndex];
-        audioSource.Play();
-    }
+\begin{lstlisting}[style=sharpcstyle,caption=Funkcje \texttt{PlayRandomNote} i \texttt{NoteGuessed}, label=lst:4]
+void PlayRandomNote()
+{
+    feedbackText.text = "Odgadnij"; 
+    correctNoteIndex = Random.Range(0, noteClips.Count);
+    
+    audioSource.clip = noteClips[correctNoteIndex];
+    audioSource.Play();
+}
 
-    void NoteGuessed(Button button)
-    {
-        if (button.GetComponent<ButtonIndex>().buttonNumber == correctNoteIndex)
-        {
-            feedbackText.text = "poprawnie";
-        }
-        else
-        {
-            feedbackText.text = "niepoprawna odpowiedź";
-        }
-    }
+void NoteGuessed(Button button)
+{
+   if (button.GetComponent<ButtonIndex>().buttonNumber == correctNoteIndex)
+   {
+       feedbackText.text = "poprawnie";
+   }
+   else
+   {
+       feedbackText.text = "niepoprawna odpowiedź";
+   }
+}
 \end{lstlisting}
 
 Skrypt pomocniczy przechowuje jedynie jedną zmienną, wykorzystywaną w momencie weryfikacji odpowiedzi udzielonej przez użytkownika, jest nią: \texttt{buttonNumber}.
@@ -242,7 +231,7 @@ Scena koła kwintowego zawiera 24 przyciski, każdemu z nich przypisana została
 \begin{itemize}
 \item \texttt{Start} -- funkcja używana podczas tworzenia obiektu, służy ona przygotowaniu wszystkich przycisków oraz przypisania im działania przy ich naciśnięciu, w tym przypadku przypisuje ich działanie do funkcji \texttt{DisplayScale}
 \item \texttt{DisplayScale} -- funkcja odpowiedzialna jest za wyświetlenie skali majorowej, oraz 3 akordów minorowych pasujących do wybranej przez użytkownika nuty. 
-\item \texttt{GetColorTin}t -- funkcja pomocnicza generująca kolejne odcienie kolorów, dla funkcji \texttt{DisplayScale}.
+\item \texttt{GetColorTint} -- funkcja pomocnicza generująca kolejne odcienie kolorów, dla funkcji \texttt{DisplayScale}.
 \item \texttt{GetMajorScaleIndices} -- funkcja pomocnicza generująca interwały kolejnych nut w skali majorowej.
 \item \texttt{ChangeButtonColor} -- funkcja pomocnicza odpowiedzialna za zmianę koloru odpowiedniego przycisku.
 \item \texttt{ClearColors} -- funkcja pomocnicza czyszcząca kolory wszystkich przycisków.
@@ -250,23 +239,22 @@ Scena koła kwintowego zawiera 24 przyciski, każdemu z nich przypisana została
 
 Najistotniejsza funkcja, czyli \texttt{DisplayScale} zademonstrowano poniżej (\ref{lst:5}), pominięta część funkcji to fragment kodu odpowiedzialny jedynie za zmianę koloru odpowiednich elementów.
 
-\begin{lstlisting}[language=csh,caption=Funkcja \texttt{DisplayScale}, label=lst:5]
-    public void DisplayScale(int noteIndex)
+\begin{lstlisting}[style=sharpcstyle,caption=Funkcja \texttt{DisplayScale}, label=lst:5]
+public void DisplayScale(int noteIndex)
+{
+    ClearColors();
+
+    List<int> scaleIndices = GetMajorScaleIndices(noteIndex);
+
+    for (int i = 0; i < scaleIndices.Count; i++)
     {
-
-        ClearColors();
-
-        List<int> scaleIndices = GetMajorScaleIndices(noteIndex);
-
-        for (int i = 0; i < scaleIndices.Count; i++)
+        int index = scaleIndices[i];
+        if (index < outerButtons.Count)
         {
-            int index = scaleIndices[i];
-            if (index < outerButtons.Count)
-            {
-                Color tint = GetColorTint(i);
-                ChangeButtonColor(outerButtons[index], tint);
-            }
+            Color tint = GetColorTint(i);
+            ChangeButtonColor(outerButtons[index], tint);
         }
-        ...
     }
+    ...         
+}
 \end{lstlisting}
