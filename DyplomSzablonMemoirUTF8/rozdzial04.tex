@@ -39,7 +39,7 @@ służy do analizy odebranego dźwięku. Biblioteka zawiera poniżej wymienione 
     \item \texttt{thresholdSRH} -- wartość graniczna decybeli, od której dźwięk ma być wzięty pod analizę.
 \end{itemize}
 
-Funkcją realizującą główną logikę działania jest metoda \texttt{Estimate} (\ref{lst:1}), wykonująca szybką transformatę Fouriera na odebranym dźwięku. Funkcja ta zwraca zmienną float \texttt{bestFreq}, będąca najlepszym możliwym według programu ,,trafieniem'', jeżeli chodzi o odebraną częstotliwość. Skrypt \texttt{TunerManager} odpowiedzialny za realizowanie logiki sceny, przechowuje odwołania do komponentów sceny: przyciski, pola tekstowe, obiekt \texttt{AudioSource}. W jego skład wchodzi 6 funkcji o nazwie \texttt{SetDesiredFrequency*}, przy czym każdemu z przycisków przypisany jest jeden jej odpowiednik, ustawiający parametry skryptu \texttt{AudioPitchEstimator}. Funkcją odpowiedzialną za logikę analizy dźwięku jest \texttt{EstimatePitch}, która korzysta ze skryptu \texttt{AudioPitchEstimator}, na tej podstawia ustawia wartości elementów tekstowych informujących użytkownika o poziomie nastrojenia instrumentu. 
+Funkcją uruchamiającą szybką transformatę Fouriera na odebranym dźwięku jest \texttt{Estimate} (listing~\ref{lst:1}). Zwraca one zmienną float \texttt{bestFreq}, będąca najlepszym możliwym według programu ,,trafieniem'', jeżeli chodzi o odebraną częstotliwość. Skrypt \texttt{TunerManager} odpowiedzialny za realizowanie logiki sceny, przechowuje odwołania do komponentów sceny: przyciski, pola tekstowe, obiekt \texttt{AudioSource}. W jego skład wchodzi 6 funkcji o nazwie \texttt{SetDesiredFrequency*}, przy czym każdemu z przycisków przypisany jest jeden jej odpowiednik, ustawiający parametry skryptu \texttt{AudioPitchEstimator}. Funkcją odpowiedzialną za logikę analizy dźwięku jest \texttt{EstimatePitch}, która korzysta ze skryptu \texttt{AudioPitchEstimator}, na tej podstawia ustawia wartości elementów tekstowych informujących użytkownika o poziomie nastrojenia instrumentu. 
 
 \begin{lstlisting}[style=sharpcstyle,caption=Funkcja \texttt{Estimate}, label=lst:1]
 public float Estimate(AudioSource audioSource)
@@ -120,7 +120,7 @@ Scena metronomu zawiera 9 przycisków służących do parametryzacji działania 
     \item \texttt{SubtractBpm} -- funkcja odpowiedzialna za zmniejszenie tempa.
 \end{itemize}
 
-Funkcja realizująca główną logikę sceny to \texttt{MetronomeCoroutine} (\ref{lst:2}), na bieżąco odgrywająca dźwięk oznaczający kolejny takt metronomu i zmieniająca kolory odpowiednich przycisków.
+Za główną logikę sceny odpowiada funkcja \texttt{MetronomeCoroutine} (listing~\ref{lst:2}). Odgrywa ona dźwięk oznaczający kolejny takt metronomu i zmienia kolory odpowiednich przycisków.
 
 \begin{lstlisting}[style=sharpcstyle,caption=Wątek \texttt{MetronomeCoroutine}, label=lst:2]
 IEnumerator MetronomeCoroutine()
@@ -176,7 +176,7 @@ Scena księgi akordów zawiera element graficzny reprezentujący aktualnie wybra
     \item \texttt{ChangeChord} -- funkcja odpowiedzialna za zmianę aktualnie wyświetlanego akordu, zmienia przypisaną grafikę obiektu \texttt{Image} sceny.
 \end{itemize}
 
-Istotną funkcją jest \texttt{ChangeChord} (\ref{lst:3}), która odpowiada za zmianę wyświetlanej grafiki. Wewnątrz funkcji z racji sposobu zapisu grafik jako pliki .png, nie obsługiwanych domyślnie przez silnik Unity, tworzone są wpierw tekstury, na podstawie których tworzone są \emph{sprity}, które przypisywane są do elementu graficznego znajdującego się na scenie.
+Istotną funkcją jest \texttt{ChangeChord} (\ref{lst:3}), która odpowiada za zmianę wyświetlanej grafiki. Wewnątrz funkcji z racji sposobu zapisu grafik jako pliki .png, nie obsługiwanych domyślnie przez silnik Unity, tworzone są wpierw tekstury, na podstawie których tworzone są \emph{sprity}. Te przypisywane są do elementu graficznego znajdującego się na scenie.
 
 \begin{lstlisting}[style=sharpcstyle,caption=Funkcja \texttt{ChangeChord}, label=lst:3]
 private void ChangeChord()
@@ -197,7 +197,7 @@ Scena treningu słuchu zawiera przycisk odpowiedzialny za odegranie dźwięku, k
     \item \texttt{NoteGuessed} -- funkcja weryfikująca odpowiedź użytkownika, wykorzystywana po naciśnięciu jednego z 12 przycisków odpowiedzi. Ustawia ona obiekty tekstowe sceny, w zależności od tego czy odpowiedź była poprawna, czy też nie. 
 \end{itemize}
 
-Skrypt główny natomiast odpowiada za odegranie nuty, a następnie sprawdzenia poprawności odpowiedzi (\ref{lst:4}).
+Za odegranie nuty, a następnie sprawdzenia poprawności odpowiedzi odpowiedzialny jest skrypt główny (listing~\ref{lst:4}).
 
 \begin{lstlisting}[style=sharpcstyle,caption=Funkcje \texttt{PlayRandomNote} i \texttt{NoteGuessed}, label=lst:4]
 void PlayRandomNote()
