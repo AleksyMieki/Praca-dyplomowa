@@ -18,12 +18,13 @@ Docelowa aplikacja powinna oferować funkcje opisane poniżej.
 \begin{itemize}
 \item \textbf{Stroik gitarowy} -- ta funkcja powinna umożliwiać dostrojenie strun gitary. Zawierać on ma opcję wyboru nuty, do której struna ma docelowo zostać nastrojona. Stroik zawierać ma graficzną reprezentację aktualnego poziomu nastrojenia instrumentu, poprzez wyświetlanie na ekranie informacji, czy struna jest: niedostrojona, nastrojona, przestrojona.
 \item \textbf{Metronom} -- ma umożliwiać przeprowadzenie treningu rytmu, pozwalająć na parametryzację wartości: bpm, taktu, metrum.
-\item \textbf{Księga akordów} -- ma dostarczać informacje o aktualnie wyświetlanym akordzie i jego wariacji. Zawierać ona ma również przycisk zezwalający na zapis aktualnie wyświetlanego akordu, z możliwością zapisu do 4 akordów, które następnie dostępne będą w osobnym widoku.
+\item \textbf{Księga akordów} -- ma dostarczać informacje o aktualnie wyświetlanym akordzie i jego wariacji. Zawierać ona ma również przycisk zezwalający na zapis aktualnie wyświetlanego akordu, z możliwością zapisu do 3 akordów, które następnie dostępne będą w osobnym widoku. Osobny widok zawierać ma również diagram akordów.
 \item \textbf{Koło kwintowe} -- ma się pojawiać z aktywnymi przyciskami, których naciśnięcie skutkować ma podświetleniem skali molowej, wraz z siedmioma akordami, które wpasowują się pod wybraną nutę.
 \item \textbf{Trening słuchu} -- istotą tej funkcji ma być możliwość odgadywania odegranej nuty poprzez jej zagranie i zweryfikowanie poprawności udzielonej odpowiedzi. 
 \end{itemize}
 
 \subsection{Wymagania niefunkcjonalne}
+
 Dla projektu ustalono wymagania niefunkcjonalne. Zebrano je w punktach poniżej.
 \begin{itemize}
 \item \textbf{Intuicyjny interfejs} -- aplikacja ma oferować prosty i przejrzysty interfejs, z możliwością włączenia pomocy kontekstowej wyjaśniająca działanie poszczególnych elementów w widoku.
@@ -47,16 +48,16 @@ Na rysunku~\ref{fig:makiety} przedstawiono zaprojektowane makiety interfejsu uż
     \centering
 		\begin{tabular}{ll}
 		a) & b \\
-		\vtop{\vskip-2ex\hbox{\includegraphics[width=0.45\linewidth]{rys03/MakMain}}} &
-		\vtop{\vskip-2ex\hbox{\includegraphics[width=0.45\linewidth]{rys03/MakAkordy}}} \\
+		\vtop{\vskip-2ex\hbox{\includegraphics[width=0.4\linewidth]{rys03/MakMain}}} &
+		\vtop{\vskip-2ex\hbox{\includegraphics[width=0.4\linewidth]{rys03/MakAkordy}}} \\
 		c) & d) \\
-		\vtop{\vskip-2ex\hbox{\includegraphics[width=0.45\linewidth]{rys03/MakMetronom}}} &
-		\vtop{\vskip-2ex\hbox{\includegraphics[width=0.45\linewidth]{rys03/MakStroik}}} \\
+		\vtop{\vskip-2ex\hbox{\includegraphics[width=0.4\linewidth]{rys03/MakMetronom}}} &
+		\vtop{\vskip-2ex\hbox{\includegraphics[width=0.4\linewidth]{rys03/MakStroik}}} \\
 		e) & f) \\
-		\vtop{\vskip-2ex\hbox{\includegraphics[width=0.45\linewidth]{rys03/MakTrening}}} &
-		\vtop{\vskip-2ex\hbox{\includegraphics[width=0.45\linewidth]{rys03/MakKK}}}	
+		\vtop{\vskip-2ex\hbox{\includegraphics[width=0.4\linewidth]{rys03/MakTrening}}} &
+		\vtop{\vskip-2ex\hbox{\includegraphics[width=0.4\linewidth]{rys03/MakKK}}}	
 		\end{tabular}
-        \caption{Zaprojektowane makiety interfejsu: a) scena główna, b) księga akordów, c) metronom, d) stroik, e) trening słuchu, f) koło kwintylowe}
+        \caption{Zaprojektowane makiety interfejsu: a) scena główna, b) księga akordów, c) metronom, d) stroik, e) trening słuchu, f) koło kwintowe}
         \label{fig:makiety}
 \end{figure}
 
@@ -115,7 +116,7 @@ Poniżej omówiono schemat każdej z projektowanych scen aplikacji, zaznaczając
 
 \begin{itemize}
 \item Cel: Umożliwienie użytkownikowi przeprowadzenie ćwiczeń mających na celu nabycia umiejętności rozpoznawania granej nuty za pomocą samego słuchu.
-\item Komponenty: Przycisk odpowiadający za odegranie losowo jednej z 12 nut skali chromatycznej, przyciski odpowiadające za odpowiedź, po naciśnięciu których weryfikowana jest poprawność udzielonej odpowiedzi. Scena zawiera również system audio odpowiadający za odegranie dźwięku.
+\item Komponenty: Przyciski odpowiadające za wybór skali treningowej, przyciski odpowiadające za odpowiedź, po naciśnięciu których weryfikowana jest poprawność udzielonej odpowiedzi. Scena zawiera również system audio odpowiadający za odegranie dźwięku.
 \item Technologie: Za odgrywanie dźwięków odpowiada biblioteka Unity.Sound, wraz z gotowym komponentem audio wbudowanym w silnik Unity.
 \item Komunikacja: Za komunikację pomiędzy komponentami odpowiada menadzer sceny, łączący ze sobą przyciski, zawierający logike odpowiedzialną za działanie sceny.
 \end{itemize}
@@ -129,3 +130,20 @@ Poniżej omówiono schemat każdej z projektowanych scen aplikacji, zaznaczając
 	\item Komunikacja: Komunikacja odbywa się poprzez menadżer sceny, zawierający logikę odpowiadającą za podświetlenie odpowiadających nut po naciśnięciu jednego z przycisków na kole kwintowym.
 \end{itemize}
 
+\subsubsection{Scena 7: Diagram akordów}
+
+\begin{itemize}
+	\item Cel: Wizualizacja wszystkich dostępnych akordów w aplikacji.
+	\item Komponenty: Elementy graficzne, w postaci przycisków, zawierające komponent image, który zawiera odpowiadający akord.
+	\item Technologie: Użyto biblioteki Unity.UI do reprezentacji poszczególnych nut.
+	\item Komunikacja: Komunikacja odbywa się poprzez menadżer sceny, zawierający logikę odpowiadającą za uruchomienie widoku księgi akordów z wyświetlonym wybranym akordem.
+\end{itemize}
+
+\subsubsection{Scena 8: Zapisane akordy}
+
+\begin{itemize}
+	\item Cel: Wizualizacja zapisanych przez użytkownika akordów w scenie księgi akordów.
+	\item Komponenty: Elementy graficzne zawierające komponent image, który zawiera odpowiadający akord.
+	\item Technologie: Użyto biblioteki Unity.UI do reprezentacji poszczególnych akordów.
+	\item Komunikacja: Komunikacja odbywa się poprzez menadżer sceny, zawierający logikę odpowiadającą komunikację ze sceną księgi akordów i przekazaniu zapisanych akordów.
+\end{itemize}

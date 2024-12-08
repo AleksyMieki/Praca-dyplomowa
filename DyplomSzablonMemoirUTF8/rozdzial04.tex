@@ -1,36 +1,39 @@
 \chapter{Implementacja}
+
 W niniejszym rozdziale przedstawiono szczegóły implementacji aplikacji. Każdej ze scen poświęcono osobny podrozdział, w którym odniesiono się do wykorzystanych technologii, bibliotek oraz zrealizowanych sposobów komunikacji pomiędzy poszczególnymi elementami widoku. W projekcie zamieszczono kody funkcji realizujących najistotniejsze zadania.
 
 \section{Struktura aplikacji}
 Struktura projektu wykorzystuje domyślne ułożenie plików w systemie Unity. Jako główny folder służy folder \texttt{Assets}, zawiera on główne pliki projektowe: skrypty, tekstury, dźwięki, grafiki, prefaby(gotowe elementy często wykorzystywane w projekcie).
 
-Pliki w folderze \texttt{Scripts} zorganizowano według ich celu. Każdy plik przypisany do danej sceny znajduje się w odpowiednim folderze (rys.~\ref{fig:strukturaKodu}). Elementy pomocnicze, jak np.\ skrypt pomocy kontekstowej, skrypt przycisku zamykania sceny, znajdują się w folderze \texttt{Utility}. 
- \begin{figure}[htb]
+Pliki w folderze \texttt{Scripts} zorganizowano według ich celu. Każdy plik przypisany do danej sceny znajduje się w odpowiednim folderze (rys.~\ref{fig:strukturaKodu}). Elementy pomocnicze, jak np.\ kod pomocy kontekstowej, kod przycisku zamykania sceny, znajdują się w folderze \texttt{Utility}. 
+ 
+\begin{figure}[htb]
      \centering
  	\includegraphics[scale=.8]{rys04/StrukturaPlikow}
 	\caption{Struktura źródeł kodu w projekcie}
 	\label{fig:strukturaKodu}
- \end{figure}
+\end{figure}
 % DONE: w rozdziale dobrze byłoby zamieścić opis struktury projektu. Ponieważ rozwijał Pan aplikację w środowisku UNITY, to środowisko narzuca trochę tę strukturę (parę uwag na ten temat też by się przydało). Strukturę projektu można pokazać robiąc zrzuty drzewa źródeł kodu.
 
 % DONE: przydałoby się też opowiedzieć trochę o budowaniu aplikacji (testowe uruchomienia odbywają się w środowisku, aby można było uruchomić aplikację poza tym środowiskiem - coś trzeba przecież zrobić).
-Aby na bieżąco analizować poprawność zaimplementowanych funkcji wykorzystywano wbudowaną w silnik Unity opcję \emph{play}, która umożliwia ,,odpalenie'' jednej sceny, nie wymuszając przy tym budowania całej aplikacji od nowa. Po wykryciu zmian w skryptach aplikacja się przeładowuje i jest gotowa do użycia/przetestowania przez użytkownika.
+Aby na bieżąco analizować poprawność zaimplementowanych funkcji wykorzystywano wbudowaną w silnik Unity opcję \emph{play}, która umożliwia ,,odpalenie'' jednej sceny, nie wymuszając przy tym budowania całej aplikacji od nowa. Po wykryciu zmian w kodzie aplikacja się przeładowuje i jest gotowa do użycia/przetestowania przez użytkownika.
 
 \section{Implementacja elementów aplikacji}
 
 \subsection{Stroik}
 
-Głównymi elementami sceny sa przyciski służące do wyboru domniemanej nuty. W skład widoku wchodzi tez jej tytuł, informator odnośnie aktualnego poziomu nastrojenia instrumentu i~przyciski odpowiedzialne za zmianę docelowego instrumentu. Do menadżera sceny przypięte zostały 3 skrypty realizujące logikę potrzebną do nagrania, przeanalizowania i wyświetlenia wyników analizy dźwięku. Nazwy tych skryptów to: \texttt{Audio Recorder} - skrypt odbierający dźwięk ze sceny, \texttt{Audio Pitch Estimator} - odpowiedzialny za analizę odebranego dźwięku, \texttt{Tuner Manager} - główny skrypt realizujący logikę sceny. 
+Głównymi elementami sceny sa przyciski służące do wyboru domniemanej nuty. W skład widoku wchodzi tez jej tytuł, informator odnośnie aktualnego poziomu nastrojenia instrumentu i~przyciski odpowiedzialne za zmianę docelowego instrumentu. Do menadżera sceny przypięte zostały 3 pliki z kodem zawierające definicje klas, realizujące logikę potrzebną do nagrania, przeanalizowania i wyświetlenia wyników analizy dźwięku. Nazwy tych klas to: \texttt{AudioRecorder} - klasa odbierająca dźwięk ze sceny, \texttt{AudioPitchEstimator} - odpowiedzialna za analizę odebranego dźwięku, \texttt{TunerManager} - główna klasa realizująca logikę sceny. 
 
-Skrypt \texttt{Audio Recorder} zawiera dwa pola:
+Klasa \texttt{AudioRecorder} zawiera dwa pola:
 \begin{itemize}
     \item \texttt{audioSource} -- obiekt przechowujące odwołanie do wbudowanego w silnik Unity narzędzia \texttt{AudioSource}, umożliwiającego nagranie dźwięku,
     \item \texttt{duration} -- zmienna odpowiedzialna za ustalenie czasu, przez jaki mikrofon ma odbierać dźwięk z otoczenia.
 \end{itemize}
+
 oraz funkcję \texttt{OnEnable}, która podczas uruchomienia zaczyna rejestrować dźwięk z mikrofonu. 
 
-Skrypt zawiera jedną funkcję \texttt{OnEnable}, która podczas uruchomienia zaczyna odbierać dźwięk dostarczany do mikrofonu. Skrypt \texttt{AudioPitchEstimator}, zaczerpnięty z repozytorium \cite{AudioPitchEstimator}, % DONE: to nie jest poprawne cytowanie, proszę zrobić odpowiedni rekord w bib, a potem użyć jego klucza w \cite
-służy do analizy odebranego dźwięku. Biblioteka zawiera poniżej wymienione zmienne, na które użytkownik może wpłynąć, aby dopasować narzędzie do swoich potrzeb.
+Klasa zawiera jedną funkcję \texttt{OnEnable}, która podczas uruchomienia zaczyna odbierać dźwięk dostarczany do mikrofonu. Klasa \texttt{AudioPitchEstimator}, zaczerpnięta z repozytorium \cite{AudioPitchEstimator}, % DONE: to nie jest poprawne cytowanie, proszę zrobić odpowiedni rekord w bib, a potem użyć jego klucza w \cite
+służy do analizy odebranego dźwięku. Zawiera ona poniżej wymienione zmienne, na które użytkownik może wpłynąć, aby dopasować narzędzie do swoich potrzeb.
 \begin{itemize}
     \item \texttt{frequencyMin} -- minimalna częstotliwość, jaka ma być analizowana,
     \item \texttt{frequencyMax} -- maksymalna częstotliwość poddawana analizie,
@@ -39,7 +42,7 @@ służy do analizy odebranego dźwięku. Biblioteka zawiera poniżej wymienione 
     \item \texttt{thresholdSRH} -- wartość graniczna decybeli, od której dźwięk ma być wzięty pod analizę.
 \end{itemize}
 
-Funkcją uruchamiającą szybką transformatę Fouriera na odebranym dźwięku jest \texttt{Estimate} (listing~\ref{lst:1}). Zwraca one zmienną float \texttt{bestFreq}, będąca najlepszym możliwym według programu ,,trafieniem'', jeżeli chodzi o odebraną częstotliwość. Skrypt \texttt{TunerManager} odpowiedzialny za realizowanie logiki sceny, przechowuje odwołania do komponentów sceny: przyciski, pola tekstowe, obiekt \texttt{AudioSource}. W jego skład wchodzi 6 funkcji o nazwie \texttt{SetDesiredFrequency*}, przy czym każdemu z przycisków przypisany jest jeden jej odpowiednik, ustawiający parametry skryptu \texttt{AudioPitchEstimator}. Funkcją odpowiedzialną za logikę analizy dźwięku jest \texttt{EstimatePitch}, która korzysta ze skryptu \texttt{AudioPitchEstimator}, na tej podstawia ustawia wartości elementów tekstowych informujących użytkownika o poziomie nastrojenia instrumentu. 
+Funkcją uruchamiającą szybką transformatę Fouriera na odebranym dźwięku jest \texttt{Estimate} (listing~\ref{lst:1}). Zwraca one zmienną float \texttt{bestFreq}, będąca najlepszym możliwym według programu ,,trafieniem'', jeżeli chodzi o odebraną częstotliwość. Klasa \texttt{TunerManager} odpowiedzialna za realizowanie logiki sceny, przechowuje odwołania do komponentów sceny: przyciski, pola tekstowe, obiekt \texttt{AudioSource}. W jej skład wchodzi 6 funkcji o nazwie \texttt{SetDesiredFrequency*}, przy czym każdemu z przycisków przypisany jest jeden jej odpowiednik, ustawiający parametry skryptu \texttt{AudioPitchEstimator}. Funkcją odpowiedzialną za logikę analizy dźwięku jest \texttt{EstimatePitch}, która korzysta z klasy \texttt{AudioPitchEstimator}, na tej podstawia ustawia wartości elementów tekstowych informujących użytkownika o poziomie nastrojenia instrumentu. 
 
 \begin{lstlisting}[style=sharpcstyle,caption=Funkcja \texttt{Estimate}, label=lst:1]
 public float Estimate(AudioSource audioSource)
@@ -55,7 +58,6 @@ public float Estimate(AudioSource audioSource)
         specRaw[i] = Mathf.Log(spectrum[i] + 1e-9f);
     }
 
-   
     specCum[0] = 0;
     for (int i = 1; i < spectrumSize; i++)
     {
@@ -73,7 +75,6 @@ public float Estimate(AudioSource audioSource)
         specRes[i] = specRaw[i] - smoothed;
     }
 
-   
     float bestFreq = 0, bestSRH = 0;
     for (int i = 0; i < outputResolution; i++)
     {
@@ -106,7 +107,7 @@ public float Estimate(AudioSource audioSource)
 
 \subsection{Metronom}
 
-Scena metronomu zawiera 9 przycisków służących do parametryzacji działania metronomu, umożliwiając zwiększenie tempa, zwiększanie lub zmniejszanie liczby taktów. Za logikę odpowiada menadżer sceny z przypiętym skryptem \texttt{MetronomeManager}, zawierający 5 pól obiektów przycisków, pole obiektu tekstowego i kilka zmiennych pomocniczych. Metronom realizowany jest za pomocą wizualizacji poszczególnych taktów za pomocą graficznych elementów w postaci "kółek", które dodawane są do widoku dynamicznie w zależności od ustalonych przez użytkownika wartości. Funkcje jakie implementuje dany skrypt to:
+Scena metronomu zawiera 4 przyciski służące do parametryzacji działania metronomu, umożliwiając zwiększenie tempa, zwiększanie lub zmniejszanie liczby taktów. Za logikę odpowiada menadżer sceny z przypiętą klasą \texttt{MetronomeManager}, zawierająca 5 pól obiektów przycisków, pole obiektu tekstowego i kilka zmiennych pomocniczych. Metronom realizowany jest za pomocą wizualizacji poszczególnych taktów za pomocą graficznych elementów w postaci "kółek", które dodawane są do widoku dynamicznie w zależności od ustalonych przez użytkownika wartości. Funkcje jakie implementuje dana klasa to:
 
 \begin{itemize}
     \item \texttt{Start} -- funkcja odpowiadająca za ustawienie zmiennych, obiektów widoku. 
@@ -163,7 +164,7 @@ IEnumerator MetronomeCoroutine()
 
 \subsection{Księga akordów}
 %DONE : zrobić odwołania poprawne do listingów takie jak w zaleceniach
-Scena księgi akordów zawiera element graficzny reprezentujący aktualnie wybrany akord gitarowy, przyciski umożliwiające wybór docelowego akordu, elementy graficzne ułatwiające nawigację po widoku sceny. Funkcje wchodzące w~skład skryptu menadżera sceny nazwanego \texttt{ChordChartsManager} to:
+Scena księgi akordów zawiera element graficzny reprezentujący aktualnie wybrany akord gitarowy, przyciski umożliwiające wybór docelowego akordu, elementy graficzne ułatwiające nawigację po widoku sceny. Funkcje wchodzące w~skład klasy menadżera sceny nazwanego \texttt{ChordChartsManager} to:
 
 \begin{itemize}
     \item \texttt{Start} -- funkcja odpowiedzialna za przygotowanie potrzebnych elementów sceny. Przypisuje grafiki akordów z pomocniczej listy \texttt{Chords} do listy głównej \texttt{ch}. Ustawia wartości zmiennych n\texttt{oteIterator},\texttt{ variantIterator} z wartości przechowywanych w skrypcie \texttt{SceneConnector}, łączącej scenę księgi akordów z widokiem wszystkich akordów w postaci diagramu. Przypisuje ona funkcje do odpowiednich przycisków i resetuje wartości obiektów tekstowych.
@@ -190,14 +191,17 @@ private void ChangeChord()
 
 \subsection{Trening słuchu}
 
-Scena treningu słuchu zawiera przycisk odpowiedzialny za odegranie dźwięku, który następnie ma zostać odgadnięty przez użytkownika za pomocą jednego z 12 przycisków obecnych na scenie. W skład sceny wchodzą dwa skrypty: \texttt{EarTrainerManager} -- przypisany do menadżera sceny realizujący główną logikę sceny oraz \texttt{ButtonIndex} -- skrypt pomocniczy przypisany do każdego z 12 przycisków odpowiedzialnych za udzielenie odpowiedzi. Funkcje wchodzące w~skład głównego skryptu to:
+Scena treningu słuchu zawiera przycisk odpowiedzialny za wybór skali. W skład sceny wchodzą dwie klasy: \texttt{EarTrainerManager} -- przypisany do menadżera sceny realizujący główną logikę sceny oraz \texttt{ButtonIndex} -- klasa pomocnicza przypisana do każdego z przycisków odpowiedzialnych za udzielenie odpowiedzi. Funkcje wchodzące w~skład głównej klasy to:
 \begin{itemize}
     \item \texttt{Start} -- funkcja przypisująca obiekt \texttt{audioSource}, odpowiedzialny za odgrywanie dźwięków. Ustawia ona również funkcję \texttt{PlayRandomNote} do przycisku \texttt{playNoteButton}. Dodatkowo przypisuje ona funkcję \texttt{NoteGuessed} do każdego z przycisków odpowiedzialnych za odpowiedź.
     \item \texttt{PlayRandomNote} -- funkcja odpowiedzialna za odegranie losowego dźwięku po naciśnięciu przycisku \texttt{playNoteButton}. Ustawia ona odpowiedni index dla odegranej nuty, wykorzystywany następnie podczas zweryfikowania odpowiedzi podanej przez użytkownika.
-    \item \texttt{NoteGuessed} -- funkcja weryfikująca odpowiedź użytkownika, wykorzystywana po naciśnięciu jednego z 12 przycisków odpowiedzi. Ustawia ona obiekty tekstowe sceny, w zależności od tego czy odpowiedź była poprawna, czy też nie. 
+    \item \texttt{NoteGuessed} -- funkcja weryfikująca odpowiedź użytkownika. Ustawia ona obiekty tekstowe sceny, w zależności od tego czy odpowiedź była poprawna, czy też nie. 
+    \item \texttt{DeactivateObjects} -- funkcja odpowiedzialna za wyłączenie obiektów graficznych sceny.
+    \item \texttt{ResetTraining} -- funkcja dezaktywująca aktualny trening, przenosząc użytkownika do widoku początkowego.
+    \item \texttt{SelectedScaleTreining*} -- funkcje odpowiadające za ustawienie parametrów sceny w zależności od wybranej skali treningu.
 \end{itemize}
 
-Za odegranie nuty, a następnie sprawdzenia poprawności odpowiedzi odpowiedzialny jest skrypt główny (listing~\ref{lst:4}).
+Za odegranie nuty, a następnie sprawdzenia poprawności odpowiedzi odpowiedzialny jest główna klasa (listing~\ref{lst:4}).
 
 \begin{lstlisting}[style=sharpcstyle,caption=Funkcje \texttt{PlayRandomNote} i \texttt{NoteGuessed}, label=lst:4]
 void PlayRandomNote()
@@ -222,11 +226,11 @@ void NoteGuessed(Button button)
 }
 \end{lstlisting}
 
-Skrypt pomocniczy przechowuje jedynie jedną zmienną, wykorzystywaną w momencie weryfikacji odpowiedzi udzielonej przez użytkownika, jest nią: \texttt{buttonNumber}.
+Klasa pomocnicza przechowuje jedynie jedną zmienną, wykorzystywaną w momencie weryfikacji odpowiedzi udzielonej przez użytkownika, jest nią: \texttt{buttonNumber}.
 
 \subsection{Koło kwintowe}
 
-Scena koła kwintowego zawiera 24 przyciski, każdemu z nich przypisana została odpowiednia nuta. W skrypcie menadżera sceny utworzone zostały dwie listy, przechowujące przyciski koła zewnętrznego oraz koła wewnętrznego. Skrypt zawiera w sobie 6 funkcji:
+Scena koła kwintowego zawiera 24 przyciski, każdemu z nich przypisana została odpowiednia nuta. W kodzie menadżera sceny utworzone zostały dwie listy, przechowujące przyciski koła zewnętrznego oraz koła wewnętrznego. Kod zawiera w sobie 6 funkcji:
 
 \begin{itemize}
 \item \texttt{Start} -- funkcja używana podczas tworzenia obiektu, służy ona przygotowaniu wszystkich przycisków oraz przypisania im działania przy ich naciśnięciu, w tym przypadku przypisuje ich działanie do funkcji \texttt{DisplayScale}
@@ -258,3 +262,14 @@ public void DisplayScale(int noteIndex)
     ...         
 }
 \end{lstlisting}
+
+\section{Diagram akordów}
+
+Diagram akordów jest widokiem, do którego można dostać się jedynie ze sceny księgi akordów. Przedstawia on wszystkie akordy zawarte w księdze akordów, aczkolwiek w widoku ogólnym. Funkcje jakie zawiera klasa głównego menadżera sceny odpowiedzialne są za uaktywnianie i dezaktywowanie poszczególnych widoków akordów.
+
+\begin{itemize}
+    \item \texttt{DiagramNextPage} -- funkcja służąca do przewijania aktualnie wyświetlanych akordów
+    \item \texttt{DiagramPreviousPage} -- funkcja służąca do przewijania aktualnie wyświetlanych akordów
+    \item \texttt{UpdateDiagramDisplay} -- funkcja służąca do aktualizacji aktualnie wyświetlanych akordów
+    \item \texttt{DiagramSelected} -- Funkcja odpowiedzialna za zapis wybranego akordu i przekazanie informacji do księgi akordów.
+\end{itemize}
