@@ -32,7 +32,7 @@ Klasa \texttt{AudioRecorder} zawiera dwa pola:
 Klasa ta zawiera również jedną funkcję \texttt{OnEnable}, która podczas uruchomienia zaczyna odbierać dźwięk dostarczany do mikrofonu. 
 
 Klasa \texttt{AudioPitchEstimator}, zaczerpnięta z repozytorium \cite{AudioPitchEstimator}, % DONE: to nie jest poprawne cytowanie, proszę zrobić odpowiedni rekord w bib, a potem użyć jego klucza w \cite
-służy do analizy odebranego dźwięku. Zawiera ona poniżej wymienione zmienne, na które użytkownik może wpłynąć, aby dopasować narzędzie do swoich potrzeb.
+służy do analizy odebranego dźwięku. Zawiera ona wymienione poniżej zmienne, na które użytkownik może wpłynąć, aby dopasować narzędzie do swoich potrzeb.
 \begin{itemize}
     \item \texttt{frequencyMin} -- minimalna częstotliwość, jaka ma być analizowana,
     \item \texttt{frequencyMax} -- maksymalna częstotliwość poddawana analizie,
@@ -41,7 +41,7 @@ służy do analizy odebranego dźwięku. Zawiera ona poniżej wymienione zmienne
     \item \texttt{thresholdSRH} -- wartość graniczna decybeli, od której dźwięk ma być wzięty pod analizę.
 \end{itemize}
 
-Funkcją uruchamiającą szybką transformatę Fouriera na odebranym dźwięku jest \texttt{Estimate} (listing~\ref{lst:1}). Zwraca one zmienną float \texttt{bestFreq}, będąca najlepszym możliwym według programu ,,trafieniem'', jeżeli chodzi o odebraną częstotliwość. Klasa \texttt{TunerManager} odpowiedzialna za realizowanie logiki sceny, przechowuje odwołania do komponentów sceny: przyciski, pola tekstowe, obiekt \texttt{AudioSource}. W jej skład wchodzi 6 funkcji o nazwie \texttt{SetDesiredFrequency*}, przy czym każdemu z przycisków przypisany jest jeden jej odpowiednik, ustawiający parametry skryptu \texttt{AudioPitchEstimator}. Funkcją odpowiedzialną za logikę analizy dźwięku jest \texttt{EstimatePitch}, która korzysta z klasy \texttt{AudioPitchEstimator}, na tej podstawia ustawia wartości elementów tekstowych informujących użytkownika o poziomie nastrojenia instrumentu. 
+Funkcją uruchamiającą szybką transformatę Fouriera na odebranym dźwięku jest \texttt{Estimate} (listing~\ref{lst:1}) z tej klasy. Zwraca one zmienną float \texttt{bestFreq}, będąca najlepszym możliwym według programu ,,trafieniem'', jeżeli chodzi o odebraną częstotliwość. Klasa \texttt{TunerManager} odpowiedzialna za realizowanie logiki sceny, przechowuje odwołania do komponentów sceny: przyciski, pola tekstowe, obiekt \texttt{AudioSource}. W jej skład wchodzi 6 funkcji o nazwie \texttt{SetDesiredFrequency*}, przy czym każdemu z przycisków przypisany jest jeden jej odpowiednik, ustawiający parametry skryptu \texttt{AudioPitchEstimator}. Funkcją odpowiedzialną za logikę analizy dźwięku jest \texttt{EstimatePitch}, która korzysta z klasy \texttt{AudioPitchEstimator}, na tej podstawia ustawia wartości elementów tekstowych informujących użytkownika o poziomie nastrojenia instrumentu. 
 % TO DO:zamienione linie kodu
 % var nyquistFreq = AudioSettings.outputSampleRate / 2.0f;
 % if (!audioSource.isPlaying) return float.NaN;
