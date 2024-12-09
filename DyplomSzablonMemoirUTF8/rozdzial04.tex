@@ -29,10 +29,9 @@ Klasa \texttt{AudioRecorder} zawiera dwa pola:
     \item \texttt{audioSource} -- obiekt przechowujące odwołanie do wbudowanego w silnik Unity narzędzia \texttt{AudioSource}, umożliwiającego nagranie dźwięku,
     \item \texttt{duration} -- zmienna odpowiedzialna za ustalenie czasu, przez jaki mikrofon ma odbierać dźwięk z otoczenia.
 \end{itemize}
+Klasa ta zawiera również jedną funkcję \texttt{OnEnable}, która podczas uruchomienia zaczyna odbierać dźwięk dostarczany do mikrofonu. 
 
-oraz funkcję \texttt{OnEnable}, która podczas uruchomienia zaczyna rejestrować dźwięk z mikrofonu. 
-
-Klasa zawiera jedną funkcję \texttt{OnEnable}, która podczas uruchomienia zaczyna odbierać dźwięk dostarczany do mikrofonu. Klasa \texttt{AudioPitchEstimator}, zaczerpnięta z repozytorium \cite{AudioPitchEstimator}, % DONE: to nie jest poprawne cytowanie, proszę zrobić odpowiedni rekord w bib, a potem użyć jego klucza w \cite
+Klasa \texttt{AudioPitchEstimator}, zaczerpnięta z repozytorium \cite{AudioPitchEstimator}, % DONE: to nie jest poprawne cytowanie, proszę zrobić odpowiedni rekord w bib, a potem użyć jego klucza w \cite
 służy do analizy odebranego dźwięku. Zawiera ona poniżej wymienione zmienne, na które użytkownik może wpłynąć, aby dopasować narzędzie do swoich potrzeb.
 \begin{itemize}
     \item \texttt{frequencyMin} -- minimalna częstotliwość, jaka ma być analizowana,
@@ -43,14 +42,15 @@ służy do analizy odebranego dźwięku. Zawiera ona poniżej wymienione zmienne
 \end{itemize}
 
 Funkcją uruchamiającą szybką transformatę Fouriera na odebranym dźwięku jest \texttt{Estimate} (listing~\ref{lst:1}). Zwraca one zmienną float \texttt{bestFreq}, będąca najlepszym możliwym według programu ,,trafieniem'', jeżeli chodzi o odebraną częstotliwość. Klasa \texttt{TunerManager} odpowiedzialna za realizowanie logiki sceny, przechowuje odwołania do komponentów sceny: przyciski, pola tekstowe, obiekt \texttt{AudioSource}. W jej skład wchodzi 6 funkcji o nazwie \texttt{SetDesiredFrequency*}, przy czym każdemu z przycisków przypisany jest jeden jej odpowiednik, ustawiający parametry skryptu \texttt{AudioPitchEstimator}. Funkcją odpowiedzialną za logikę analizy dźwięku jest \texttt{EstimatePitch}, która korzysta z klasy \texttt{AudioPitchEstimator}, na tej podstawia ustawia wartości elementów tekstowych informujących użytkownika o poziomie nastrojenia instrumentu. 
+% TO DO:zamienione linie kodu
+% var nyquistFreq = AudioSettings.outputSampleRate / 2.0f;
+% if (!audioSource.isPlaying) return float.NaN;
 
 \begin{lstlisting}[style=sharpcstyle,caption=Funkcja \texttt{Estimate}, label=lst:1]
 public float Estimate(AudioSource audioSource)
 {
-    var nyquistFreq = AudioSettings.outputSampleRate / 2.0f;
-
     if (!audioSource.isPlaying) return float.NaN;
-
+		var nyquistFreq = AudioSettings.outputSampleRate / 2.0f;
     audioSource.GetSpectrumData(spectrum, 0, FFTWindow.Hanning);
 
     for (int i = 0; i < spectrumSize; i++)
