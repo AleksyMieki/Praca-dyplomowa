@@ -17,9 +17,9 @@ W niniejszym rozdziale opisano szczegóły działań, jakie podjęto po analizie
 Docelowa aplikacja powinna oferować funkcje opisane poniżej.
 \begin{itemize}
 \item \textbf{Stroik gitarowy} -- ta funkcja powinna umożliwiać dostrojenie strun gitary. Zawierać on ma opcję wyboru nuty, do której struna ma docelowo zostać nastrojona. Stroik zawierać ma graficzną reprezentację aktualnego poziomu nastrojenia instrumentu, poprzez wyświetlanie na ekranie informacji, czy struna jest: niedostrojona, nastrojona, przestrojona.
-\item \textbf{Metronom} -- ma umożliwiać przeprowadzenie treningu rytmu, pozwalająć na parametryzację wartości: bpm, taktu, metrum.
+\item \textbf{Metronom} -- ma umożliwiać przeprowadzenie treningu rytmu, pozwalająć na parametryzację wartości: bpm, taktu.
 \item \textbf{Księga akordów} -- ma dostarczać informacje o aktualnie wyświetlanym akordzie i jego wariacji. Zawierać ona ma również przycisk zezwalający na zapis aktualnie wyświetlanego akordu, z możliwością zapisu do 3 akordów, które następnie dostępne będą w osobnym widoku. Osobny widok zawierać ma również diagram akordów.
-\item \textbf{Koło kwintowe} -- ma się pojawiać z aktywnymi przyciskami, których naciśnięcie skutkować ma podświetleniem skali molowej, wraz z siedmioma akordami, które wpasowują się pod wybraną nutę.
+\item \textbf{Koło kwintowe} -- ma się pojawiać z aktywnymi przyciskami, których naciśnięcie skutkować ma podświetleniem skali durowej, wraz z sześcioma akordami, które wpasowują się pod wybraną nutę.
 \item \textbf{Trening słuchu} -- istotą tej funkcji ma być możliwość odgadywania odegranej nuty poprzez jej zagranie i zweryfikowanie poprawności udzielonej odpowiedzi. 
 \end{itemize}
 
@@ -43,7 +43,7 @@ Dla projektu ustalono wymagania niefunkcjonalne. Zebrano je w punktach poniżej.
 %        zwykle gdy pada to określenie to odnosi się ono do sposobu "poukładania" komponentów aplikacji w jakieś hierarchie czy warstwy, z wydzieleniem odpowiedzialności, określeniem mechanizmów przepływu informacji itd. U Pana zaś mamy termin ten pada w kontekście użycia wzorca projektowego MVC.
 
 \section{Makiety}
-Na rysunku~\ref{fig:makiety} przedstawiono zaprojektowane makiety interfejsu użytkownika. Makiety te mają przybliżyć ogólny zarys planowanego układu udostępnianych widoków wraz z rozmieszczeniem na nich funkcji. Końcowa wersja interfejsu użytkownika może od odbiegać od tej propozycji.
+Na rysunku~\ref{fig:makiety} przedstawiono zaprojektowane makiety interfejsu użytkownika. Makiety te mają przybliżyć ogólny zarys planowanego układu udostępnianych widoków wraz z rozmieszczeniem na nich funkcji. Końcowa wersja interfejsu użytkownika może odbiegać od tej propozycji.
 \begin{figure}[htb]
     \centering
 		\begin{tabular}{ll}
@@ -80,8 +80,8 @@ Poniżej omówiono schemat każdej z projektowanych scen aplikacji, zaznaczając
 \begin{itemize}
 
 \item Cel: Reprezentacja możliwości wyboru, oraz udzielenie użytkownikowi dostępu do poszczególnych narzędzi za pomocą czytelnych przycisków, które po naciśnięciu przechodzą do odpowiadającej im sceny z danym narzędziem. 
-\item Komponenty: Elementami wchodzącymi w skład sceny głównej są przyciski (jest ich 5): stroik, metronom, koło kwintowe, księga akordów, trening słuchu. Dodatkowo scena główna zawiera obiekt tekstowy z logiem aplikacji.  
-\item Technologie: Do realizacji tej oto sceny użyto wbudowaną bibliotekę w silnik Unity, a mianowicie Unity.UI, umożliwiającą utworzenie graficznego interfejsu uzytkownika. 
+\item Komponenty: Elementami wchodzącymi w skład sceny głównej są przyciski (jest ich 5): stroik, metronom, koło kwintowe, księga akordów, trening słuchu. Dodatkowo scena główna zawiera obiekt tekstowy z logiem i przycisk odpowiedzialny za zamknięcie aplikacji.  
+\item Technologie: Do realizacji tej oto sceny użyto wbudowaną bibliotekę w silnik Unity, a mianowicie Unity.UI \cite{UnityUI}, umożliwiającą utworzenie graficznego interfejsu uzytkownika. 
 \item Komunikacja: Każdy z przycisków wchodzących w skład sceny podłączony jest pod kontroler sceny, służący jako pośrednik, w skrypcie należącym do kontrolera poszczególnym przyciskom przypisywana jest funkcja odpowiadająca za załadowanie odpowiedniej sceny. 
 \end{itemize}
 
@@ -90,7 +90,7 @@ Poniżej omówiono schemat każdej z projektowanych scen aplikacji, zaznaczając
 \begin{itemize}
 \item Cel: Udostępnienie możliwości nastrojenia gitary poprzez wybór docelowej struny, do której użytkownik chce nastroić instrument. Następnie zagrane przez użytkownika dźwięki analizowane będą, a wyniki analizy reprezentowane zostaną jako informacja odnośnie tego, czy ton należy obniżyć czy podwyższyć.
 \item Komponenty: W skład sceny wchodzi mikrofon, analizator dźwięku, przyciski odpowiadające strunom na gitarze, oraz indykator aktualnego poziomu nastrojenia instrumentu.  
-\item Technologie: Do użytych technologii wykorzystano bibliotekę opartą na otwartej licencji służącą do analizy dostarczanego dźwięku \cite{AudioPitchEstimator}, oraz wyciągnięcie z niego częstotliwości zagranej nuty. Dodatkowo do stworzenia graficznego interfejsu posłużono się biblioteką Unity.UI.   
+\item Technologie: Do użytych technologii wykorzystano bibliotekę opartą na otwartej licencji służącą do analizy dostarczanego dźwięku \cite{AudioPitchEstimator}, oraz wyciągnięcie z niego częstotliwości zagranej nuty. Dodatkowo do stworzenia graficznego interfejsu posłużono się biblioteką Unity.UI. Użyto też komponentu audio wbudowanego w silnik Unity \cite{AudioSource}.
 \item Komunikacja: Użyto kontroler sceny, aby umożliwić komunikacje pomiędzy elementami graficznymi a analizatorem dźwięku. 
 \end{itemize}
 
@@ -99,7 +99,7 @@ Poniżej omówiono schemat każdej z projektowanych scen aplikacji, zaznaczając
 \begin{itemize}
 \item Cel: Zapewnienie użytkownikowi możliwości treningu rytmu podczas gry, poprzez reprezentację poszczególnych taktów zsynchronizowanych z dźwiękiem "bitu".
 \item Komponenty: Do realizacji tej sceny zastosowano przyciski umożliwiające parametryzację taktu, oraz bpm(ang. beats per minute). Wizualizacja metronomu odbywa się za pośrednictwem pojawiających się na ekranie kwadratów reprezentujących poszczególny takt, które zmieniają swoje kolory z białego na czarny, wraz z czasem wybijania danego rytmu.
-\item Technologie: Skrypt napisany w języku C\# realizujący logikę działania metronomu.
+\item Technologie: Kod napisany w języku C\# realizujący logikę działania metronomu, komponent audio.
 \item Komunikacja: Poszczególne komponenty komunikują się ze sobą za pośrednictwem kontrolera sceny metronomu, zawierający odwołania do poszczególnych komponentów.
 \end{itemize}
 
@@ -107,7 +107,7 @@ Poniżej omówiono schemat każdej z projektowanych scen aplikacji, zaznaczając
 
 \begin{itemize}
 \item Cel: Wizualizacja pozycji akordów na gryfie, dla każdej nut, wraz z możliwymi wariancjami akordów.
-\item Komponenty: Do komponentów należą przyciski odpowiadające za przeglądanie listy dostępnych akordów, element graficzny wizualizujący aktualnie wybrany akord, wraz z przyciskami odpowiadającymi za przełączenie sceny do widoku diagramu wszystkich możliwych akordów.
+\item Komponenty: Do komponentów należą przyciski odpowiadające za przeglądanie listy dostępnych akordów, zapisu akordu, element graficzny wizualizujący aktualnie wybrany akord, wraz z przyciskami odpowiadającymi za przełączenie sceny do widoku diagramu wszystkich możliwych i zapisanych akordów.
 \item Technologie: Wbudowana biblioteka do obsługi graficznego interfejsu użytkownika - Unity.UI.
 \item Komunikacja: Komponenty komunikują się ze sobą za pomocą menadżera sceny, przechowującego za pomoca listy graficzne reprezentacje akordów, które wyświetlane są w odpowiednich momentach. 
 \end{itemize}
@@ -116,7 +116,7 @@ Poniżej omówiono schemat każdej z projektowanych scen aplikacji, zaznaczając
 
 \begin{itemize}
 \item Cel: Umożliwienie użytkownikowi przeprowadzenie ćwiczeń mających na celu nabycia umiejętności rozpoznawania granej nuty za pomocą samego słuchu.
-\item Komponenty: Przyciski odpowiadające za wybór skali treningowej, przyciski odpowiadające za odpowiedź, po naciśnięciu których weryfikowana jest poprawność udzielonej odpowiedzi. Scena zawiera również system audio odpowiadający za odegranie dźwięku.
+\item Komponenty: Przyciski odpowiadające za wybór skali treningowej, przyciski odpowiadające za odpowiedź, po naciśnięciu których weryfikowana jest poprawność udzielonej odpowiedzi. Scena zawiera również system audio odpowiadający za odegranie dźwięku. Zawiera też przycisk reset, oraz przycisk odpowiedzialny za odegranie dźwięku.
 \item Technologie: Za odgrywanie dźwięków odpowiada biblioteka Unity.Sound, wraz z gotowym komponentem audio wbudowanym w silnik Unity.
 \item Komunikacja: Za komunikację pomiędzy komponentami odpowiada menadzer sceny, łączący ze sobą przyciski, zawierający logike odpowiedzialną za działanie sceny.
 \end{itemize}
@@ -125,7 +125,7 @@ Poniżej omówiono schemat każdej z projektowanych scen aplikacji, zaznaczając
 
 \begin{itemize}
 	\item Cel: Wizualizacja koła kwintowego, wraz z skalą molową i durową.
-	\item Komponenty: Elementy graficzne, w postaci przycisków, zawierające komponent image, który zawiera odpowiadającą nutę.
+	\item Komponenty: Elementy graficzne, w postaci przycisków, zawierające komponent \texttt{text}, który zawiera odpowiadającą nutę.
 	\item Technologie: Użyto biblioteki Unity.UI do reprezentacji poszczególnych nut.
 	\item Komunikacja: Komunikacja odbywa się poprzez menadżer sceny, zawierający logikę odpowiadającą za podświetlenie odpowiadających nut po naciśnięciu jednego z przycisków na kole kwintowym.
 \end{itemize}
