@@ -13,6 +13,7 @@ Pliki w folderze \texttt{Scripts} zorganizowano według ich celu. Każdy plik pr
 	\caption{Struktura źródeł kodu w projekcie}
 	\label{fig:strukturaKodu}
 \end{figure}
+
 % DONE: w rozdziale dobrze byłoby zamieścić opis struktury projektu. Ponieważ rozwijał Pan aplikację w środowisku UNITY, to środowisko narzuca trochę tę strukturę (parę uwag na ten temat też by się przydało). Strukturę projektu można pokazać robiąc zrzuty drzewa źródeł kodu.
 
 % DONE: przydałoby się też opowiedzieć trochę o budowaniu aplikacji (testowe uruchomienia odbywają się w środowisku, aby można było uruchomić aplikację poza tym środowiskiem - coś trzeba przecież zrobić).
@@ -167,17 +168,19 @@ IEnumerator MetronomeCoroutine()
 Scena księgi akordów zawiera element graficzny reprezentujący aktualnie wybrany akord gitarowy, przyciski umożliwiające wybór docelowego akordu, elementy graficzne ułatwiające nawigację po widoku sceny. Funkcje wchodzące w~skład klasy menadżera sceny nazwanego \texttt{ChordChartsManager} to:
 
 \begin{itemize}
-    \item \texttt{Start} -- funkcja odpowiedzialna za przygotowanie potrzebnych elementów sceny. Przypisuje grafiki akordów z pomocniczej listy \texttt{Chords} do listy głównej \texttt{ch}. Ustawia wartości zmiennych n\texttt{oteIterator},\texttt{ variantIterator} z wartości przechowywanych w skrypcie \texttt{SceneConnector}, łączącej scenę księgi akordów z widokiem wszystkich akordów w postaci diagramu. Przypisuje ona funkcje do odpowiednich przycisków i resetuje wartości obiektów tekstowych.
+    \item \texttt{Start} -- funkcja odpowiedzialna za przygotowanie potrzebnych elementów sceny. Przypisuje grafiki akordów z pomocniczej listy \texttt{Chords} do listy głównej \texttt{ch}. Ustawia wartości zmiennych \texttt{noteIterator}, \texttt{variantIterator} z wartości przechowywanych w skrypcie \texttt{SceneConnector}, łączącej scenę księgi akordów z widokiem wszystkich akordów w postaci diagramu. Przypisuje ona funkcje do odpowiednich przycisków i resetuje wartości obiektów tekstowych.
     \item \texttt{noteIncrement} -- funkcja przypisana do przycisku, odpowiedzialna za zmianę nuty akordu.
     \item \texttt{noteDecrement} -- funkcja przypisana do przycisku, odpowiedzialna za zmianę nuty akordu.
     \item \texttt{variantIncrement} -- funkcja przypisana do przycisku, odpowiedzialna za zmianę wariacji akordu.
     \item \texttt{variantDecrement} -- funkcja przypisana do przycisku, odpowiedzialna za zmianę wariacji akordu.
     \item \texttt{ChangeVariantText} -- funkcja odpowiedzialna za zmianę przypisanej wartości obiektu tekstowego sceny, wykorzystywana w momencie zmiany wariacji akordu.
     \item \texttt{ChangeNoteText} -- funkcja odpowiedzialna za zmianę przypisanej wartości obiektu tekstowego sceny, wykorzystywana w momencie zmiany nuty akordu.
-    \item \texttt{ChangeChord} -- funkcja odpowiedzialna za zmianę aktualnie wyświetlanego akordu, zmienia przypisaną grafikę obiektu \texttt{Image} sceny.
+    \item \texttt{ChangeChord} -- funkcja odpowiedzialna za zmianę aktualnie wyświetlanego akordu, zmienia przypisaną grafikę obiektu \texttt{Image}.
+    \item \texttt{SavedClicked} -- funkcja pomocnicza służąca zapisowi wybranego akordu.
+    \item \texttt{AddToList} -- funkcja dodająca aktualnie wybrany akord do listy przekazywanej następnie do widoku zapisanych akordów.
 \end{itemize}
 
-Istotną funkcją jest \texttt{ChangeChord} (\ref{lst:3}), która odpowiada za zmianę wyświetlanej grafiki. Wewnątrz funkcji z racji sposobu zapisu grafik jako pliki .png, nie obsługiwanych domyślnie przez silnik Unity, tworzone są wpierw tekstury, na podstawie których tworzone są \emph{sprity}. Te przypisywane są do elementu graficznego znajdującego się na scenie.
+Istotną funkcją jest \texttt{ChangeChord} (\ref{lst:3}), która odpowiada za zmianę wyświetlanej grafiki. Wewnątrz funkcji z racji sposobu zapisu grafik jako pliki .png, nie obsługiwanych domyślnie przez silnik Unity, tworzone są wpierw tekstury, na podstawie których tworzone są grafiki. Te przypisywane są do elementu graficznego znajdującego się na scenie.
 
 \begin{lstlisting}[style=sharpcstyle,caption=Funkcja \texttt{ChangeChord}, label=lst:3]
 private void ChangeChord()
@@ -273,3 +276,7 @@ Diagram akordów jest widokiem, do którego można dostać się jedynie ze sceny
     \item \texttt{UpdateDiagramDisplay} -- funkcja służąca do aktualizacji aktualnie wyświetlanych akordów
     \item \texttt{DiagramSelected} -- Funkcja odpowiedzialna za zapis wybranego akordu i przekazanie informacji do księgi akordów.
 \end{itemize}
+
+\section{Zapisane akordy}
+
+Widok zapisanych akordów zawiera w sobie 3 elementy graficzne reprezentujące wybrane w księdze akordów akordy. Kod kontrolera sceny zawiera tylko jedną funkcję \texttt{Start}, odpowiedzialną za wyświetlenie wcześniej zapisanych akordów.
