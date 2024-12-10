@@ -23,7 +23,7 @@ Aby na bieżąco analizować poprawność zaimplementowanych funkcji wykorzystyw
 
 \subsection{Stroik}
 
-Głównymi elementami sceny sa przyciski służące do wyboru domniemanej nuty. W skład widoku wchodzi tez jej tytuł, informator odnośnie aktualnego poziomu nastrojenia instrumentu i~przyciski odpowiedzialne za zmianę docelowego instrumentu. Do menadżera sceny przypięte zostały 3 pliki z kodem zawierające definicje klas, realizujące logikę potrzebną do nagrania, przeanalizowania i wyświetlenia wyników analizy dźwięku. Nazwy tych klas to: \texttt{AudioRecorder} - klasa odbierająca dźwięk ze sceny, \texttt{AudioPitchEstimator} - odpowiedzialna za analizę odebranego dźwięku, \texttt{TunerManager} - główna klasa realizująca logikę sceny. 
+Głównymi elementami sceny sa przyciski służące do wyboru domniemanej nuty. W skład widoku wchodzi tez jej tytuł, informator odnośnie aktualnego poziomu nastrojenia instrumentu i~przyciski odpowiedzialne za zmianę docelowego instrumentu. Do menadżera sceny przypięte zostały 3 pliki z kodem zawierające definicje klas, realizujące logikę potrzebną do nagrania, przeanalizowania i wyświetlenia wyników analizy dźwięku. Nazwy tych klas to: \texttt{AudioRecorder} - klasa odbierająca dźwięk ze sceny, \texttt{AudioPitchEstimator} - odpowiedzialna za analizę odebranego dźwięku, \texttt{TunerManager} - główna klasa realizująca logikę sceny. Widok zawiera też przyciski odpowiedzialne za uruchomienie pomocy kontekstowej i opuszczenie bieżącej sceny.
 
 Klasa \texttt{AudioRecorder} zawiera dwa pola:
 \begin{itemize}
@@ -163,6 +163,8 @@ IEnumerator MetronomeCoroutine()
 }
 \end{lstlisting}
 
+Widok zawiera też przyciski odpowiedzialne za uruchomienie pomocy kontekstowej i opuszczenie bieżącej sceny.
+
 \subsection{Księga akordów}
 %DONE : zrobić odwołania poprawne do listingów takie jak w zaleceniach
 Scena księgi akordów zawiera element graficzny reprezentujący aktualnie wybrany akord gitarowy, przyciski umożliwiające wybór docelowego akordu, elementy graficzne ułatwiające nawigację po widoku sceny. Funkcje wchodzące w~skład klasy menadżera sceny nazwanego \texttt{ChordChartsManager} to:
@@ -180,7 +182,7 @@ Scena księgi akordów zawiera element graficzny reprezentujący aktualnie wybra
     \item \texttt{AddToList} -- funkcja dodająca aktualnie wybrany akord do listy przekazywanej następnie do widoku zapisanych akordów.
 \end{itemize}
 
-Istotną funkcją jest \texttt{ChangeChord} (\ref{lst:3}), która odpowiada za zmianę wyświetlanej grafiki. Wewnątrz funkcji z racji sposobu zapisu grafik jako pliki .png, nie obsługiwanych domyślnie przez silnik Unity, tworzone są wpierw tekstury, na podstawie których tworzone są grafiki. Te przypisywane są do elementu graficznego znajdującego się na scenie.
+Istotną funkcją jest \texttt{ChangeChord} (\ref{lst:3}), która odpowiada za zmianę wyświetlanej grafiki. Wewnątrz funkcji z racji sposobu zapisu grafik jako pliki .png, nie obsługiwanych domyślnie przez silnik Unity, tworzone są wpierw tekstury, na podstawie których tworzone są grafiki. Te przypisywane są do elementu graficznego znajdującego się na scenie. Widok zawiera też przyciski odpowiedzialne za uruchomienie pomocy kontekstowej i opuszczenie bieżącej sceny.
 
 \begin{lstlisting}[style=sharpcstyle,caption=Funkcja \texttt{ChangeChord}, label=lst:3]
 private void ChangeChord()
@@ -229,7 +231,7 @@ void NoteGuessed(Button button)
 }
 \end{lstlisting}
 
-Klasa pomocnicza przechowuje jedynie jedną zmienną, wykorzystywaną w momencie weryfikacji odpowiedzi udzielonej przez użytkownika, jest nią: \texttt{buttonNumber}.
+Klasa pomocnicza przechowuje jedynie jedną zmienną, wykorzystywaną w momencie weryfikacji odpowiedzi udzielonej przez użytkownika, jest nią: \texttt{buttonNumber}. Widok zawiera też przyciski odpowiedzialne za uruchomienie pomocy kontekstowej i opuszczenie bieżącej sceny.
 
 \subsection{Koło kwintowe}
 
@@ -266,6 +268,8 @@ public void DisplayScale(int noteIndex)
 }
 \end{lstlisting}
 
+Widok zawiera też przyciski odpowiedzialne za uruchomienie pomocy kontekstowej i opuszczenie bieżącej sceny.
+
 \section{Diagram akordów}
 
 Diagram akordów jest widokiem, do którego można dostać się jedynie ze sceny księgi akordów. Przedstawia on wszystkie akordy zawarte w księdze akordów, aczkolwiek w widoku ogólnym. Funkcje jakie zawiera klasa głównego menadżera sceny odpowiedzialne są za uaktywnianie i dezaktywowanie poszczególnych widoków akordów.
@@ -279,4 +283,4 @@ Diagram akordów jest widokiem, do którego można dostać się jedynie ze sceny
 
 \section{Zapisane akordy}
 
-Widok zapisanych akordów zawiera w sobie 3 elementy graficzne reprezentujące wybrane w księdze akordów akordy. Kod kontrolera sceny zawiera tylko jedną funkcję \texttt{Start}, odpowiedzialną za wyświetlenie wcześniej zapisanych akordów.
+Widok zapisanych akordów zawiera w sobie 3 elementy graficzne reprezentujące wybrane w księdze akordów akordy. Kod kontrolera sceny zawiera tylko jedną funkcję \texttt{Start}, odpowiedzialną za wyświetlenie wcześniej zapisanych akordów. Widok zawiera też przyciski odpowiedzialne za uruchomienie pomocy kontekstowej i opuszczenie bieżącej sceny.
