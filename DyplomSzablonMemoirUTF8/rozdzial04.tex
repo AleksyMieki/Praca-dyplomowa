@@ -43,7 +43,7 @@ służy do analizy odebranego dźwięku. Zawiera ona wymienione poniżej zmienne
 \end{itemize}
 
 Funkcją uruchamiającą szybką transformatę Fouriera na odebranym dźwięku jest \texttt{Estimate} (listing~\ref{lst:1}) z tej klasy. Zwraca one zmienną float \texttt{bestFreq}, będąca najlepszym możliwym według programu ,,trafieniem'', jeżeli chodzi o odebraną częstotliwość. Klasa \texttt{TunerManager} odpowiedzialna za realizowanie logiki sceny, przechowuje odwołania do komponentów sceny: przyciski, pola tekstowe, obiekt \texttt{AudioSource}. W jej skład wchodzi 6 funkcji o nazwie \texttt{SetDesiredFrequency*}, przy czym każdemu z przycisków przypisany jest jeden jej odpowiednik, ustawiający parametry skryptu \texttt{AudioPitchEstimator}. Funkcją odpowiedzialną za logikę analizy dźwięku jest \texttt{EstimatePitch}, która korzysta z klasy \texttt{AudioPitchEstimator}, na tej podstawia ustawia wartości elementów tekstowych informujących użytkownika o poziomie nastrojenia instrumentu. 
-% TO DO:zamienione linie kodu
+% DONE:zamienione linie kodu
 % var nyquistFreq = AudioSettings.outputSampleRate / 2.0f;
 % if (!audioSource.isPlaying) return float.NaN;
 
@@ -191,7 +191,7 @@ private void ChangeChord()
 
 \subsection{Trening słuchu}
 
-Scena treningu słuchu zawiera przycisk odpowiedzialny za wybór skali. W skład sceny wchodzą dwie klasy: \texttt{EarTrainerManager} -- przypisany do menadżera sceny realizujący główną logikę sceny oraz \texttt{ButtonIndex} -- klasa pomocnicza przypisana do każdego z przycisków odpowiedzialnych za udzielenie odpowiedzi. Funkcje wchodzące w~skład głównej klasy to:
+Scena treningu słuchu zawiera przycisk odpowiedzialny za wybór skali treningowej, po wyborze której pojawiają się przyciski odpowiedzi, wraz z przyciskami odpowiedzialnymi za uruchomienie treningu i jego reset. W skład sceny wchodzą dwie klasy: \texttt{EarTrainerManager} -- przypisany do menadżera sceny realizujący główną logikę sceny oraz \texttt{ButtonIndex} -- klasa pomocnicza przypisana do każdego z przycisków odpowiedzialnych za udzielenie odpowiedzi. Funkcje wchodzące w~skład głównej klasy to:
 \begin{itemize}
     \item \texttt{Start} -- funkcja przypisująca obiekt \texttt{audioSource}, odpowiedzialny za odgrywanie dźwięków. Ustawia ona również funkcję \texttt{PlayRandomNote} do przycisku \texttt{playNoteButton}. Dodatkowo przypisuje ona funkcję \texttt{NoteGuessed} do każdego z przycisków odpowiedzialnych za odpowiedź.
     \item \texttt{PlayRandomNote} -- funkcja odpowiedzialna za odegranie losowego dźwięku po naciśnięciu przycisku \texttt{playNoteButton}. Ustawia ona odpowiedni index dla odegranej nuty, wykorzystywany następnie podczas zweryfikowania odpowiedzi podanej przez użytkownika.

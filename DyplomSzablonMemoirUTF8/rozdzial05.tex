@@ -11,6 +11,7 @@ Specyfikacja systemu, na którym przeprowadzono testy akceptacyjne:
     \item Typ systemu: 64-bitowy system operacyjny, procesor x64,
     \item Obciążenie procesora podczas wykonywania testów: 32\%.
 \end{itemize}
+Wszystkie testy przeprowadzone zostały przez twórcę pracy. Do testów narzędzia stroika posłużono się gitarą klasyczną marki \emph{Ever Play}.
 
 \subsubsection{Scenariusz testów metronomu}
 
@@ -113,6 +114,7 @@ Specyfikacja systemu, na którym przeprowadzono testy akceptacyjne:
     \item Warunki początkowe: Uruchomienie aplikacji, rozpoczynając od widoku menu głównego
     \item Scenariusz 1:
         \begin{enumerate}
+            \item Uruchom narzędzie koła kwintowego
             \item Naciśnij przycisk z tekstem "C"
             \item Zweryfikuj rezultat
         \end{enumerate}
@@ -120,6 +122,7 @@ Specyfikacja systemu, na którym przeprowadzono testy akceptacyjne:
     \item Wynik testu: Wynik testu jest pozytywny, działanie narzędzia pokrywa się z oczekiwanymi rezultatami
     \item Scenariusz 2:
         \begin{enumerate}
+            \item Uruchom narzędzie koła kwintowego
             \item Naciśnij przycisk z tekstem "E"
             \item Zweryfikuj rezultat
         \end{enumerate}
@@ -127,7 +130,22 @@ Specyfikacja systemu, na którym przeprowadzono testy akceptacyjne:
     \item Wynik testu: Pozytywny, działanie narzędzia pokrywa się z oczekiwanymi rezultatami
 \end{itemize}
 
-Wszystkie testy przeprowadzone zostały przez twórcę pracy. Do testów narzędzia stroika posłużono się gitarą klasyczną marki \emph{Ever Play}.
+\paragraph{Scenariusz testów treningu słuchu}
+
+\begin{itemize}
+    \item Cel: Zbadanie poprawności działania treningu słuchu
+    \item Warunki początkowe: Uruchomienie aplikacji, rozpoczynając od widoku menu głównego
+    \item Scenariusz 1:
+        \begin{enumerate}
+            \item Uruchom narzedzie treningu słuchu
+            \item Naciśnij przycisk z tekstem "C"
+            \item Naciśnij przycisk "GRAJ"
+            \item Naciśnij przycisk "RESET"
+        \end{enumerate}
+    \item Oczekiwany rezultat: Odegrana zostanie 1 nuta, po czym użytkownik przeniesiony zostanie do widoku wyboru tonu treningu
+    \item Wynik testu: Wynik testu jest pozytywny, działanie narzędzia pokrywa się z oczekiwanymi rezultatami
+\end{itemize}
+
 
 \section{Testy jednostkowe}
 
