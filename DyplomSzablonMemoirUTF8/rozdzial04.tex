@@ -247,9 +247,7 @@ Najistotniejsza funkcja, czyli \texttt{DisplayScale} zademonstrowano poniżej (\
 public void DisplayScale(int noteIndex)
 {
     ClearColors();
-
     List<int> scaleIndices = GetMajorScaleIndices(noteIndex);
-
     for (int i = 0; i < scaleIndices.Count; i++)
     {
         int index = scaleIndices[i];
