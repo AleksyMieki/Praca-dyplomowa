@@ -50,15 +50,15 @@ Funkcją uruchamiającą szybką transformatę Fouriera na odebranym dźwięku j
 \begin{lstlisting}[style=sharpcstyle,caption=Funkcja \texttt{Estimate}, label=lst:1]
 public float Estimate(AudioSource audioSource)
 {
+    var nyquistFreq = AudioSettings.outputSampleRate / 2.0f;
     if (!audioSource.isPlaying) return float.NaN;
-		var nyquistFreq = AudioSettings.outputSampleRate / 2.0f;
+
     audioSource.GetSpectrumData(spectrum, 0, FFTWindow.Hanning);
 
     for (int i = 0; i < spectrumSize; i++)
     {       
         specRaw[i] = Mathf.Log(spectrum[i] + 1e-9f);
     }
-
     specCum[0] = 0;
     for (int i = 1; i < spectrumSize; i++)
     {
@@ -93,8 +93,7 @@ public float Estimate(AudioSource audioSource)
             bestFreq = currentFreq;
             bestSRH = currentSRH;
         }
-    }
-    
+    }    
     if (bestSRH < thresholdSRH) return float.NaN;
 
     return bestFreq;
@@ -135,30 +134,26 @@ IEnumerator MetronomeCoroutine()
 
     while (true)
     {
-        if (circles.Count > 0)
+      if (circles.Count > 0)
         {
-            audioSource.Play();
-            
-            if (previousIndex != -1 && previousIndex < circles.Count)
-            {
-                circles[previousIndex].GetComponent<BeatCircle>().changeColorWhite();
-            }
-            
-            var currentCircle = circles[currentIndex].GetComponent<BeatCircle>();
-            if (currentCircle.imgComponent.color == Color.black)
-            {
-                currentCircle.changeColorWhite();
-            }
-            else
-            {
-                currentCircle.changeColorBlack();
-            }
-
-            previousIndex = currentIndex;
-            currentIndex = (currentIndex + 1) % circles.Count;
+          audioSource.Play(); 
+          if (previousIndex != -1 && previousIndex < circles.Count)
+          {
+              circles[previousIndex].GetComponent<BeatCircle>().changeColorWhite();
+          }          
+          var currentCircle = circles[currentIndex].GetComponent<BeatCircle>();
+          if (currentCircle.imgComponent.color == Color.black)
+          {
+              currentCircle.changeColorWhite();
+          }
+          else
+          {
+              currentCircle.changeColorBlack();
+          }
+          previousIndex = currentIndex;
+          currentIndex = (currentIndex + 1) % circles.Count;
         }
-        
-        yield return new WaitForSeconds(noteDuration);
+      yield return new WaitForSeconds(noteDuration);
     }
 }
 \end{lstlisting}

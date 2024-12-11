@@ -33,7 +33,7 @@ Specyfikacja systemu, na którym przeprowadzono testy akceptacyjne:
             \item Przyciski odpowiedzialne za dodawanie i odejmowanie taktów realizują swoje zbadanie
             \item Zwiększenie bmp, zwiększa tempo wybijania taktów
         \end{itemize}
-    \item Wynik testu : Wynik testu jest pozytywny, działanie narzędzia pokrywa się z oczekiwaniami
+    \item Wynik testu : Pozytywny, działanie narzędzia pokrywa się z oczekiwaniami
 \end{itemize}
 
 \subsubsection{Scenariusz testów księgi akordów i zapisu akordów}
@@ -62,7 +62,7 @@ Specyfikacja systemu, na którym przeprowadzono testy akceptacyjne:
             \item Kombinacje akordów jakie zostaną wyświetlone i zapisane to kolejno : C\# minor, D 5, D\# minor. 
             \item Wyświetlone akordy zgadzają się z akordami definiowanymi przez teorię muzyki
         \end{itemize}
-    \item Wynik testu: Wynik testu jest pozytywny, działanie narzędzia pokrywa się z oczekiwanymi rezultatami
+    \item Wynik testu: Pozytywny, działanie narzędzia pokrywa się z oczekiwanymi rezultatami
     \item Scenariusz 2:
         \begin{enumerate}
             \item Włącz narzędzie księgi akordów
@@ -74,7 +74,7 @@ Specyfikacja systemu, na którym przeprowadzono testy akceptacyjne:
         \begin{itemize}
             \item Na ekranie wyświetlony zostanie akord z oznaczeniem E sus4.
         \end{itemize}
-    \item Wynik testu: Wynik testu jest pozytywny, działanie narzędzia pokrywa się z oczekiwanymi rezultatami
+    \item Wynik testu: Pozytywny, działanie narzędzia pokrywa się z oczekiwanymi rezultatami
 \end{itemize}
 
 \subsubsection{Scenariusz testów stroika}
@@ -103,7 +103,7 @@ Specyfikacja systemu, na którym przeprowadzono testy akceptacyjne:
             \item Zweryfikuj poziom nastrojenia instrumentu
         \end{enumerate}
     \item Oczekiwany rezultat: Na czerwono podświetlany jest element graficzny symbolizujący przestrojenie gitary.
-    \item Wynik testu: Wynik testu jest pozytywny, działanie narzędzia pokrywa się z oczekiwanymi rezultatami
+    \item Wynik testu: Pozytywny, działanie narzędzia pokrywa się z oczekiwanymi rezultatami
 \end{itemize}
 
 \paragraph{Scenariusz testów koła kwintowego}
@@ -116,15 +116,15 @@ Specyfikacja systemu, na którym przeprowadzono testy akceptacyjne:
             \item Naciśnij przycisk z tekstem "C"
             \item Zweryfikuj rezultat
         \end{enumerate}
-    \item Oczekiwany rezultat: Wyświetlone zostaną nuty należące do skali C major, wrz z 3 akordami odpowiadającymi 
+    \item Oczekiwany rezultat: Wyświetlone zostaną nuty należące do skali C major, wraz z 3 akordami odpowiadającymi 
     \item Wynik testu: Wynik testu jest pozytywny, działanie narzędzia pokrywa się z oczekiwanymi rezultatami
     \item Scenariusz 2:
         \begin{enumerate}
             \item Naciśnij przycisk z tekstem "E"
             \item Zweryfikuj rezultat
         \end{enumerate}
-    \item Oczekiwany rezultat: Wyświetlone zostaną nuty należące do skali E major, wrz z 3 akordami odpowiadającymi 
-    \item Wynik testu: Wynik testu jest pozytywny, działanie narzędzia pokrywa się z oczekiwanymi rezultatami
+    \item Oczekiwany rezultat: Wyświetlone zostaną nuty należące do skali E major, wraz z 3~akordami odpowiadającymi 
+    \item Wynik testu: Pozytywny, działanie narzędzia pokrywa się z oczekiwanymi rezultatami
 \end{itemize}
 
 Wszystkie testy przeprowadzone zostały przez twórcę pracy. Do testów narzędzia stroika posłużono się gitarą klasyczną marki \emph{Ever Play}.
@@ -141,7 +141,7 @@ Struktura testowa podzielona została w taki sposób, aby klasy testowe odpowiad
 
 \begin{figure}[htb]
     \centering
-    \includegraphics[scale=.9]{rys05/Testy}
+    \includegraphics[scale=1]{rys05/Testy}
    \caption{Struktura testów projektu}
    \label{fig:strukturaTestów}
 \end{figure}
@@ -152,9 +152,9 @@ Aby przeprowadzić testy dla poszczególnych komponentów, utworzono mocki (ang.
 
 \subsubsection{Testy metronom}
 
-Kod przedstawiony na listingu poniżej (listing~\ref{lst:1}), odpowiada za utworzenie sztucznego obiektu MetronomeManager, zawierającego przyciski i pozostałe potrzebne zależności do jego działania. 
+Kod przedstawiony na listingu poniżej (listing~\ref{lst:10}), odpowiada za utworzenie sztucznego obiektu \texttt{MetronomeManager}, zawierającego przyciski i pozostałe potrzebne zależności do jego działania. 
 
-\begin{lstlisting}[style=sharpcstyle,caption=Funkcja \texttt{SetupMetronomeManager}, label=lst:1]
+\begin{lstlisting}[style=sharpcstyle,caption=Funkcja \texttt{SetupMetronomeManager}, label=lst:10]
 private MetronomeManager SetupMetronomeManager()
 {
     GameObject gameObject = new GameObject();
@@ -172,9 +172,9 @@ private MetronomeManager SetupMetronomeManager()
 }
 \end{lstlisting}
 
-Dla klasy \texttt{MetronomeManager} sprawdzono np. funkcję zwiększania i zmniejszania taktu, sprawdzając przy tym, czy poprawnie tworzone są obiekty wchodzące w skład sceny.
+Dla klasy \texttt{MetronomeManager} sprawdzono np.\ funkcję zwiększania i zmniejszania taktu, sprawdzając przy tym, czy poprawnie tworzone są obiekty wchodzące w skład sceny (listing poniżej).
 
-\begin{lstlisting}[style=sharpcstyle,caption=Funkcja \texttt{AddCircle\_Test}, label=lst:2]
+\begin{lstlisting}[style=sharpcstyle,caption=Funkcja \texttt{AddCircle\_Test}, label=lst:20]
 [UnityTest]
 public IEnumerator AddCircle_Test()
 {
@@ -192,9 +192,9 @@ Pozostałe testy obejmowały sprawdzenie poprawności funkcji odpowiedzialnych z
 
 \subsubsection{Testy koło kwintowe}
 
-Testy jednostkowe koła kwintowego obejmowały utworzenie mocków obiektu głównego menadżera sceny, a następnie zbadanie działania funkcji odpowiedzialnych za zarządzanie przyciskami i elementami graficznymi scen. Na listingach ~\ref{lst:3} i \ref{lst:4} zamieszczono wybrane części kodu odpowiedzialnego za przeprowadzenie testów.
+Testy jednostkowe koła kwintowego obejmowały utworzenie mocków obiektu głównego menadżera sceny, a następnie zbadanie działania funkcji odpowiedzialnych za zarządzanie przyciskami i elementami graficznymi scen. Na listingach ~\ref{lst:30} i \ref{lst:40} zamieszczono wybrane części kodu odpowiedzialnego za przeprowadzenie testów.
 
-\begin{lstlisting}[style=sharpcstyle,caption=Funkcja \texttt{SetupKvintManager}, label=lst:3]
+\begin{lstlisting}[style=sharpcstyle,caption=Funkcja \texttt{SetupKvintManager}, label=lst:30]
 private KvintManagerScript SetupKvintManager(int outerButtonCount = 12, int innerButtonCount = 12)
 {
     GameObject managerObject = new GameObject();
@@ -209,24 +209,21 @@ private KvintManagerScript SetupKvintManager(int outerButtonCount = 12, int inne
         buttonImage.color = Color.white;
         kvintManager.outerButtons.Add(button);
     }
-
     return kvintManager;
 }  
 \end{lstlisting}
 
-\begin{lstlisting}[style=sharpcstyle,caption=Funkcja \texttt{GetMajorScaleIndices\_VerifyCorrectIndices}, label=lst:4]
+\begin{lstlisting}[style=sharpcstyle,caption=Funkcja \texttt{GetMajorScaleIndices\_VerifyCorrectIndices}, label=lst:40]
 [Test]
 public void GetMajorScaleIndices_VerifyCorrectIndices()
 {
     var kvintManager = SetupKvintManager();
     int rootNoteIndex = 0;
-
     var scaleIndices = kvintManager.GetType()
         .GetMethod("GetMajorScaleIndices", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)
         .Invoke(kvintManager, new object[] { rootNoteIndex }) as List<int>;
 
-    Assert.IsNotNull(scaleIndices);
-    
+    Assert.IsNotNull(scaleIndices);    
     List<int> expectedIndices = new List<int> { 11, 0, 1, 2, 3, 4, 5};
     CollectionAssert.AreEqual(expectedIndices, scaleIndices);
 }
@@ -234,9 +231,9 @@ public void GetMajorScaleIndices_VerifyCorrectIndices()
 
 \subsubsection{Testy księga akordów}
 
-Testy dla księgi akordów skupiały się na testowaniu działania funkcji odpowiedzialnych za zmianę aktualnie wyświetlanego akordu (listing~\ref{lst:6}). Wpierw utworzono sztuczny obiekt (listing~\ref{lst:5}), który następnie poddano testom.
+Testy dla księgi akordów skupiały się na testowaniu działania funkcji odpowiedzialnych za zmianę aktualnie wyświetlanego akordu (listing~\ref{lst:60}). Wpierw utworzono sztuczny obiekt (listing~\ref{lst:50}), który następnie poddano testom.
 
-\begin{lstlisting}[style=sharpcstyle,caption=Funkcja \texttt{SetupChordChartsManager}, label=lst:5]
+\begin{lstlisting}[style=sharpcstyle,caption=Funkcja \texttt{SetupChordChartsManager}, label=lst:50]
 private ChordChartsManager SetupChordChartsManager()
 {
 
@@ -253,19 +250,17 @@ private ChordChartsManager SetupChordChartsManager()
     chordChartsManager.noteLeft = CreateMockButton();
     chordChartsManager.noteRight = CreateMockButton();
     ...
-
     return chordChartsManager;
 }
 \end{lstlisting}
 
 
-\begin{lstlisting}[style=sharpcstyle,caption=Funkcja \texttt{NoteIncrement\_WrapsAroundCorrectly}, label=lst:6]
+\begin{lstlisting}[style=sharpcstyle,caption=Funkcja \texttt{NoteIncrement\_WrapsAroundCorrectly}, label=lst:60]
 [Test]
 public void NoteIncrement_WrapsAroundCorrectly()
 {
     var chordChartsManager = SetupChordChartsManager();
     chordChartsManager.noteIterator = 11;
-
     chordChartsManager.noteIncrement();
     Assert.AreEqual(0, chordChartsManager.noteIterator);
 
@@ -276,9 +271,9 @@ public void NoteIncrement_WrapsAroundCorrectly()
 
 \subsubsection{Testy diagramu akordów}
 
-Dla głównego menadżera sceny diagramu akordów utworzono sztuczny obiekt wraz ze sztucznie utworzonymi elementami graficznymi i przyciskami, sprawdzając, czy przy przewijaniu diagramu dezaktywowane i aktywowane są odpowiednie elementy sceny. Przykłady kodu źródłowego zamieszczono na listingach (listing~\ref{lst:7}, \ref{lst:8}). Dodatkowo testowano poprawne ustawienie klasy odpowiedzialnej za komunikację pomiędzy scenami diagramu akordów i księgi akordów.
+Dla głównego menadżera sceny diagramu akordów utworzono sztuczny obiekt wraz ze sztucznie utworzonymi elementami graficznymi i przyciskami, sprawdzając, czy przy przewijaniu diagramu dezaktywowane i aktywowane są odpowiednie elementy sceny. Przykłady kodu źródłowego zamieszczono na listingach (listing~\ref{lst:70}, \ref{lst:80}). Dodatkowo testowano poprawne ustawienie klasy odpowiedzialnej za komunikację pomiędzy scenami diagramu akordów i księgi akordów.
 
-\begin{lstlisting}[style=sharpcstyle,caption=Funkcja \texttt{Setup}, label=lst:7]
+\begin{lstlisting}[style=sharpcstyle,caption=Funkcja \texttt{Setup}, label=lst:70]
 [SetUp]
 public void Setup()
 {
@@ -289,7 +284,7 @@ public void Setup()
 }
 \end{lstlisting}
 
-\begin{lstlisting}[style=sharpcstyle,caption=Funkcja \texttt{DiagramNextPage\_CyclesThroughPages}, label=lst:8]
+\begin{lstlisting}[style=sharpcstyle,caption=Funkcja \texttt{DiagramNextPage\_CyclesThroughPages}, label=lst:80]
 [Test]
 public void DiagramNextPage_CyclesThroughPages()
 {
